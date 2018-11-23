@@ -1,4 +1,4 @@
 import React from 'react';
 
-const App = () => <div />;
+const App = () => <p>some text</p>;
 export default App;
