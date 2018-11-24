@@ -23,6 +23,7 @@
   "rules": {
     "linebreak-style": ["error", "windows"],
     "react/prop-types": 0,
+    "no-console": "off",
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [
       1,
