@@ -24,6 +24,13 @@
     "linebreak-style": ["error", "windows"],
     "react/prop-types": 0,
     "no-console": "off",
+    "react/destructuring-assignment": [
+      1,
+      "always",
+      {
+        "ignoreClassFields": false
+      }
+    ],
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [
       1,
