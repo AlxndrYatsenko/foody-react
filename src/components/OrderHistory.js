@@ -1,7 +1,6 @@
 import React from 'react';
 
 const OrderHistory = ({ orders }) => {
-  // console.log(orders);
   const row = orders.map(order => (
     <tr key={order.id}>
       <td>{order.date}</td>
