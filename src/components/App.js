@@ -1,6 +1,7 @@
 import React from 'react';
-import orderHistory from '../services/order-history.json';
-import OrderHistory from './OrderHistory';
 
-const App = () => <OrderHistory orders={orderHistory} />;
+import OrderHistory from './OrderHistory/OrderHistory';
+
+const App = () => <OrderHistory />;
+
 export default App;
