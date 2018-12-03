@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import OrdersTable from './OrdersTable';
 import styles from './OrderHistory.module.css';
-import ModalOrder from '../ModalOrder/ModalOrder';
-import AddOrderForm from '../OrderForm/AddOrderForm';
+import Modal from '../Modal/Modal';
 import Spiner from '../Spiner/Spiner';
 import * as API from '../../services/api';
 
@@ -11,8 +10,11 @@ export default class OrderHistory extends Component {
     orders: [],
     isLoading: false,
     orderForModal: {},
-    isOpenModalOrder: false,
+    isOpenModalShowOrder: false,
     isOpenModalAddOrder: false,
+    inputAddress: '',
+    inputPrice: '',
+    inputRating: '',
   };
 
   componentDidMount() {
@@ -31,17 +33,17 @@ export default class OrderHistory extends Component {
     this.setState({ isLoading: true });
     API.getOrderById(id).then(order => {
       this.setState({ orderForModal: order, isLoading: false });
-      this.openModal();
+      this.openModalShowOrder();
     });
   };
 
   handleAddOrder = order => {
-    const { address, price, rating } = order;
+    const { inputAddress, inputPrice, inputRating } = order;
     API.addOrder({
       date: new Date().toLocaleDateString('en-US'),
-      price,
-      address,
-      rating,
+      price: inputPrice,
+      address: inputAddress,
+      rating: inputRating,
     }).then(response =>
       response.status === 201
         ? this.setState(prevState => ({
@@ -59,38 +61,72 @@ export default class OrderHistory extends Component {
     this.setState({ isOpenModalAddOrder: false });
   };
 
-  openModal = () => {
-    this.setState({ isOpenModalOrder: true });
+  openModalShowOrder = () => {
+    this.setState({ isOpenModalShowOrder: true });
   };
 
-  closeModal = () => {
-    this.setState({ isOpenModalOrder: false });
+  closeModalShowOrder = () => {
+    this.setState({ isOpenModalShowOrder: false });
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    const { value } = e.target;
+    const { name } = e.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { inputAddress, inputPrice, inputRating } = this.state;
+    this.handleAddOrder({ inputAddress, inputPrice, inputRating });
+    this.setState({ inputAddress: '', inputPrice: '', inputRating: '' });
+    this.handleCloseModalAddOrder();
   };
 
   render() {
     const {
       orders,
-      isOpenModalOrder,
+      isOpenModalShowOrder,
       orderForModal,
       isLoading,
       isOpenModalAddOrder,
     } = this.state;
-    const { id, date, price, address, rating } = orderForModal;
+    const { date, price, address, rating } = orderForModal;
+    const { inputAddress, inputPrice, inputRating } = this.state;
+    const { list } = styles;
 
     return (
       <div className="orderHistoryWrap">
         {isLoading ? (
           <Spiner />
         ) : (
-          isOpenModalOrder && (
-            <ModalOrder
-              onClose={this.closeModal}
-              id={id}
-              date={date}
-              price={price}
-              address={address}
-              rating={rating}
-            />
+          isOpenModalShowOrder && (
+            <Modal onClose={this.closeModalShowOrder}>
+              <div className={list}>
+                <p className={date}>
+                  Дата заказа: <b>{date}</b>
+                </p>
+                <p className={price}>
+                  Цена: <b>{price}</b>
+                </p>
+                <p className={address}>
+                  Адресс доставки: <b>{address}</b>
+                </p>
+                <p className={rating}>
+                  Рейтинг: <b>{rating}</b>
+                </p>
+                <button
+                  className="close-btn"
+                  type="button"
+                  onClick={this.closeModalShowOrder}
+                >
+                  Закрыть
+                </button>
+              </div>
+            </Modal>
           )
         )}
         <button
@@ -102,11 +138,44 @@ export default class OrderHistory extends Component {
         </button>
         <br />
         {isOpenModalAddOrder && (
-          <AddOrderForm
-            onClose={this.handleCloseModalAddOrder}
-            onAddOrder={this.handleAddOrder}
-            isOpenModalAddOrder={isOpenModalAddOrder}
-          />
+          <Modal onClose={this.handleCloseModalAddOrder}>
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Адрес доставки:
+                <input
+                  name="inputAddress"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={inputAddress}
+                  required
+                />
+              </label>
+              <label>
+                Цена:
+                <input
+                  name="inputPrice"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={inputPrice}
+                  required
+                />
+              </label>
+              <label>
+                Рейтинг:
+                <input
+                  name="inputRating"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={inputRating}
+                  required
+                />
+              </label>
+              <button type="submit">Отправить</button>
+              <button type="submit" onClick={this.handleCloseModalAddOrder}>
+                Закрыть
+              </button>
+            </form>
+          </Modal>
         )}
         <OrdersTable
           orders={orders}
