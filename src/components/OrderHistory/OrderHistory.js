@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Order from './Order';
+import OrdersTable from './OrdersTable';
 import styles from './OrderHistory.module.css';
 import ModalOrder from '../ModalOrder/ModalOrder';
 import AddOrderForm from '../OrderForm/AddOrderForm';
@@ -20,10 +20,11 @@ export default class OrderHistory extends Component {
   }
 
   handleDeleteOrder = id => {
-    API.deleteOrderById(id);
-    this.setState(state => ({
-      orders: state.orders.filter(item => item.id !== id),
-    }));
+    API.deleteOrderById(id).then(
+      this.setState(state => ({
+        orders: state.orders.filter(item => item.id !== id),
+      })),
+    );
   };
 
   handleShowOrder = id => {
@@ -34,8 +35,20 @@ export default class OrderHistory extends Component {
     });
   };
 
-  handleUpdateOrdersHistory = order => {
-    this.setState(prevState => ({ orders: [...prevState.orders, order] }));
+  handleAddOrder = order => {
+    const { address, price, rating } = order;
+    API.addOrder({
+      date: new Date().toLocaleDateString('en-US'),
+      price,
+      address,
+      rating,
+    }).then(response =>
+      response.status === 201
+        ? this.setState(prevState => ({
+            orders: [...prevState.orders, response.data],
+          }))
+        : null,
+    );
   };
 
   handleOpenModalAddOrder = () => {
@@ -91,26 +104,15 @@ export default class OrderHistory extends Component {
         {isOpenModalAddOrder && (
           <AddOrderForm
             onClose={this.handleCloseModalAddOrder}
-            onAddOrder={this.handleUpdateOrdersHistory}
+            onAddOrder={this.handleAddOrder}
             isOpenModalAddOrder={isOpenModalAddOrder}
           />
         )}
-        <table className={styles.table}>
-          <tbody className={styles.tableBody}>
-            <tr className={styles.tableRow}>
-              <th className={styles.date}>Date</th>
-              <th className={styles.price}>Price</th>
-              <th className={styles.address}>Delivery address</th>
-              <th className={styles.rating}>Rating</th>
-            </tr>
-            <Order
-              orders={orders}
-              onDelete={this.handleDeleteOrder}
-              onNewOrder={this.handleAddOrder}
-              onShowOrder={this.handleShowOrder}
-            />
-          </tbody>
-        </table>
+        <OrdersTable
+          orders={orders}
+          onDelete={this.handleDeleteOrder}
+          onShowOrder={this.handleShowOrder}
+        />
       </div>
     );
   }

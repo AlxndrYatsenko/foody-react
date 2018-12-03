@@ -49,13 +49,7 @@ export default class ModalOrder extends Component {
             <li className={rating}>
               Рейтинг: <b>{rating}</b>
             </li>
-            <button
-              className="modal__closse-btn"
-              type="button"
-              onClick={() => {
-                onClose();
-              }}
-            >
+            <button className="close-btn" type="button" onClick={onClose()}>
               Закрыть
             </button>
           </ul>

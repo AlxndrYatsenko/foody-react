@@ -1,6 +1,5 @@
 import React, { Component, createRef } from 'react';
 import modalStyles from '../ModalOrder/Modal.module.css';
-import * as API from '../../services/api';
 
 const INITIAL_STATE = { address: '', price: '', rating: '' };
 
@@ -48,23 +47,14 @@ export default class AddOrderForm extends Component {
     e.preventDefault();
     const { address, price, rating } = this.state;
     const { onClose, onAddOrder } = this.props;
-
-    API.addOrder({
-      date: new Date().toLocaleDateString('en-US'),
-      price,
-      address,
-      rating,
-    }).then(response => {
-      if (response.status === 201) onAddOrder(response.data);
-    });
-
+    onAddOrder({ address, price, rating });
     this.setState({ ...INITIAL_STATE });
     onClose();
   };
 
   render() {
     const { address, price, rating } = this.state;
-    const { backDrop, modal, label, input } = modalStyles;
+    const { backDrop, modal } = modalStyles;
     return (
       <div className={backDrop} ref={this.containerRef}>
         <form className={modal} onSubmit={this.handleSubmit}>
