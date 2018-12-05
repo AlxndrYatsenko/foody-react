@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import OrdersTable from './OrdersTable';
 import styles from './OrderHistory.module.css';
 import Modal from '../Modal/Modal';
+import AddOrderForm from '../AddOrderForm/AddOrderForm';
 import Spiner from '../Spiner/Spiner';
 import * as API from '../../services/api';
 
@@ -12,9 +13,6 @@ export default class OrderHistory extends Component {
     orderForModal: {},
     isOpenModalShowOrder: false,
     isOpenModalAddOrder: false,
-    inputAddress: '',
-    inputPrice: '',
-    inputRating: '',
   };
 
   componentDidMount() {
@@ -38,12 +36,12 @@ export default class OrderHistory extends Component {
   };
 
   handleAddOrder = order => {
-    const { inputAddress, inputPrice, inputRating } = order;
+    const { address, price, rating } = order;
     API.addOrder({
       date: new Date().toLocaleDateString('en-US'),
-      price: inputPrice,
-      address: inputAddress,
-      rating: inputRating,
+      price,
+      address,
+      rating,
     }).then(response =>
       response.status === 201
         ? this.setState(prevState => ({
@@ -69,23 +67,6 @@ export default class OrderHistory extends Component {
     this.setState({ isOpenModalShowOrder: false });
   };
 
-  handleChange = e => {
-    e.preventDefault();
-    const { value } = e.target;
-    const { name } = e.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { inputAddress, inputPrice, inputRating } = this.state;
-    this.handleAddOrder({ inputAddress, inputPrice, inputRating });
-    this.setState({ inputAddress: '', inputPrice: '', inputRating: '' });
-    this.handleCloseModalAddOrder();
-  };
-
   render() {
     const {
       orders,
@@ -95,7 +76,7 @@ export default class OrderHistory extends Component {
       isOpenModalAddOrder,
     } = this.state;
     const { date, price, address, rating } = orderForModal;
-    const { inputAddress, inputPrice, inputRating } = this.state;
+
     const { list } = styles;
 
     return (
@@ -139,42 +120,10 @@ export default class OrderHistory extends Component {
         <br />
         {isOpenModalAddOrder && (
           <Modal onClose={this.handleCloseModalAddOrder}>
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                Адрес доставки:
-                <input
-                  name="inputAddress"
-                  type="text"
-                  onChange={this.handleChange}
-                  value={inputAddress}
-                  required
-                />
-              </label>
-              <label>
-                Цена:
-                <input
-                  name="inputPrice"
-                  type="text"
-                  onChange={this.handleChange}
-                  value={inputPrice}
-                  required
-                />
-              </label>
-              <label>
-                Рейтинг:
-                <input
-                  name="inputRating"
-                  type="text"
-                  onChange={this.handleChange}
-                  value={inputRating}
-                  required
-                />
-              </label>
-              <button type="submit">Отправить</button>
-              <button type="submit" onClick={this.handleCloseModalAddOrder}>
-                Закрыть
-              </button>
-            </form>
+            <AddOrderForm
+              onAddOrder={this.handleAddOrder}
+              onClose={this.handleCloseModalAddOrder}
+            />
           </Modal>
         )}
         <OrdersTable
