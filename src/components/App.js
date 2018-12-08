@@ -1,4 +1,7 @@
 import React from 'react';
 
-const App = () => <p>some text</p>;
+import OrderHistory from './OrderHistory/OrderHistory';
+
+const App = () => <OrderHistory />;
+
 export default App;
