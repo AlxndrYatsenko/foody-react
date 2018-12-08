@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import arrStars from '../services/starsOfDish';
+import arrStars from '../../services/starsOfDish';
 
 const INITIAL_STATE = {
   selected: 1,
