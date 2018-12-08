@@ -23,14 +23,16 @@
   "rules": {
     "linebreak-style": ["error", "windows"],
     "react/prop-types": 0,
-    "no-console": "off",
-    "react/destructuring-assignment": [
+    "no-console": 1,
+     "react/destructuring-assignment": [
       1,
       "always",
       {
         "ignoreClassFields": false
       }
     ],
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": 0,
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [
       1,
@@ -40,3 +42,4 @@
     ]
   }
 }
+

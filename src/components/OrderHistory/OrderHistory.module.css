@@ -1,0 +1,18 @@
+th,
+td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.rating,
+.price {
+  width: 70px;
+}
+
+.date {
+  width: 100px;
+}
+
+.address {
+  width: 180px;
+}
