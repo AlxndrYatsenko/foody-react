@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './Header';
 import SingForm from './SingForm/SingForm';
 import OrderHistory from './OrderHistory/OrderHistory';
 import Menu from './Menu/Menu';
@@ -7,6 +8,7 @@ import dishList from '../services/menu.json';
 
 const App = () => (
   <>
+    <Header />
     <SingForm />
     <OrderHistory />
     <Menu dishList={dishList} />
