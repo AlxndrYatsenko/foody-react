@@ -1,9 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Menu = ({ dishList, onDeleteDish }) => {
-  const dish = dishList.map(({ id, name, price, image, description }) => (
+// onDeleteDish;
+
+const Menu = ({ dishList, match }) => {
+  // console.log(props);
+
+  const dish = dishList.map(({ id, name }) => (
     <li className="list-item" key={id}>
-      <div className="item-wrap">
+      <Link to={`${match.url}/${id}`}>{name}</Link>
+      {/* to={`${match.url}/${id}`} */}
+
+      {/* <div className="item-wrap">
         <img
           className="item-image"
           src={image}
@@ -22,7 +30,7 @@ const Menu = ({ dishList, onDeleteDish }) => {
       >
         Удалить
       </button>
-      <hr />
+      <hr /> */}
     </li>
   ));
 

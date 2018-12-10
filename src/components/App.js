@@ -1,19 +1,24 @@
 import React from 'react';
-import Header from './Header';
-import SingForm from './SingForm/SingForm';
-import OrderHistory from './OrderHistory/OrderHistory';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Main from './Header/navList/Main';
 import Menu from './Menu/Menu';
-import Comment from './Comment/Comment';
-import dishList from '../services/menu.json';
+import Dish from './Menu/Dish';
+import Header from './Header/Header';
+import NotFound from './Header/navList/NotFound';
 
 const App = () => (
-  <>
-    <Header />
-    <SingForm />
-    <OrderHistory />
-    <Menu dishList={dishList} />
-    <Comment dish={dishList[3]} />
-  </>
+  <BrowserRouter>
+    <>
+      <Header />
+      {/* <RouterApp /> */}
+      <Switch>
+        <Route exact path="/" component={Main} />
+        <Route exact path="/menu" render={props => <Menu {...props} />} />
+        <Route exact path="/menu/:id" component={Dish} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
+  </BrowserRouter>
 );
 
 export default App;
