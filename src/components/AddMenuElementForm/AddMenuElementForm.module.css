@@ -1,0 +1,30 @@
+.form,
+label {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+textarea {
+  font-size: 16px;
+  resize: none;
+}
+
+.ingrBtn {
+  position: relative;
+  padding-right: 15px;
+}
+
+.ingrBtn::before {
+  position: absolute;
+  content: '';
+  z-index: 1;
+  top: 4px;
+  right: -4px;
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-image: url(../../services/image/red-cross.png);
+  background-repeat: no-repeat;
+}

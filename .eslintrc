@@ -24,7 +24,7 @@
     "linebreak-style": ["error", "windows"],
     "react/prop-types": 0,
     "no-console": 1,
-     "react/destructuring-assignment": [
+    "react/destructuring-assignment": [
       1,
       "always",
       {
@@ -42,4 +42,3 @@
     ]
   }
 }
-

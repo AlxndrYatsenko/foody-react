@@ -1,0 +1,20 @@
+.image {
+  width: 300px;
+  height: auto;
+}
+.name {
+  font-weight: bold;
+  font-size: 18px;
+}
+.price {
+  font-weight: bold;
+}
+.ingrTitle {
+  font-weight: bold;
+  font-size: 16px;
+}
+.description {
+} /*.ingredients {
+}
+.goBackBtn {
+} */

@@ -1,45 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import queryString from 'query-string';
+import s from './DishList.module.css';
+import * as API from '../../services/api';
 
-// onDeleteDish;
+const getCategoryFromProps = props =>
+  queryString.parse(props.location.search).category;
+export default class DishList extends Component {
+  state = {
+    // category: '',
+  };
 
-const Menu = ({ dishList, match }) => {
-  // console.log(props);
+  componentDidMount() {
+    // console.log(this.props);
+    // const category = getCategoryFromProps(this.props);
+    // const { history, location } = this.props;
+    //
+    // const { onAddDishes } = this.props;
+    // API.getMenuItemsWithCategory(category).then(
+    // dishes => onAddDishes(dishes),
+    // articles => console.log(articles),
+    // this.setState({ articles }),
+    // );
+  }
 
-  const dish = dishList.map(({ id, name }) => (
-    <li className="list-item" key={id}>
-      <Link to={`${match.url}/${id}`}>{name}</Link>
-      {/* to={`${match.url}/${id}`} */}
+  componentDidUpdate(prevProps) {
+    const prevCategory = getCategoryFromProps(prevProps);
+    const nextCategory = getCategoryFromProps(this.props);
+    if (prevCategory !== nextCategory) {
+      API.getMenuItemsWithCategory(nextCategory);
+    }
+  }
 
-      {/* <div className="item-wrap">
-        <img
-          className="item-image"
-          src={image}
-          alt={name}
-          width="150px"
-          height="auto"
-        />
-        <p className="item-name">Name: {name}</p>
-        <p className="item-prise">Price: {price}$</p>
-      </div>
-      <p className="item-description">{description}</p>
-      <button
-        type="button"
-        className="item-buttton"
-        onClick={() => onDeleteDish(id)}
-      >
-        Удалить
-      </button>
-      <hr /> */}
-    </li>
-  ));
+  render() {
+    const { dishList, match, location } = this.props;
 
-  return (
-    <ul className="menu-list">
-      {dish}
-      <br />
-    </ul>
-  );
-};
-
-export default Menu;
+    return (
+      <ul className="menu-list">
+        {dishList.map(({ id, name, image, price }) => (
+          <li className={s.list} key={id}>
+            <Link
+              to={{
+                pathname: `${match.url}/${id}`,
+                state: { from: location },
+              }}
+            >
+              <img className={s.img} src={image} alt={name} />
+              <p className={s.name}>{name}</p>
+              <p className={s.price}>Цена: {price} денег</p>
+            </Link>
+          </li>
+        ))}
+        <hr />
+      </ul>
+    );
+  }
+}
