@@ -21,10 +21,14 @@ textarea {
   content: '';
   z-index: 1;
   top: 4px;
-  right: -4px;
+  right: -3px;
   display: block;
   width: 15px;
   height: 15px;
-  background-image: url(../../services/image/red-cross.png);
+  background-image: url(../../../services/image/red-cross.png);
   background-repeat: no-repeat;
+}
+
+.ingredients {
+  margin-bottom: 10px;
 }

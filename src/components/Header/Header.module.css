@@ -14,10 +14,12 @@ nav {
 .navList {
   list-style: none;
   display: flex;
+  text-decoration: none;
 }
 
 .navListLink {
   text-decoration: none;
+  color: blue;
 }
 
 .navList li:not(:last-child) {

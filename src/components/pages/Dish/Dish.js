@@ -1,14 +1,13 @@
 import React, { PureComponent } from 'react';
-import s from './Menu.module.css';
 import DishItem from './DishItem';
-import Spiner from '../Spiner/Spiner';
-import { getMenuItemById } from '../../services/api';
+import s from '../../Menu/Menu.module.css';
+import Spiner from '../../Spiner/Spiner';
+import { getMenuItemById } from '../../../services/api';
 
 export default class Dish extends PureComponent {
   state = {
     isLoading: false,
     currentDish: {},
-    error: '',
   };
 
   componentDidMount() {
@@ -18,16 +17,12 @@ export default class Dish extends PureComponent {
       match: { params },
     } = this.props;
 
-    getMenuItemById(params.id)
-      .then(({ status, data, error }) =>
-        status === 200
-          ? this.setState({
-              currentDish: data,
-              isLoading: false,
-            })
-          : this.setState({ error }),
-      )
-      .catch(error => this.setState({ error, isLoading: false }));
+    getMenuItemById(params.id).then(({ data }) =>
+      this.setState({
+        currentDish: data,
+        isLoading: false,
+      }),
+    );
   }
 
   handleGoBack = () => {
@@ -49,7 +44,7 @@ export default class Dish extends PureComponent {
   };
 
   render() {
-    const { isLoading, currentDish, error } = this.state;
+    const { isLoading, currentDish } = this.state;
 
     return (
       <>
@@ -61,7 +56,6 @@ export default class Dish extends PureComponent {
           Назад к меню
         </button>
         <hr />
-        {error && <p>{error.message}</p>}
         {isLoading ? (
           <Spiner />
         ) : (

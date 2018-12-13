@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Menu.module.css';
+import s from '../../Menu/Menu.module.css';
 
 const DishItem = ({
   currentDish: { image, price, ingredients, name, description },

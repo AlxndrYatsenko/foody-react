@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import DishList from './DishList';
+import s from './Menu.module.css';
 import CategorySelector from './CategotySelektor';
 import * as API from '../../services/api';
 
@@ -16,11 +17,9 @@ export default class Menu extends Component {
   componentDidMount() {
     API.getCategories().then(categories => this.setState({ categories }));
     const category = getCategoryFromProps(this.props);
-    // const category = gotCategory === 'all' ? gotCategory : null;
-
     const { history, location } = this.props;
-    if (location.search === '?category=all') {
-      // if (!category) {
+
+    if (category) {
       return history.replace({
         pathname: location.pathname,
       });
@@ -41,6 +40,14 @@ export default class Menu extends Component {
     }
   }
 
+  handleClearFilter = () => {
+    const { history, location } = this.props;
+    history.replace({
+      pathname: location.pathname,
+      search: '',
+    });
+  };
+
   handleSelectChange = value => {
     const { history, location } = this.props;
     history.push({
@@ -52,7 +59,7 @@ export default class Menu extends Component {
   render() {
     const { categories, dishes } = this.state;
     const { match, location } = this.props;
-    const selected = getCategoryFromProps(this.props);
+    const category = getCategoryFromProps(this.props);
 
     return (
       <div>
@@ -65,11 +72,24 @@ export default class Menu extends Component {
           Добавить элемент меню
         </Link>
         <hr />
-        <CategorySelector
-          onChange={this.handleSelectChange}
-          value={selected}
-          categories={categories}
-        />
+        <div>
+          <CategorySelector
+            onChange={this.handleSelectChange}
+            value={category}
+            categories={categories}
+          />
+          {category && (
+            <button
+              className={s.filterBtn}
+              type="button"
+              onClick={this.handleClearFilter}
+            >
+              Очистить фильтр
+            </button>
+          )}
+        </div>
+        {category && <p>Текущий фильтр: {category}</p>}
+
         <hr />
         <DishList dishList={dishes} {...this.props} />
       </div>

@@ -1,24 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import HomePage from './navList/Home';
-// import AboutPage from './navList/About';
-// import NotFound from './navList/NotFound';
-// import Menu from '../Menu/Menu';
-import style from './Header.module.css';
-// import dishList from '../../services/menu.json';
+import { NavLink } from 'react-router-dom';
+import s from './Header.module.css';
 
 const Navigation = () => (
   <nav>
-    <ul className={style.navList}>
+    <ul className={s.navList}>
       <li key="Main">
-        <Link className={style.navListLink} to="/">
+        <NavLink
+          className={s.navList}
+          exact
+          activeClassName={s.navListLink}
+          to="/"
+        >
           ГЛАВНАЯ
-        </Link>
+        </NavLink>
       </li>
       <li key="Menu">
-        <Link className={style.navListLink} to="/menu">
+        <NavLink
+          className={s.navList}
+          exact
+          activeClassName={s.navListLink}
+          to="/menu"
+        >
           МЕНЮ
-        </Link>
+        </NavLink>
       </li>
     </ul>
   </nav>

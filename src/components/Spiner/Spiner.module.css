@@ -16,7 +16,7 @@
   border-radius: 50%;
   border: 5px solid rgba(0, 0, 0, 0.7);
   border-color: rgba(0, 0, 0, 0.7) transparent rgba(0, 0, 0, 0.7) transparent;
-  animation: ldsDualRing 1.2s linear infinite;
+  animation: ldsDualRing 2s linear infinite;
 }
 @keyframes ldsDualRing {
   0% {

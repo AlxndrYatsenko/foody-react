@@ -39,13 +39,7 @@
       "image": "https://s1.eda.ru/StaticContent/Photos/121114213720/151024152626/p_O.png",
       "price": 100,
       "category": "soup",
-      "ingredients": [
-        "Тыква",
-        "Петрушка",
-        "Сливки",
-        "Бренди",
-        "Куриный бульон"
-      ]
+      "ingredients": ["Тыква", "Петрушка", "Сливки", "Бренди", "Куриный бульон"]
     },
     {
       "id": 4,
@@ -126,30 +120,6 @@
         "Легкий соевый соус",
         "Кунжутное масло"
       ]
-    },
-    {
-      "name": "1111111",
-      "price": "111111",
-      "image": "111111",
-      "description": "111111",
-      "ingredients": [
-        "Мини цукини",
-        "Картофель"
-      ],
-      "category": "dessert",
-      "id": 9
-    },
-    {
-      "name": "222222",
-      "price": "333",
-      "image": "https://img1.liveinternet.ru/images/attach/c/0/121/194/121194035_5281519_doner_kebab80215.JPG",
-      "description": "22222222",
-      "ingredients": [
-        "Легкий соевый соус",
-        "Грибы шиитаке"
-      ],
-      "category": "main course",
-      "id": 10
     }
   ],
   "categories": [

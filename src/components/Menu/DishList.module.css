@@ -9,3 +9,7 @@
 .price {
   font-weight: bold;
 }
+
+.list {
+  list-style: none;
+}
