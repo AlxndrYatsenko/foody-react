@@ -7,7 +7,6 @@ import Menu from './Menu/Menu';
 import Dish from './pages/Dish/Dish';
 import Header from './Header/Header';
 import NotFoundPage from './pages/NotFoundPage';
-// import { getAllMenuItems } from '../services/api';
 
 const App = () => (
   <BrowserRouter>
@@ -15,7 +14,7 @@ const App = () => (
       <Header />
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route exact path="/menu" render={props => <Menu {...props} />} />
+        <Route exact path="/menu" component={Menu} />
         <Route path="/menu/add" component={AddDish} />
         <Route path="/menu/:id" component={Dish} />
         <Route component={NotFoundPage} />

@@ -17,13 +17,7 @@ export default class Menu extends Component {
   componentDidMount() {
     API.getCategories().then(categories => this.setState({ categories }));
     const category = getCategoryFromProps(this.props);
-    const { history, location } = this.props;
 
-    if (category) {
-      return history.replace({
-        pathname: location.pathname,
-      });
-    }
     return API.getMenuItemsWithCategory(category).then(response =>
       this.setState({ dishes: response }),
     );
@@ -33,18 +27,16 @@ export default class Menu extends Component {
     const prevCategory = getCategoryFromProps(prevProps);
     const nextCategory = getCategoryFromProps(this.props);
 
-    if (prevCategory !== nextCategory) {
-      API.getMenuItemsWithCategory(nextCategory).then(response =>
-        this.setState({ dishes: response }),
-      );
-    }
+    if (prevCategory === nextCategory) return;
+    API.getMenuItemsWithCategory(nextCategory).then(dishes =>
+      this.setState({ dishes }),
+    );
   }
 
   handleClearFilter = () => {
     const { history, location } = this.props;
-    history.replace({
+    history.push({
       pathname: location.pathname,
-      search: '',
     });
   };
 

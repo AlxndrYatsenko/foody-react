@@ -26,17 +26,14 @@ export default class Dish extends PureComponent {
   }
 
   handleGoBack = () => {
-    const {
-      history,
-      location: { state },
-    } = this.props;
+    const { history, location } = this.props;
 
     const {
       currentDish: { category },
     } = this.state;
 
-    return state
-      ? history.push(state.from)
+    return location.state
+      ? history.push(location.state.from)
       : history.push({
           pathname: '/menu',
           search: `?category=${category}`,
