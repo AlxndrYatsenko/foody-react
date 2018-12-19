@@ -43,17 +43,6 @@ export default class AddOrderForm extends Component {
       category,
     }).then(response => {
       if (response.status === 201) {
-        this.setState = {
-          name: '',
-          price: '',
-          description: '',
-          image: '',
-          category: '',
-          selectedIngredient: '',
-          categories: [],
-          allIngredients: [],
-          ingredients: [],
-        };
         this.handleGoBack();
       }
     });
@@ -81,9 +70,18 @@ export default class AddOrderForm extends Component {
   };
 
   handleGoBack = () => {
-    const { history } = this.props;
+    const {
+      location: {
+        state: {
+          from: { pathname, search },
+        },
+      },
+      history,
+    } = this.props;
+
     history.push({
-      pathname: '/menu',
+      pathname,
+      search,
     });
   };
 
