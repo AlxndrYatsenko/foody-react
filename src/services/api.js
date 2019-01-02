@@ -22,19 +22,21 @@ export const getMenuItemById = async id => {
 };
 
 export const getMenuItemsWithCategory = async category => {
+  const res = category === 'all' ? false : category;
   const response = category
-    ? await axios.get(`/menu?category=${category}`)
+    ? await axios.get(`/menu?category=${res}`)
     : await axios.get(`/menu`);
   return response.data;
 };
 
-export const addDish = async ({
+export const addItem = async ({
   name,
   price,
   image,
   description,
   ingredients,
   category,
+  comments,
 }) => {
   const response = await axios.post('/menu', {
     name,
@@ -43,7 +45,37 @@ export const addDish = async ({
     description,
     ingredients,
     category,
+    comments,
   });
+  return response;
+};
 
+export const addCommentToDish = async currentDish => {
+  const response = await axios.patch(`./menu/${currentDish.id}`, currentDish);
+  return response;
+};
+
+export const getAllOrders = async () => {
+  const response = await axios.get('/orders');
+  return response;
+};
+
+export const getOrderById = async id => {
+  const response = await axios.get(`/orders/${id}`);
+  return response.data;
+};
+
+export const deleteOrderById = async id => {
+  const response = await axios.delete(`/orders/${id}`);
+  return response.data;
+};
+
+export const addOrder = async ({ address, price, rating, date }) => {
+  const response = await axios.post(`/orders`, {
+    address,
+    rating,
+    price,
+    date,
+  });
   return response;
 };

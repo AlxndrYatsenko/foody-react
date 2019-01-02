@@ -1,0 +1,36 @@
+.backDrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 600px;
+  min-height: 180px;
+  background-color: #fff;
+  padding: 16px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.list li {
+  display: block;
+  margin-bottom: 8px;
+}
