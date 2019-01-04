@@ -2,19 +2,6 @@ import { combineReducers } from 'redux';
 
 import types from './addMenuItemActionTypes';
 
-// const itemsReducer = (state = {}, { type, payload }) => {
-//   switch (type) {
-//     case types.ADD_MENU_ITEM:
-//       return [...state, payload];
-
-//     case types.DELETE:
-//       return state.filter(item => item.id !== payload);
-
-//     default:
-//       return state;
-//   }
-// };
-
 function addMenuItemNameReducer(state = '', { type, payload }) {
   switch (type) {
     case types.ADD_MENU_ITEM_NAME:
@@ -65,9 +52,19 @@ function addMenuItemCategoryReducer(state = '', { type, payload }) {
   }
 }
 
-function addMenuItemIngredientReducer(state = [], { type, payload }) {
+function addMenuItemIngredientReducer(state = '', { type, payload }) {
   switch (type) {
     case types.ADD_MENU_ITEM_INGREDIENT:
+      return payload;
+
+    default:
+      return state;
+  }
+}
+
+function addMenuItemCurrentIngredientReducer(state = [], { type, payload }) {
+  switch (type) {
+    case types.ADD_MENU_ITEM_CURRENT_INGREDIENTS:
       return payload;
 
     default:
@@ -80,26 +77,18 @@ function addMenuItemAllIngredientsReducer(state = [], { type, payload }) {
     case types.INGREDIENTS_FETCH_SUCCESS:
       return payload;
 
-    // case types.ADD_SUCCESS:
-    //   return [...state, payload];
-
-    // case types.DELETE_SUCCESS:
-    //   return state.filter(item => item.id !== payload);
-
     default:
       return state;
   }
 }
-// ADD_MENU_ITEM_FETCH_REQUEST;
-// ;
-// ADD_MENU_ITEM_FETCH_ERROR;
 
 export default combineReducers({
   name: addMenuItemNameReducer,
   price: addMenuItemPriceReducer,
   image: addMenuItemImageReducer,
-  decroption: addMenuItemDescriptionReducer,
   category: addMenuItemCategoryReducer,
+  decroption: addMenuItemDescriptionReducer,
   allIngredients: addMenuItemAllIngredientsReducer,
   ingredient: addMenuItemIngredientReducer,
+  currentIngredients: addMenuItemCurrentIngredientReducer,
 });

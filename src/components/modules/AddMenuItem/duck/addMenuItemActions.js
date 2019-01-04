@@ -35,6 +35,11 @@ const addMenuItemIngredient = ingredient => ({
   payload: ingredient,
 });
 
+const addMenuItemCurrentIngredients = ingredient => ({
+  type: types.ADD_MENU_ITEM_CURRENT_INGREDIENTS,
+  payload: ingredient,
+});
+
 const fetchAddMenuItemRequest = () => ({
   type: types.MENU_FETCH_REQUEST,
 });
@@ -65,6 +70,7 @@ const fetchAllIngredientsError = error => ({
 
 export default {
   addMenuItemIngredient,
+  addMenuItemCurrentIngredients,
   addMenuItemName,
   addMenuItemPrice,
   addMenuItemDescription,

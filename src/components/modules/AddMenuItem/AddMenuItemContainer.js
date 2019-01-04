@@ -11,10 +11,6 @@ import * as API from '../../../services/api';
 class AddMenuItemContainer extends Component {
   state = {
     comments: [],
-    selectedIngredient: '',
-    // categories: [],
-    // allIngredients: [],
-    ingredients: [],
   };
 
   componentDidMount() {
@@ -48,15 +44,6 @@ class AddMenuItemContainer extends Component {
     });
   };
 
-  handleIngredientsChange = ({ target: { value } }) => {
-    this.setState({ selectedIngredient: value });
-
-    this.setState(({ ingredients, selectedIngredient }) => {
-      if (!ingredients.includes(selectedIngredient))
-        ingredients.push(selectedIngredient);
-    });
-  };
-
   handleGoBack = () => {
     const {
       location: {
@@ -81,30 +68,17 @@ class AddMenuItemContainer extends Component {
   };
 
   render() {
-    const {
-      comments,
-      selectedIngredient,
-      // categories,
-      // allIngredients,
-      // ingredients,
-    } = this.state;
+    const { comments } = this.state;
     return (
       <AddMenuItemView
         comments={comments}
-        selectedIngredient={selectedIngredient}
-        // categories={categories}
-        // allIngredients={allIngredients}
-        // ingredients={ingredients}
         {...this.props}
-        onIngredientsChange={this.handleIngredientsChange}
         onGoBack={this.handleGoBack}
         onCancelBnt={this.handleCancelBnt}
       />
     );
   }
 }
-
-// export default AddMenuItemContainer;
 
 const mapDispatchToProps = {
   // onSubmit: addMenuItemOperations.fetchAddMenuItem,
@@ -113,19 +87,21 @@ const mapDispatchToProps = {
   onChangeDescription: actions.addMenuItemDescription,
   onChangeImage: actions.addMenuItemImage,
   onChangePrice: actions.addMenuItemPrice,
+  onAddIngredient: addMenuItemOperations.addCurrentIngredients,
   fetchCategories: menuOperations.fetchCategories,
   fetchAllIngredients: addMenuItemOperations.fetchAllIngredients,
 };
 
 const mapStateToProps = state => ({
-  category: state.addMenuItem.category,
   name: state.addMenuItem.name,
-  description: state.addMenuItem.description,
   image: state.addMenuItem.image,
   price: state.addMenuItem.price,
+  category: state.addMenuItem.category,
+  ingredient: state.addMenuItem.ingredient,
+  currentIngredients: state.addMenuItem.currentIngredients,
+  description: state.addMenuItem.description,
   categories: state.menu.categories,
   allIngredients: state.addMenuItem.allIngredients,
-  // ingredient: state.addMenuItem.ingredient,
 });
 
 export default connect(

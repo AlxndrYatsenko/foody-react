@@ -9,8 +9,8 @@ const AddMenuItemView = ({
   description,
   category,
   allIngredients,
-  // ingredients,
-  selectedIngredient,
+  currentIngredients,
+  ingredient,
   categories,
   onSubmit,
   onChangeName,
@@ -18,9 +18,9 @@ const AddMenuItemView = ({
   onChangeImage,
   onChangeCategory,
   onChangePrice,
-  onIngredientsChange,
+  onAddIngredient,
   onGoBack,
-  // onCancelBnt,
+  onCancelBnt,
 }) => (
   <form className={s.form} onSubmit={onSubmit}>
     <label>
@@ -78,32 +78,36 @@ const AddMenuItemView = ({
     <label>
       <br />
       Ингридиенты:
-      {console.log(allIngredients)}
-      <select onChange={onIngredientsChange} value={selectedIngredient}>
+      <select
+        onChange={({ target }) =>
+          onAddIngredient(target.value, currentIngredients)
+        }
+        value={ingredient}
+      >
         <option key="выбрать" disabled label="выбрать" />
-        {allIngredients.map(ingr => (
-          <option key={ingr} value={ingr}>
-            {ingr}
+        {allIngredients.map(i => (
+          <option key={i} value={i}>
+            {i}
           </option>
         ))}
       </select>
     </label>
 
-    {/* {ingredients.length > 0 && (
+    {currentIngredients.length > 0 && (
       <div className={s.ingredients}>
-        {ingredients.map(ingr => (
+        {currentIngredients.map(i => (
           <button
             className={s.ingrBtn}
             type="button"
-            value={ingr}
-            key={ingr}
+            value={i}
+            key={i}
             onClick={onCancelBnt}
           >
-            {ingr}
+            {i}
           </button>
         ))}
       </div>
-    )} */}
+    )}
 
     <label>
       Цена (денег):

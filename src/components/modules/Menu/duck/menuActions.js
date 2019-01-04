@@ -56,7 +56,6 @@ const deleteMenuItemSuccess = id => ({
 export default {
   addMenuItemSuccess,
   deleteMenuItemSuccess,
-  // toggleNote,
   changeMenuCategory,
   resetMenuCategory,
   changeFilter,
