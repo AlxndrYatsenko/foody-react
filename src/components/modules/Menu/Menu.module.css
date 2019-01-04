@@ -11,13 +11,10 @@
   margin-bottom: 10px;
 }
 
-.filterContainer {
-  display: block;
-}
-
 .filter {
   margin-right: 55px;
 }
+
 .filterCancelBtn {
   border-radius: 10px;
   border: none;

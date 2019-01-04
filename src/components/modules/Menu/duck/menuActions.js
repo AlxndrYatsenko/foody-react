@@ -5,9 +5,14 @@ const changeFilter = filter => ({
   payload: filter,
 });
 
-const changeCategory = category => ({
+const changeMenuCategory = category => ({
   type: types.CHANGE_CATEGORY,
   payload: category,
+});
+
+const resetMenuCategory = () => ({
+  type: types.RESET_CATEGORY,
+  payload: '',
 });
 
 const fetchMenuRequest = () => ({
@@ -52,7 +57,8 @@ export default {
   addMenuItemSuccess,
   deleteMenuItemSuccess,
   // toggleNote,
-  changeCategory,
+  changeMenuCategory,
+  resetMenuCategory,
   changeFilter,
   fetchMenuRequest,
   fetchMenuSuccess,

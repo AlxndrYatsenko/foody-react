@@ -1,4 +1,5 @@
 import React from 'react';
+
 import s from './AddMenuItem.module.css';
 
 const AddMenuItemView = ({
@@ -8,24 +9,26 @@ const AddMenuItemView = ({
   description,
   category,
   allIngredients,
-  ingredients,
+  // ingredients,
   selectedIngredient,
   categories,
   onSubmit,
-  onChange,
-  onCategoryChange,
+  onChangeName,
+  onChangeDescription,
+  onChangeImage,
+  onChangeCategory,
+  onChangePrice,
   onIngredientsChange,
   onGoBack,
-  onCancelBnt,
+  // onCancelBnt,
 }) => (
   <form className={s.form} onSubmit={onSubmit}>
     <label>
       Название:
-      <br />
       <input
         name="name"
         type="text"
-        onChange={onChange}
+        onChange={({ target }) => onChangeName(target.value)}
         value={name}
         required
       />
@@ -37,7 +40,7 @@ const AddMenuItemView = ({
       <textarea
         name="description"
         type="text"
-        onChange={onChange}
+        onChange={({ target }) => onChangeDescription(target.value)}
         value={description}
         rows="3"
         required
@@ -50,7 +53,7 @@ const AddMenuItemView = ({
       <input
         name="image"
         type="text"
-        onChange={onChange}
+        onChange={({ target }) => onChangeImage(target.value)}
         value={image}
         required
       />
@@ -59,8 +62,11 @@ const AddMenuItemView = ({
     <label>
       Категория:
       <br />
-      <select onChange={onCategoryChange} value={category}>
-        <option key="выбрать">выбрать</option>
+      <select
+        onChange={({ target }) => onChangeCategory(target.value)}
+        value={category}
+      >
+        <option key="выбрать" disabled label="выбрать" />
         {categories.map(o => (
           <option key={o.id} value={o.name}>
             {o.name}
@@ -72,8 +78,9 @@ const AddMenuItemView = ({
     <label>
       <br />
       Ингридиенты:
+      {console.log(allIngredients)}
       <select onChange={onIngredientsChange} value={selectedIngredient}>
-        <option key="выбрать">выбрать</option>
+        <option key="выбрать" disabled label="выбрать" />
         {allIngredients.map(ingr => (
           <option key={ingr} value={ingr}>
             {ingr}
@@ -82,7 +89,7 @@ const AddMenuItemView = ({
       </select>
     </label>
 
-    {ingredients.length > 0 && (
+    {/* {ingredients.length > 0 && (
       <div className={s.ingredients}>
         {ingredients.map(ingr => (
           <button
@@ -96,7 +103,7 @@ const AddMenuItemView = ({
           </button>
         ))}
       </div>
-    )}
+    )} */}
 
     <label>
       Цена (денег):
@@ -104,7 +111,7 @@ const AddMenuItemView = ({
       <input
         name="price"
         type="text"
-        onChange={onChange}
+        onChange={({ target }) => onChangePrice(target.value)}
         value={price}
         required
       />

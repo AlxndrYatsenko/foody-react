@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './Menu.module.css';
+import s from './Filter.module.css';
 
 const Filter = ({ filter, onFilterChange }) => (
-  <div>
+  <div className={s.filterContainer}>
     <span className={s.filter}>Поиск: </span>
     <input type="text" value={filter} onChange={onFilterChange} />
   </div>

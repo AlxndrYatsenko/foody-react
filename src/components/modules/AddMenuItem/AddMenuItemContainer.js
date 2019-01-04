@@ -1,32 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import actions from './duck/addMenuItemActions';
 import AddMenuItemView from './AddMenuItemView';
+import addMenuItemOperations from './duck/addMenuItemOperations';
+import { menuOperations } from '../Menu/duck';
 
 import * as API from '../../../services/api';
 
 class AddMenuItemContainer extends Component {
   state = {
-    name: '',
-    price: '',
-    description: '',
-    image: '',
-    category: '',
     comments: [],
     selectedIngredient: '',
-    categories: [],
-    allIngredients: [],
+    // categories: [],
+    // allIngredients: [],
     ingredients: [],
   };
 
   componentDidMount() {
-    API.getCategories().then(categories => this.setState({ categories }));
-    API.getAllIngredients().then(allIngredients =>
-      this.setState({ allIngredients }),
-    );
+    const { fetchCategories, fetchAllIngredients } = this.props;
+    fetchCategories();
+    fetchAllIngredients();
   }
 
   handleSubmit = e => {
-    console.log(this.props);
     e.preventDefault();
     const {
       name,
@@ -49,19 +46,6 @@ class AddMenuItemContainer extends Component {
     }).then(() => {
       this.handleGoBack();
     });
-  };
-
-  handleChange = e => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    console.log(e.target);
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleCategoryChange = ({ target: { value } }) => {
-    this.setState({ category: value });
   };
 
   handleIngredientsChange = ({ target: { value } }) => {
@@ -97,13 +81,21 @@ class AddMenuItemContainer extends Component {
   };
 
   render() {
+    const {
+      comments,
+      selectedIngredient,
+      // categories,
+      // allIngredients,
+      // ingredients,
+    } = this.state;
     return (
       <AddMenuItemView
-        {...this.state}
+        comments={comments}
+        selectedIngredient={selectedIngredient}
+        // categories={categories}
+        // allIngredients={allIngredients}
+        // ingredients={ingredients}
         {...this.props}
-        onChange={this.handleChange}
-        onCategoryChange={this.handleCategoryChange}
-        onSubmit={this.handleSubmit}
         onIngredientsChange={this.handleIngredientsChange}
         onGoBack={this.handleGoBack}
         onCancelBnt={this.handleCancelBnt}
@@ -112,4 +104,31 @@ class AddMenuItemContainer extends Component {
   }
 }
 
-export default AddMenuItemContainer;
+// export default AddMenuItemContainer;
+
+const mapDispatchToProps = {
+  // onSubmit: addMenuItemOperations.fetchAddMenuItem,
+  onChangeCategory: actions.addMenuItemCategory,
+  onChangeName: actions.addMenuItemName,
+  onChangeDescription: actions.addMenuItemDescription,
+  onChangeImage: actions.addMenuItemImage,
+  onChangePrice: actions.addMenuItemPrice,
+  fetchCategories: menuOperations.fetchCategories,
+  fetchAllIngredients: addMenuItemOperations.fetchAllIngredients,
+};
+
+const mapStateToProps = state => ({
+  category: state.addMenuItem.category,
+  name: state.addMenuItem.name,
+  description: state.addMenuItem.description,
+  image: state.addMenuItem.image,
+  price: state.addMenuItem.price,
+  categories: state.menu.categories,
+  allIngredients: state.addMenuItem.allIngredients,
+  // ingredient: state.addMenuItem.ingredient,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddMenuItemContainer);

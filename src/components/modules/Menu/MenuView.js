@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-import CategorySelector from './CategotySelektor';
-import Filter from './Filter';
+import CategorySelector from './CategorySelector/CategotySelektor';
+import Filter from './Filter/Filter';
+import ItemList from './ItemList/ItemList';
+import LinkToAddMenuItem from './LinkToAddMenuItem/LinkToAddMenuItem';
 
 import s from './Menu.module.css';
 
@@ -12,68 +14,35 @@ const MenuView = ({
   menuItems,
   category,
   match,
+  history,
   location,
-  onCategoryChange,
-  onSelectClear,
+  onChangeCategory,
+  onResetCategory,
   onFilterChange,
 }) => (
   <div className={s.menu}>
     <div className={s.addLinkContainer}>
-      <Link
-        className={s.addLink}
-        to={{
-          pathname: `${match.url}/add`,
-          state: { from: location },
-        }}
-      >
-        Добавить элемент меню
-      </Link>
+      <LinkToAddMenuItem match={match} location={location} />
     </div>
-    <div className={s.filterContainer}>
-      <Filter
-        filter={filter}
-        onFilterChange={({ target }) => onFilterChange(target.value)}
-      />
-      <br />
-      <CategorySelector
-        onChange={onCategoryChange}
-        value={category}
-        categories={categories}
-      />
-      {category && (
-        <button
-          className={s.filterCancelBtn}
-          type="button"
-          onClick={onSelectClear}
-        >
-          Очистить фильтр
-        </button>
-      )}
-    </div>
+    <Filter
+      filter={filter}
+      onFilterChange={({ target }) => onFilterChange(target.value)}
+    />
+    <CategorySelector
+      onChange={onChangeCategory}
+      value={category}
+      categories={categories}
+      history={history}
+      location={location}
+      onResetCategory={onResetCategory}
+    />
+
     {category && (
       <p>
         Текущий фильтр: <b>{category}</b>
       </p>
     )}
-
-    <ul className={s.list}>
-      {menuItems.map(({ id, name, image, price }) => (
-        <li className={s.item} key={id}>
-          <Link
-            to={{
-              pathname: `${match.url}/${id}`,
-              state: { from: location },
-            }}
-          >
-            <div className={s.imgComtainer}>
-              <img className={s.img} src={image} alt={name} />
-            </div>
-            <p className={s.name}>{name}</p>
-            <p className={s.price}>Цена: {price} денег</p>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <ItemList menuItems={menuItems} match={match} location={location} />
   </div>
 );
 export default MenuView;
