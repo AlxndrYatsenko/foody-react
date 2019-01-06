@@ -9,10 +9,6 @@ import { menuOperations } from '../Menu/duck';
 import * as API from '../../../services/api';
 
 class AddMenuItemContainer extends Component {
-  state = {
-    comments: [],
-  };
-
   componentDidMount() {
     const { fetchCategories, fetchAllIngredients } = this.props;
     fetchCategories();
@@ -28,7 +24,6 @@ class AddMenuItemContainer extends Component {
       description,
       ingredients,
       category,
-      comments,
     } = this.state;
 
     API.addItem({
@@ -38,25 +33,8 @@ class AddMenuItemContainer extends Component {
       description,
       ingredients,
       category,
-      comments,
     }).then(() => {
       this.handleGoBack();
-    });
-  };
-
-  handleGoBack = () => {
-    const {
-      location: {
-        state: {
-          from: { pathname, search },
-        },
-      },
-      history,
-    } = this.props;
-
-    history.push({
-      pathname,
-      search,
     });
   };
 
@@ -68,12 +46,10 @@ class AddMenuItemContainer extends Component {
   };
 
   render() {
-    const { comments } = this.state;
     return (
       <AddMenuItemView
-        comments={comments}
         {...this.props}
-        onGoBack={this.handleGoBack}
+        onSubmit={this.handleSubmit}
         onCancelBnt={this.handleCancelBnt}
       />
     );
@@ -82,6 +58,8 @@ class AddMenuItemContainer extends Component {
 
 const mapDispatchToProps = {
   // onSubmit: addMenuItemOperations.fetchAddMenuItem,
+  // rename all
+  onGoBack: addMenuItemOperations.addMenuItemGoBack,
   onChangeCategory: actions.addMenuItemCategory,
   onChangeName: actions.addMenuItemName,
   onChangeDescription: actions.addMenuItemDescription,
@@ -93,13 +71,15 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  name: state.addMenuItem.name,
-  image: state.addMenuItem.image,
-  price: state.addMenuItem.price,
-  category: state.addMenuItem.category,
+  newItem: {
+    name: state.addMenuItem.name,
+    image: state.addMenuItem.image,
+    price: state.addMenuItem.price,
+    category: state.addMenuItem.category,
+    description: state.addMenuItem.description,
+    currentIngredients: state.addMenuItem.currentIngredients,
+  },
   ingredient: state.addMenuItem.ingredient,
-  currentIngredients: state.addMenuItem.currentIngredients,
-  description: state.addMenuItem.description,
   categories: state.menu.categories,
   allIngredients: state.addMenuItem.allIngredients,
 });

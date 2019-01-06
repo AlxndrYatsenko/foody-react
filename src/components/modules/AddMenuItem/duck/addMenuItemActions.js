@@ -40,6 +40,14 @@ const addMenuItemCurrentIngredients = ingredient => ({
   payload: ingredient,
 });
 
+//++++++++++++++++++++++++++++
+// edit without operations
+//++++++++++++++++++++++++++++
+
+const addMenuItemGoBack = () => ({
+  type: types.ADD_MENU_ITEM_GO_BACK,
+});
+
 const fetchAddMenuItemRequest = () => ({
   type: types.MENU_FETCH_REQUEST,
 });
@@ -69,6 +77,7 @@ const fetchAllIngredientsError = error => ({
 });
 
 export default {
+  addMenuItemGoBack,
   addMenuItemIngredient,
   addMenuItemCurrentIngredients,
   addMenuItemName,

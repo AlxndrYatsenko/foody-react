@@ -2,6 +2,16 @@ import { combineReducers } from 'redux';
 
 import types from './addMenuItemActionTypes';
 
+// function addMenuItemGoBackReducer(state = '', { type, payload }) {
+//   switch (type) {
+//     case types.ADD_MENU_ITEM_NAME:
+//       return payload;
+
+//     default:
+//       return state;
+//   }
+// }
+
 function addMenuItemNameReducer(state = '', { type, payload }) {
   switch (type) {
     case types.ADD_MENU_ITEM_NAME:
@@ -88,7 +98,7 @@ export default combineReducers({
   image: addMenuItemImageReducer,
   category: addMenuItemCategoryReducer,
   decroption: addMenuItemDescriptionReducer,
+  currentIngredients: addMenuItemCurrentIngredientReducer,
   allIngredients: addMenuItemAllIngredientsReducer,
   ingredient: addMenuItemIngredientReducer,
-  currentIngredients: addMenuItemCurrentIngredientReducer,
 });

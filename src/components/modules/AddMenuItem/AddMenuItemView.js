@@ -3,15 +3,12 @@ import React from 'react';
 import s from './AddMenuItem.module.css';
 
 const AddMenuItemView = ({
-  name,
-  price,
-  image,
-  description,
-  category,
+  newItem: { name, price, image, description, category, currentIngredients },
   allIngredients,
-  currentIngredients,
   ingredient,
   categories,
+  history,
+  location,
   onSubmit,
   onChangeName,
   onChangeDescription,
@@ -22,7 +19,18 @@ const AddMenuItemView = ({
   onGoBack,
   onCancelBnt,
 }) => (
-  <form className={s.form} onSubmit={onSubmit}>
+  <form
+    className={s.form}
+    onSubmit={onSubmit}
+    // onSubmit={onSubmit(
+    //   name,
+    //   price,
+    //   image,
+    //   description,
+    //   category,
+    //   currentIngredients,
+    // )}
+  >
     <label>
       Название:
       <input
@@ -122,7 +130,7 @@ const AddMenuItemView = ({
     </label>
 
     <button type="submit">Сохранить</button>
-    <button type="button" onClick={onGoBack}>
+    <button type="button" onClick={() => onGoBack(history, location)}>
       Отмена
     </button>
   </form>
