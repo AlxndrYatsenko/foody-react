@@ -22,9 +22,9 @@ export const getMenuItemById = async id => {
 };
 
 export const getMenuItemsWithCategory = async category => {
-  const res = category === 'all' ? false : category;
+  // const res = category === 'all' ? false : category;
   const response = category
-    ? await axios.get(`/menu?category=${res}`)
+    ? await axios.get(`/menu?category=${category}`)
     : await axios.get(`/menu`);
   return response.data;
 };
@@ -36,7 +36,6 @@ export const addItem = async ({
   description,
   ingredients,
   category,
-  comments,
 }) => {
   const response = await axios.post('/menu', {
     name,
@@ -45,7 +44,6 @@ export const addItem = async ({
     description,
     ingredients,
     category,
-    comments,
   });
   return response;
 };

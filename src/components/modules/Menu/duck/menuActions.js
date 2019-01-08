@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 import types from './menuActionTypes';
 
 const changeFilter = filter => ({
@@ -5,26 +6,50 @@ const changeFilter = filter => ({
   payload: filter,
 });
 
-const changeMenuCategory = category => ({
-  type: types.CHANGE_CATEGORY,
-  payload: category,
-});
+const getCategoryfromLocation = ({ search }) => {
+  const { category } = queryString.parse(search);
+  // console.log(category);
 
-const resetMenuCategory = () => ({
-  type: types.RESET_CATEGORY,
-  payload: '',
-});
+  return {
+    type: types.GET_CATEGORY,
+    payload: category || '',
+  };
+};
 
-const fetchMenuRequest = () => ({
+const changeCategory = (category, history, location) => {
+  history.push({
+    pathname: location.pathname,
+    search: `category=${category}`,
+  });
+  return {
+    type: types.CHANGE_CATEGORY,
+    payload: category,
+  };
+};
+
+const resetCategory = history => {
+  history.push({ pathname: '/menu' });
+  return {
+    type: types.RESET_CATEGORY,
+    payload: '',
+  };
+};
+
+const fetchRequest = () => ({
   type: types.MENU_FETCH_REQUEST,
 });
 
-const fetchMenuSuccess = menuItems => ({
+const fetchSuccess = menuItems => ({
   type: types.MENU_FETCH_SUCCESS,
   payload: menuItems,
 });
 
-const fetchMenuError = error => ({
+const deleteItemSuccess = id => ({
+  type: types.DELETE_SUCCESS,
+  payload: id,
+});
+
+const fetchError = error => ({
   type: types.MENU_FETCH_ERROR,
   payload: error,
 });
@@ -54,14 +79,16 @@ const deleteMenuItemSuccess = id => ({
 });
 
 export default {
+  getCategoryfromLocation,
   addMenuItemSuccess,
   deleteMenuItemSuccess,
-  changeMenuCategory,
-  resetMenuCategory,
+  changeCategory,
+  resetCategory,
   changeFilter,
-  fetchMenuRequest,
-  fetchMenuSuccess,
-  fetchMenuError,
+  fetchRequest,
+  fetchSuccess,
+  deleteItemSuccess,
+  fetchError,
   fetchCategoriesRequest,
   fetchCategoriesSuccess,
   fetchCategoriesError,

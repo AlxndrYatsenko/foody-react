@@ -18,6 +18,8 @@ const CategorySelector = props => {
         onChange={({ target }) => onChange(target.value, history, location)}
         value={value}
       >
+        <option key="выбрать" disabled label="выбрать" />
+
         {categories.map(({ id, name }) => (
           <option key={id} value={name}>
             {name}
@@ -28,7 +30,7 @@ const CategorySelector = props => {
         <button
           className={s.filterCancelBtn}
           type="button"
-          onClick={onResetCategory}
+          onClick={() => onResetCategory(history)}
         >
           Очистить фильтр
         </button>

@@ -4,49 +4,19 @@ import actions from './addMenuItemActions';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
-const fetchAddMenuItem = () => async dispatch => {
-  dispatch(actions.addNewMenuItem());
-  console.log('submit');
-  // try {
-  //   const response = await axios.get(`/ingredients`);
-  //   dispatch(actions.fetchAllIngredientsSuccess(response.data));
-  // } catch (error) {
-  //   dispatch(actions.fetchAllIngredientsError(error));
-  // }
-};
-
-const fetchAllIngredients = () => async dispatch => {
-  dispatch(actions.fetchAllIngredientsRequest());
+const addMenuItem = (e, obj, goBack) => async dispatch => {
+  e.preventDefault();
+  dispatch(actions.fetchRequest());
 
   try {
-    const response = await axios.get(`/ingredients`);
-    dispatch(actions.fetchAllIngredientsSuccess(response.data));
+    const response = await axios.post(`/menu`, obj);
+    console.log(response.data);
+    dispatch(actions.addMenuItemSuccess(response.data));
+    goBack();
   } catch (error) {
-    dispatch(actions.fetchAllIngredientsError(error));
+    dispatch(actions.fetchError(console.log(error)));
   }
 };
-
-const addCurrentIngredients = (ingredient, currentIngredients) => dispatch => {
-  dispatch(actions.addMenuItemIngredient(ingredient));
-
-  if (!currentIngredients.includes(ingredient))
-    currentIngredients.push(ingredient);
-};
-
-const addMenuItemGoBack = (history, location) => dispatch => {
-  dispatch(actions.addMenuItemGoBack());
-
-  console.log(history, location);
-
-  // const { from } = location.state;
-  const { pathname, search } = location ? location.state.from : '/menu';
-
-  history.push({ pathname, search });
-};
-
 export default {
-  fetchAddMenuItem,
-  addCurrentIngredients,
-  fetchAllIngredients,
-  addMenuItemGoBack,
+  addMenuItem,
 };

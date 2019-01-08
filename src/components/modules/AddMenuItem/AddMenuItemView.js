@@ -1,42 +1,43 @@
 import React from 'react';
-
 import s from './AddMenuItem.module.css';
 
 const AddMenuItemView = ({
-  newItem: { name, price, image, description, category, currentIngredients },
+  name,
+  price,
+  image,
+  description,
+  category,
   allIngredients,
-  ingredient,
+  ingredients,
+  selectedIngredient,
   categories,
-  history,
-  location,
   onSubmit,
-  onChangeName,
-  onChangeDescription,
-  onChangeImage,
+  onChange,
   onChangeCategory,
-  onChangePrice,
-  onAddIngredient,
+  onChangeIngredients,
   onGoBack,
   onCancelBnt,
 }) => (
   <form
     className={s.form}
-    onSubmit={onSubmit}
-    // onSubmit={onSubmit(
-    //   name,
-    //   price,
-    //   image,
-    //   description,
-    //   category,
-    //   currentIngredients,
-    // )}
+    onSubmit={e =>
+      onSubmit(e, onGoBack, {
+        name,
+        price,
+        image,
+        description,
+        category,
+        ingredients,
+      })
+    }
   >
     <label>
       Название:
+      <br />
       <input
         name="name"
         type="text"
-        onChange={({ target }) => onChangeName(target.value)}
+        onChange={onChange}
         value={name}
         required
       />
@@ -48,7 +49,7 @@ const AddMenuItemView = ({
       <textarea
         name="description"
         type="text"
-        onChange={({ target }) => onChangeDescription(target.value)}
+        onChange={onChange}
         value={description}
         rows="3"
         required
@@ -61,7 +62,7 @@ const AddMenuItemView = ({
       <input
         name="image"
         type="text"
-        onChange={({ target }) => onChangeImage(target.value)}
+        onChange={onChange}
         value={image}
         required
       />
@@ -70,11 +71,8 @@ const AddMenuItemView = ({
     <label>
       Категория:
       <br />
-      <select
-        onChange={({ target }) => onChangeCategory(target.value)}
-        value={category}
-      >
-        <option key="выбрать" disabled label="выбрать" />
+      <select onChange={onChangeCategory} value={category}>
+        <option key="выбрать">выбрать</option>
         {categories.map(o => (
           <option key={o.id} value={o.name}>
             {o.name}
@@ -86,32 +84,27 @@ const AddMenuItemView = ({
     <label>
       <br />
       Ингридиенты:
-      <select
-        onChange={({ target }) =>
-          onAddIngredient(target.value, currentIngredients)
-        }
-        value={ingredient}
-      >
-        <option key="выбрать" disabled label="выбрать" />
-        {allIngredients.map(i => (
-          <option key={i} value={i}>
-            {i}
+      <select onChange={onChangeIngredients} value={selectedIngredient}>
+        <option key="выбрать">выбрать</option>
+        {allIngredients.map(ingr => (
+          <option key={ingr} value={ingr}>
+            {ingr}
           </option>
         ))}
       </select>
     </label>
 
-    {currentIngredients.length > 0 && (
+    {ingredients.length > 0 && (
       <div className={s.ingredients}>
-        {currentIngredients.map(i => (
+        {ingredients.map(ingr => (
           <button
             className={s.ingrBtn}
             type="button"
-            value={i}
-            key={i}
+            value={ingr}
+            key={ingr}
             onClick={onCancelBnt}
           >
-            {i}
+            {ingr}
           </button>
         ))}
       </div>
@@ -123,14 +116,14 @@ const AddMenuItemView = ({
       <input
         name="price"
         type="text"
-        onChange={({ target }) => onChangePrice(target.value)}
+        onChange={onChange}
         value={price}
         required
       />
     </label>
 
     <button type="submit">Сохранить</button>
-    <button type="button" onClick={() => onGoBack(history, location)}>
+    <button type="button" onClick={onGoBack}>
       Отмена
     </button>
   </form>

@@ -66,6 +66,9 @@ function categoriesReducer(state = [], { type, payload }) {
 
 function categoryReducer(state = '', { type, payload }) {
   switch (type) {
+    case types.GET_CATEGORY:
+      return payload;
+
     case types.CHANGE_CATEGORY:
       return payload;
 

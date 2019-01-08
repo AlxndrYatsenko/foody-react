@@ -1,41 +1,60 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
-import actions from './duck/addMenuItemActions';
+import { connect } from 'react-redux';
 import AddMenuItemView from './AddMenuItemView';
-import addMenuItemOperations from './duck/addMenuItemOperations';
-import { menuOperations } from '../Menu/duck';
+
+import menuOperations from './duck/addMenuItemOperations';
 
 import * as API from '../../../services/api';
 
 class AddMenuItemContainer extends Component {
+  state = {
+    name: '',
+    price: '',
+    description: '',
+    image: '',
+    category: '',
+    selectedIngredient: '',
+    categories: [],
+    allIngredients: [],
+    ingredients: [],
+  };
+
   componentDidMount() {
-    const { fetchCategories, fetchAllIngredients } = this.props;
-    fetchCategories();
-    fetchAllIngredients();
+    API.getCategories().then(categories => this.setState({ categories }));
+    API.getAllIngredients().then(allIngredients =>
+      this.setState({ allIngredients }),
+    );
   }
 
-  handleSubmit = e => {
+  handleChange = e => {
     e.preventDefault();
-    const {
-      name,
-      price,
-      image,
-      description,
-      ingredients,
-      category,
-    } = this.state;
-
-    API.addItem({
-      name,
-      price,
-      image,
-      description,
-      ingredients,
-      category,
-    }).then(() => {
-      this.handleGoBack();
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
     });
+  };
+
+  handleChangeCategory = ({ target: { value } }) => {
+    this.setState({ category: value });
+  };
+
+  handleChangeIngredients = ({ target: { value } }) => {
+    this.setState({ selectedIngredient: value });
+
+    this.setState(({ ingredients, selectedIngredient }) => {
+      if (!ingredients.includes(selectedIngredient))
+        ingredients.push(selectedIngredient);
+    });
+  };
+
+  handleGoBack = () => {
+    const { location, history } = this.props;
+
+    const pathname = location.state ? location.state.from.pathname : '/menu';
+    const search = location.state ? location.state.from.search : '';
+
+    history.push({ pathname, search });
   };
 
   handleCancelBnt = ({ target: { value } }) => {
@@ -48,43 +67,21 @@ class AddMenuItemContainer extends Component {
   render() {
     return (
       <AddMenuItemView
+        {...this.state}
         {...this.props}
-        onSubmit={this.handleSubmit}
+        onChange={this.handleChange}
+        onChangeCategory={this.handleChangeCategory}
+        onChangeIngredients={this.handleChangeIngredients}
+        onGoBack={this.handleGoBack}
         onCancelBnt={this.handleCancelBnt}
       />
     );
   }
 }
 
-const mapDispatchToProps = {
-  // onSubmit: addMenuItemOperations.fetchAddMenuItem,
-  // rename all
-  onGoBack: addMenuItemOperations.addMenuItemGoBack,
-  onChangeCategory: actions.addMenuItemCategory,
-  onChangeName: actions.addMenuItemName,
-  onChangeDescription: actions.addMenuItemDescription,
-  onChangeImage: actions.addMenuItemImage,
-  onChangePrice: actions.addMenuItemPrice,
-  onAddIngredient: addMenuItemOperations.addCurrentIngredients,
-  fetchCategories: menuOperations.fetchCategories,
-  fetchAllIngredients: addMenuItemOperations.fetchAllIngredients,
-};
-
-const mapStateToProps = state => ({
-  newItem: {
-    name: state.addMenuItem.name,
-    image: state.addMenuItem.image,
-    price: state.addMenuItem.price,
-    category: state.addMenuItem.category,
-    description: state.addMenuItem.description,
-    currentIngredients: state.addMenuItem.currentIngredients,
-  },
-  ingredient: state.addMenuItem.ingredient,
-  categories: state.menu.categories,
-  allIngredients: state.addMenuItem.allIngredients,
-});
+const mdtp = { onSubmit: menuOperations.addMenuItem };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  null,
+  mdtp,
 )(AddMenuItemContainer);

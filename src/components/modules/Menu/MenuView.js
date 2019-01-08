@@ -18,6 +18,7 @@ const MenuView = ({
   onChangeCategory,
   onResetCategory,
   onFilterChange,
+  onDeleteItem,
 }) => (
   <div className={s.menu}>
     <div className={s.addLinkContainer}>
@@ -41,7 +42,12 @@ const MenuView = ({
         Текущий фильтр: <b>{category}</b>
       </p>
     )}
-    <ItemList menuItems={menuItems} match={match} location={location} />
+    <ItemList
+      menuItems={menuItems}
+      onDeleteItem={onDeleteItem}
+      match={match}
+      location={location}
+    />
   </div>
 );
 export default MenuView;
