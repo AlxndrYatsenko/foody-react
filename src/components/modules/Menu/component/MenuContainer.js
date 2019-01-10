@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import queryString from 'query-string';
 
 import MenuView from './MenuView';
-import actions from './duck/menuActions';
+// import { actions } from '../duck';
 
-import { menuOperations, menuSelectors } from './duck';
+import { menuActions, menuOperations, menuSelectors } from '../duck';
 
 const getCategoryFromProps = props =>
   queryString.parse(props.location.search).category;
@@ -63,10 +63,10 @@ const mapDispatchToProps = {
   fetchMenuItemsWithCategory: menuOperations.fetchMenuItemsWithCategory,
   onDeleteItem: menuOperations.deleteMenuItem,
   fetchCategories: menuOperations.fetchCategories,
-  onFilterChange: actions.changeFilter,
-  onChangeCategory: actions.changeCategory,
-  onResetCategory: actions.resetCategory,
-  getCategoryfromLocation: actions.getCategoryfromLocation,
+  onFilterChange: menuActions.changeFilter,
+  onChangeCategory: menuActions.changeCategory,
+  onResetCategory: menuActions.resetCategory,
+  getCategoryfromLocation: menuActions.getCategoryfromLocation,
 };
 
 export default connect(

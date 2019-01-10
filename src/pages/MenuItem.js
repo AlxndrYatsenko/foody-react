@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuItemComponent from '../components/modules/MenuItem/MenuItemComponent';
+import MenuItemComponent from '../components/modules/Menu/MenuItem/MenuItemComponent';
 
 const MenuPage = props => (
   <div>

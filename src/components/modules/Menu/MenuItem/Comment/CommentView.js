@@ -6,7 +6,7 @@ const CommentView = ({
   comment,
   comments,
   onDeleteComment,
-  onTextreaChange,
+  onTextareaChange,
   onSelectChange,
   onSubmit,
   selected,
@@ -17,7 +17,7 @@ const CommentView = ({
   return (
     <div>
       {isAvailableCommets && (
-        <>
+        <div>
           <p>Комментарии:</p>
           <ul className={s.comment}>
             {comments.map(c => (
@@ -34,13 +34,13 @@ const CommentView = ({
               </li>
             ))}
           </ul>
-        </>
+        </div>
       )}
       <form>
         <p>Добавьте свой комментарий:</p>
         <textarea
           className={s.comment}
-          onChange={onTextreaChange}
+          onChange={onTextareaChange}
           value={comment}
           required
         />

@@ -51,21 +51,9 @@ const fetchCategories = () => async dispatch => {
   }
 };
 
-// const changeCategory = (category, history, location) => dispatch => {
-//   dispatch(actions.changeMenuCategory(category));
-
-//   return history.push({
-//     pathname: location.pathname,
-//     search: `category=${category}`,
-//   });
-// };
-
 export default {
   fetchMenuItems,
   fetchMenuItemsWithCategory,
   fetchCategories,
   deleteMenuItem,
-  // addNote,
-  // deleteNote,
-  // changeCategory,
 };

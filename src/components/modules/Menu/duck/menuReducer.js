@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import types from './menuActionTypes';
+import menuItemReducer from '../MenuItem/duck/menuItemReducers';
 
 function itemsReducer(state = [], { type, payload }) {
   switch (type) {
@@ -87,4 +88,5 @@ export default combineReducers({
   loading: loadingReducer,
   error: errorReducer,
   filter: filterReducer,
+  currentItem: menuItemReducer,
 });

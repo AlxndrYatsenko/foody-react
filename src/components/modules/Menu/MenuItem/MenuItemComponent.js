@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import MenuItemView from './MenuItemView';
+
+import { menuItemOperations } from './duck';
 import s from './MenuItem.module.css';
-import { getMenuItemById } from '../../../services/api';
 
-export default class MenuItemComponent extends Component {
-  state = {
-    currentDish: {},
-  };
+// import { getMenuItemById } from '../../../../services/api';
 
+class MenuItemComponent extends Component {
   componentDidMount() {
     const {
       match: { params },
     } = this.props;
 
-    getMenuItemById(params.id).then(({ data }) =>
-      this.setState({
-        currentDish: data,
-      }),
-    );
+    const { fetchMenuItem } = this.props;
+    fetchMenuItem(params.id);
   }
 
   handleGoBack = () => {
     const { history, location } = this.props;
 
     const {
-      currentDish: { category },
-    } = this.state;
+      currentItem: { category },
+    } = this.props;
 
     return location.state
       ? history.push(location.state.from)
@@ -36,8 +34,6 @@ export default class MenuItemComponent extends Component {
   };
 
   render() {
-    const { currentDish } = this.state;
-
     return (
       <>
         <button
@@ -47,8 +43,20 @@ export default class MenuItemComponent extends Component {
         >
           Назад к меню
         </button>
-        <MenuItemView currentDish={currentDish} {...this.props} />
+        <MenuItemView {...this.props} />
       </>
     );
   }
 }
+
+const mtsp = state => ({
+  currentItem: state.menu.currentItem,
+});
+const mtdp = {
+  fetchMenuItem: menuItemOperations.fetchMenuItem,
+};
+
+export default connect(
+  mtsp,
+  mtdp,
+)(MenuItemComponent);

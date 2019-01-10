@@ -5,7 +5,7 @@ import AddMenuItemView from './AddMenuItemView';
 
 import menuOperations from './duck/addMenuItemOperations';
 
-import * as API from '../../../services/api';
+import * as API from '../../../../services/api';
 
 class AddMenuItemContainer extends Component {
   state = {
