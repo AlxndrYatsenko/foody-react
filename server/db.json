@@ -14,8 +14,7 @@
         "Бекон",
         "Твердый сыр",
         "Зеленый лук"
-      ],
-      "comments": []
+      ]
     },
     {
       "id": 2,
@@ -126,13 +125,6 @@
         "Грибы шиитаке",
         "Легкий соевый соус",
         "Кунжутное масло"
-      ],
-      "comments": [
-        {
-          "date": 1223144425,
-          "currentComment": "dskhvgdshkvfhhcdashfvg",
-          "rating": 4
-        }
       ]
     }
   ],
@@ -189,32 +181,32 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "ItemID": 1,
-      "date": 81746453,
-      "text": "rekghuhrfr",
-      "rating": 7
+      "date": "1/11/2019",
+      "rating": 5,
+      "text": "этот рис так себе",
+      "ItemID": 8,
+      "id": 1
     },
     {
-      "id": 2,
-      "ItemID": 1,
-      "date": 81736453,
-      "text": "rgeewefregre",
-      "rating": 2
+      "date": "1/11/2019",
+      "rating": 5,
+      "text": "этот рис так себе",
+      "ItemID": 8,
+      "id": 2
     },
     {
-      "id": 3,
-      "ItemID": 1,
-      "date": 8173555453,
-      "text": "dfbgdbdbdgbdbdfb",
-      "rating": 2
+      "date": "1/11/2019",
+      "rating": 7,
+      "text": "длвымрпаыволва рлорв",
+      "ItemID": 6,
+      "id": 3
     },
     {
-      "id": 4,
-      "ItemID": 1,
-      "date": 3234442352,
-      "text": "dfbfdbfdfbfdb",
-      "rating": 2
+      "date": "1/11/2019",
+      "rating": 7,
+      "text": "тортик как тортик",
+      "ItemID": 9,
+      "id": 4
     }
   ],
   "orders": [

@@ -5,17 +5,18 @@ import CommentView from './CommentView';
 
 // import * as menuItemSelectors from '../duck/menuItemSelectors';
 import stars from './addition/stars';
-// import * as API from '../../../../../services/api';
+import * as API from '../../../../../services/api';
 
-const INITIAL_STATE = {
-  rating: 1,
-  currentComment: '',
-  // comments: [],
-  isOpenComments: false,
-};
+// const INITIAL_STATE = {
+//   rating: 1,
+//   comment: '',
+//   isOpenComments: false,
+// };
 export default class CommentContainer extends Component {
   state = {
-    ...INITIAL_STATE,
+    rating: 1,
+    comment: '',
+    isOpenComments: false,
   };
 
   // componentDidMount() {
@@ -36,48 +37,36 @@ export default class CommentContainer extends Component {
   };
 
   handleSelectChange = ({ target }) => {
-    this.setState({ rating: target.value });
+    this.setState({ rating: Number(target.value) });
   };
 
   reset = () => {
-    this.setState({ ...INITIAL_STATE });
+    this.setState({
+      rating: 1,
+      comment: '',
+    });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    // const { currentDish, currentComment, rating } = this.state;
-    // const { currentItem } = this.props;
+    const { currentItemID } = this.props;
+    const { rating, comment } = this.state;
 
-    // if (!comment) return alert('Вы ничего не написали в комментарии!');
+    const newComment = {
+      date: new Date().toLocaleDateString('en-US'),
+      rating,
+      text: comment,
+      ItemID: currentItemID,
+    };
 
-    // const addComment = () =>
-    //   currentDish.comments.push({
-    //     date: Date.now(),
-    //     currentComment,
-    //     rating,
-    //   });
-
-    // if (!Array.isArray(currentDish.comments)) {
-    //   currentDish.comments = [];
-    //   addComment();
-    // } else addComment();
-
-    // this.reset();
-    // console.log(currentItem);
-    // return addCommentToDish(currentDish).then(response =>
-    //   response.status === 200
-    //     ? this.addCurrentDishToState(response.data)
-    //     : console.log(response.error),
-    // );
+    API.addComment(newComment)
+      .then(this.reset())
+      .catch(error => console.log(error));
   };
 
   handleToggleComments = () => {
     this.setState(state => ({ isOpenComments: !state.isOpenComments }));
   };
-
-  // handleClaseComments = () => {
-  //   this.setState({ isOpenComments: false });
-  // };
 
   addCommentsToState(comments) {
     this.setState({ comments });
@@ -85,20 +74,20 @@ export default class CommentContainer extends Component {
 
   render() {
     const { rating, comment, comments, isOpenComments } = this.state;
-    // console.log(comments);
+    const { currentItemID } = this.props;
     return (
       <CommentView
+        isOpenComments={isOpenComments}
         stars={stars}
-        onSubmit={this.handleSubmit}
-        onSelectChange={this.handleSelectChange}
-        onTextareaChange={this.handleTextareaChange}
         rating={rating}
         comment={comment}
         comments={comments}
+        currentItemID={currentItemID}
+        onSubmit={this.handleSubmit}
+        onSelectChange={this.handleSelectChange}
+        onTextareaChange={this.handleTextareaChange}
         onDeleteComment={this.handleDeleteComment}
-        isOpenComments={isOpenComments}
         onToggleComments={this.handleToggleComments}
-        // onCloseComments={this.handleCloseComments}
       />
     );
   }

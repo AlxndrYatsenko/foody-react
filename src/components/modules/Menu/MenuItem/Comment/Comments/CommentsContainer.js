@@ -13,8 +13,8 @@ class CommentsContainer extends Component {
   componentDidMount() {
     const { currentItemID } = this.props;
 
-    API.getCommentsWithItemID(currentItemID).then(data =>
-      this.setState({ comments: data }),
+    API.getCommentsWithItemID(currentItemID).then(comments =>
+      this.setState({ comments }),
     );
   }
 
@@ -22,9 +22,11 @@ class CommentsContainer extends Component {
     API.deleteCommentWithID(id).then(response => {
       if (response === 200)
         this.setState(state => ({
-          comments: state.comments.filter(
-            comment => comment.id.toString() !== id,
-          ),
+          comments: state.comments.filter(comment => {
+            console.log(id);
+            console.log(comment.id);
+            return comment.id !== Number(id);
+          }),
         }));
     });
   };

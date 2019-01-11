@@ -10,11 +10,10 @@ const addMenuItem = (e, goBack, obj) => async dispatch => {
 
   try {
     const response = await axios.post(`/menu`, obj);
-    console.log(response.data);
     dispatch(actions.addMenuItemSuccess(response.data));
     goBack();
   } catch (error) {
-    dispatch(actions.fetchError(console.log(error)));
+    dispatch(actions.fetchError(error));
   }
 };
 export default {
