@@ -4,7 +4,7 @@ import actions from './addMenuItemActions';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
-const addMenuItem = (e, obj, goBack) => async dispatch => {
+const addMenuItem = (e, goBack, obj) => async dispatch => {
   e.preventDefault();
   dispatch(actions.fetchRequest());
 
