@@ -1,13 +1,14 @@
-import React from 'react';
-
-import CommentsContainer from './Comments/CommentsContainer';
+import React, { lazy, Suspense } from 'react';
 
 import s from './Comment.module.css';
+import Spiner from '../../../../Spiner/Spiner';
+
+const CommentsContainer = lazy(() =>
+  import('./Comments/CommentsContainer' /* webpackChunkName: "delivery-page" */),
+);
 
 const CommentView = ({
   comment,
-  // comments,
-  // onDeleteComment,
   onTextareaChange,
   onSelectChange,
   onSubmit,
@@ -16,8 +17,6 @@ const CommentView = ({
   isOpenComments,
   onToggleComments,
 }) => (
-  // const isAvailableCommets = Array.isArray(comments) && comments.length > 0;
-
   <div>
     <form>
       <p>Добавьте свой комментарий:</p>
@@ -43,7 +42,11 @@ const CommentView = ({
     <button type="button" onClick={onToggleComments}>
       {isOpenComments ? 'Скрыть комментарии' : 'Показать комментарии'}
     </button>
-    {isOpenComments && <CommentsContainer />}
+    {isOpenComments && (
+      <Suspense fallback={<Spiner />}>
+        <CommentsContainer />
+      </Suspense>
+    )}
   </div>
 );
 export default CommentView;

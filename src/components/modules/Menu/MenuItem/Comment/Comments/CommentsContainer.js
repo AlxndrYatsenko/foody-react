@@ -18,9 +18,25 @@ class CommentsContainer extends Component {
     );
   }
 
+  handleDeleteComment = id => {
+    API.deleteCommentWithID(id).then(response => {
+      if (response === 200)
+        this.setState(state => ({
+          comments: state.comments.filter(
+            comment => comment.id.toString() !== id,
+          ),
+        }));
+    });
+  };
+
   render() {
     const { comments } = this.state;
-    return <Comments comments={comments} />;
+    return (
+      <Comments
+        comments={comments}
+        onDeleteComment={this.handleDeleteComment}
+      />
+    );
   }
 }
 
@@ -28,7 +44,4 @@ const mstp = state => ({
   currentItemID: menuItemSelectors.getCurrentItemID(state),
 });
 
-export default connect(
-  mstp,
-  null,
-)(CommentsContainer);
+export default connect(mstp)(CommentsContainer);

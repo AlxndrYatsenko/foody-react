@@ -7,12 +7,12 @@ const Comments = ({ onDeleteComment, comments }) => (
     <p>Комментарии:</p>
     <ul className={s.comment}>
       {comments.map(c => (
-        <li key={c.date}>
+        <li key={c.id}>
           <p>{c.text}</p>
           <p>Оценка:{c.rating}</p>
           <button
             type="button"
-            value={c.date}
+            value={c.id}
             onClick={({ target }) => onDeleteComment(target.value)}
           >
             Удалить комментарий

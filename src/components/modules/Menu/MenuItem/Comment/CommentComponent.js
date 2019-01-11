@@ -43,18 +43,6 @@ export default class CommentContainer extends Component {
     this.setState({ ...INITIAL_STATE });
   };
 
-  // handleDeleteComment = date => {
-  //   const { currentDish } = this.state;
-  //   currentDish.comments = currentDish.comments.filter(
-  //     c => c.date.toString() !== date,
-  //   );
-  //   addCommentToDish(currentDish).then(response =>
-  //     response.status === 200
-  //       ? this.addCurrentDishToState(response.data)
-  //       : console.log(response.error),
-  //   );
-  // };
-
   handleSubmit = e => {
     e.preventDefault();
     // const { currentDish, currentComment, rating } = this.state;

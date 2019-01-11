@@ -78,6 +78,12 @@ export const getCommentsWithItemID = async ItemID => {
   return response.data;
 };
 
+export const deleteCommentWithID = async id => {
+  const response = await axios.delete(`/comments/${id}`);
+  // console.log(response);
+  return response.status;
+};
+
 export const addCommentToDish = async currentDish => {
   const response = await axios.patch(`./menu/${currentDish.id}`, currentDish);
   return response;
