@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 
 import MenuItemView from './MenuItemView';
 
+import * as menuItemSelectors from './duck/menuItemSelectors';
 import { menuItemOperations } from './duck';
-import s from './MenuItem.module.css';
 
 // import { getMenuItemById } from '../../../../services/api';
 
 class MenuItemComponent extends Component {
+  // state = {
+  //   isOpenComments: false,
+  // };
+
   componentDidMount() {
     const {
       match: { params },
@@ -34,23 +38,12 @@ class MenuItemComponent extends Component {
   };
 
   render() {
-    return (
-      <>
-        <button
-          className={s.goBackBtn}
-          onClick={this.handleGoBack}
-          type="button"
-        >
-          Назад к меню
-        </button>
-        <MenuItemView {...this.props} />
-      </>
-    );
+    return <MenuItemView {...this.props} goBack={this.handleGoBack} />;
   }
 }
 
 const mtsp = state => ({
-  currentItem: state.menu.currentItem,
+  currentItem: menuItemSelectors.getCurrentItem(state),
 });
 const mtdp = {
   fetchMenuItem: menuItemOperations.fetchMenuItem,

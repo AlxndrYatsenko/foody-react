@@ -181,6 +181,29 @@
     "Тертый имбирь",
     "Чеснок"
   ],
+  "comments": [
+    {
+      "id": 1,
+      "ItemID": 1,
+      "date": 81746453,
+      "text": "rekghuhrfr",
+      "rating": 7
+    },
+    {
+      "id": 2,
+      "ItemID": 1,
+      "date": 81736453,
+      "text": "rgeewefregre",
+      "rating": 2
+    },
+    {
+      "id": 3,
+      "ItemID": 1,
+      "date": 81745453,
+      "text": "FOIVHFHVHG",
+      "rating": 3
+    }
+  ],
   "orders": [
     {
       "id": 0,

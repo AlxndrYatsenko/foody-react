@@ -1,13 +1,17 @@
 import React from 'react';
 
-// import CommentComponent from './Comment/CommentComponent';
+import CommentComponent from './Comment/CommentComponent';
 
 import s from './MenuItem.module.css';
 
 const MenuItemView = ({
-  currentItem: { image, price, ingredients, name, description },
+  goBack,
+  currentItem: { id, image, price, ingredients, name, description },
 }) => (
   <div className={s.container}>
+    <button className={s.goBackBtn} onClick={goBack} type="button">
+      Назад к меню
+    </button>
     <div className={s.wrap}>
       <div className={s.info}>
         <img className={s.image} src={image} alt={name} width={420} />
@@ -23,9 +27,10 @@ const MenuItemView = ({
         </ul>
       </div>
     </div>
-    {/* <div className={s.commentContainer}>
-      <CommentComponent id={id} comments={comments} />
-    </div> */}
+
+    <div className={s.commentContainer}>
+      <CommentComponent currentItemID={id} />
+    </div>
   </div>
 );
 

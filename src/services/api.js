@@ -48,11 +48,6 @@ export const addItem = async ({
   return response;
 };
 
-export const addCommentToDish = async currentDish => {
-  const response = await axios.patch(`./menu/${currentDish.id}`, currentDish);
-  return response;
-};
-
 export const getAllOrders = async () => {
   const response = await axios.get('/orders');
   return response;
@@ -75,5 +70,15 @@ export const addOrder = async ({ address, price, rating, date }) => {
     price,
     date,
   });
+  return response;
+};
+
+export const getCommentsWithItemID = async ItemID => {
+  const response = await axios.get(`/comments?ItemID=${ItemID}`);
+  return response.data;
+};
+
+export const addCommentToDish = async currentDish => {
+  const response = await axios.patch(`./menu/${currentDish.id}`, currentDish);
   return response;
 };

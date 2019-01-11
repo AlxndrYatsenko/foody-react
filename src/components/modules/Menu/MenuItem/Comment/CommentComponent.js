@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+
 import CommentView from './CommentView';
+
+// import * as menuItemSelectors from '../duck/menuItemSelectors';
 import stars from './addition/stars';
-// import { addCommentToDish } from '../../../../../services/api';
+// import * as API from '../../../../../services/api';
 
 const INITIAL_STATE = {
   rating: 1,
   currentComment: '',
-  comments: [],
+  // comments: [],
+  isOpenComments: false,
 };
-
-export default class Comment extends Component {
+export default class CommentContainer extends Component {
   state = {
     ...INITIAL_STATE,
   };
 
-  componentDidMount() {
-    const { comments } = this.props;
-    console.log(comments);
-    // comments && this.addCommentsToState(comments);
-
-    // this.setState({ currentDish });
-  }
+  // componentDidMount() {
+  //   const { currentItemID } = this.props;
+  //   // console.log(currentItemID);
+  //   // if (currentItemID)
+  //   API.getCommentsWithItemID(currentItemID).then(data =>
+  //     this.setState({ comments: data }),
+  //   );
+  //   // .then(data => console.log(data));
+  //   // console.log(comments);
+  //   // comments && this.addCommentsToState(comments);
+  //   // this.setState({ currentDish });
+  // }
 
   handleTextareaChange = ({ target }) => {
     this.setState({ comment: target.value });
@@ -49,7 +58,7 @@ export default class Comment extends Component {
   handleSubmit = e => {
     e.preventDefault();
     // const { currentDish, currentComment, rating } = this.state;
-    const { currentItem } = this.props;
+    // const { currentItem } = this.props;
 
     // if (!comment) return alert('Вы ничего не написали в комментарии!');
 
@@ -66,7 +75,7 @@ export default class Comment extends Component {
     // } else addComment();
 
     // this.reset();
-    console.log(currentItem);
+    // console.log(currentItem);
     // return addCommentToDish(currentDish).then(response =>
     //   response.status === 200
     //     ? this.addCurrentDishToState(response.data)
@@ -74,12 +83,21 @@ export default class Comment extends Component {
     // );
   };
 
+  handleToggleComments = () => {
+    this.setState(state => ({ isOpenComments: !state.isOpenComments }));
+  };
+
+  // handleClaseComments = () => {
+  //   this.setState({ isOpenComments: false });
+  // };
+
   addCommentsToState(comments) {
     this.setState({ comments });
   }
 
   render() {
-    const { rating, comment, comments } = this.state;
+    const { rating, comment, comments, isOpenComments } = this.state;
+    // console.log(comments);
     return (
       <CommentView
         stars={stars}
@@ -90,7 +108,19 @@ export default class Comment extends Component {
         comment={comment}
         comments={comments}
         onDeleteComment={this.handleDeleteComment}
+        isOpenComments={isOpenComments}
+        onToggleComments={this.handleToggleComments}
+        // onCloseComments={this.handleCloseComments}
       />
     );
   }
 }
+
+// const mstp = state => ({
+//   currentID: menuItemSelectors.getCurrentItemID(state),
+// });
+
+// export default connect(
+//   mstp,
+//   null,
+// )(CommentContainer);
