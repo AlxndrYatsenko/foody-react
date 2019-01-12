@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './OrderHistory.module.css';
+import styles from '../OrderHistory.module.css';
 
 const OrdersTable = props => {
   const { orders, onDelete, onShowOrder } = props;

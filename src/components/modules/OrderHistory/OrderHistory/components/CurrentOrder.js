@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './OrderHistory.module.css';
+import s from '../OrderHistory.module.css';
 
 const CurrentOrder = ({
   currentOrder: { date, price, address, rating },

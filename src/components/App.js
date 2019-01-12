@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import s from './App.module.css';
 import AppHeader from './AppHeader/AppHeader';
 import Spiner from './Spiner/Spiner';
 
@@ -44,7 +45,7 @@ const Delivery = lazy(() =>
 );
 
 const App = () => (
-  <div>
+  <div className={s.wrapper}>
     <AppHeader />
 
     <Switch>

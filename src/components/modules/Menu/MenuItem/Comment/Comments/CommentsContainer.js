@@ -22,11 +22,7 @@ class CommentsContainer extends Component {
     API.deleteCommentWithID(id).then(response => {
       if (response === 200)
         this.setState(state => ({
-          comments: state.comments.filter(comment => {
-            console.log(id);
-            console.log(comment.id);
-            return comment.id !== Number(id);
-          }),
+          comments: state.comments.filter(comment => comment.id !== Number(id)),
         }));
     });
   };

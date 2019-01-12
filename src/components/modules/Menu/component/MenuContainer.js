@@ -29,31 +29,23 @@ class MenuContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // const { fetchMenuItemsWithCategory } = this.props;
     const prevCategory = getCategoryFromProps(prevProps);
     const nextCategory = getCategoryFromProps(this.props);
 
-    // console.log(prevCategory);
-    // console.log(nextCategory);
-
-    // const category = getCategoryFromProps(this.props);
-
     const { fetchMenuItemsWithCategory } = this.props;
     if (prevCategory !== nextCategory) {
-      // console.log(getMenuItemsWithCategory(nextCategory));
       fetchMenuItemsWithCategory(nextCategory);
     }
   }
 
   render() {
-    // console.log('render');
     return <MenuView {...this.props} />;
   }
 }
 
 const mapStateToProps = state => ({
   menuItems: menuSelectors.getVisibleMenuItems(state),
-  categories: state.menu.categories,
+  categories: menuSelectors.getCategory(state),
   filter: menuSelectors.getFilter(state),
   category: menuSelectors.getCategory(state),
 });
