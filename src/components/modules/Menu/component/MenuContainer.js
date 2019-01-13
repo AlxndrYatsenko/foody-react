@@ -14,16 +14,15 @@ class MenuContainer extends Component {
   componentDidMount() {
     const {
       fetchCategories,
-      // fetchMenuItems,
       getCategoryfromLocation,
       fetchMenuItemsWithCategory,
       location,
     } = this.props;
 
     fetchCategories();
+    // console.log(fetchCategories());
 
     const { payload } = getCategoryfromLocation(location);
-    // console.log(payload);
 
     return fetchMenuItemsWithCategory(payload);
   }

@@ -20,39 +20,46 @@ const OrderHistoryView = ({
   onAddOrder,
   onDeleteOrder,
   onShowOrder,
+  error,
 }) => (
-  <div className="orderHistoryWrap">
-    {isLoading ? (
-      <Spiner />
-    ) : (
-      isOpenModalShowOrder && (
-        <Modal onClose={onCloseModalShowOrder}>
-          <CurrentOrder
-            currentOrder={currentOrder}
-            closeModalShowOrder={onCloseModalShowOrder}
+  <>
+    {error && <p>{error.text}</p>}
+    <div className="orderHistoryWrap">
+      {isLoading ? (
+        <Spiner />
+      ) : (
+        isOpenModalShowOrder && (
+          <Modal onClose={onCloseModalShowOrder}>
+            <CurrentOrder
+              currentOrder={currentOrder}
+              closeModalShowOrder={onCloseModalShowOrder}
+            />
+          </Modal>
+        )
+      )}
+      <button
+        className={s.createOrder}
+        type="button"
+        onClick={onOpenModalAddOrder}
+      >
+        Создать заказ
+      </button>
+      <br />
+      {isOpenModalAddOrder && (
+        <Modal onClose={onCloseModalAddOrder}>
+          <AddOrderForm
+            onAddOrder={onAddOrder}
+            onClose={onCloseModalAddOrder}
           />
         </Modal>
-      )
-    )}
-    <button
-      className={s.createOrder}
-      type="button"
-      onClick={onOpenModalAddOrder}
-    >
-      Создать заказ
-    </button>
-    <br />
-    {isOpenModalAddOrder && (
-      <Modal onClose={onCloseModalAddOrder}>
-        <AddOrderForm onAddOrder={onAddOrder} onClose={onCloseModalAddOrder} />
-      </Modal>
-    )}
-    <OrdersTable
-      orders={orders}
-      onDelete={onDeleteOrder}
-      onShowOrder={onShowOrder}
-    />
-  </div>
+      )}
+      <OrdersTable
+        orders={orders}
+        onDelete={onDeleteOrder}
+        onShowOrder={onShowOrder}
+      />
+    </div>
+  </>
 );
 
 export default OrderHistoryView;

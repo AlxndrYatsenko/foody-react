@@ -28,22 +28,8 @@ export const getMenuItemsWithCategory = async category => {
   return response.data;
 };
 
-export const addItem = async ({
-  name,
-  price,
-  image,
-  description,
-  ingredients,
-  category,
-}) => {
-  const response = await axios.post('/menu', {
-    name,
-    price,
-    image,
-    description,
-    ingredients,
-    category,
-  });
+export const addItem = async newItem => {
+  const response = await axios.post('/menu', newItem);
   return response;
 };
 
@@ -62,13 +48,8 @@ export const deleteOrderById = async id => {
   return response.data;
 };
 //+++++++++++++++++++++++++++++++++++++++
-export const addOrder = async ({ address, price, rating, date }) => {
-  const response = await axios.post(`/orders`, {
-    address,
-    rating,
-    price,
-    date,
-  });
+export const addOrder = async newOrder => {
+  const response = await axios.post(`/orders`, newOrder);
   return response;
 };
 

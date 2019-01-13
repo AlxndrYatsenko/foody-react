@@ -15,16 +15,20 @@ class AddMenuItemContainer extends Component {
     image: '',
     category: '',
     selectedIngredient: '',
+    ingredients: [],
     categories: [],
     allIngredients: [],
-    ingredients: [],
+    error: '',
   };
 
   componentDidMount() {
-    API.getCategories().then(categories => this.setState({ categories }));
-    API.getAllIngredients().then(allIngredients =>
-      this.setState({ allIngredients }),
-    );
+    API.getCategories()
+      .catch(error => this.setState({ error }))
+      .then(categories => this.setState({ categories }));
+
+    API.getAllIngredients()
+      .catch(error => this.setState({ error }))
+      .then(allIngredients => this.setState({ allIngredients }));
   }
 
   handleChange = e => {
@@ -33,10 +37,6 @@ class AddMenuItemContainer extends Component {
     this.setState({
       [name]: value,
     });
-  };
-
-  handleChangeCategory = ({ target: { value } }) => {
-    this.setState({ category: value });
   };
 
   handleChangeIngredients = ({ target: { value } }) => {

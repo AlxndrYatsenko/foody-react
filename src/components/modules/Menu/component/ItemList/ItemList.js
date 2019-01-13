@@ -9,7 +9,7 @@ const ItemList = ({ menuItems, onDeleteItem, match, location }) => (
       <li className={s.item} key={id}>
         <Link
           to={{
-            pathname: `${match.url}/${id}`,
+            pathname: `${match.url}/item/${id}`,
             state: { from: location },
           }}
         >

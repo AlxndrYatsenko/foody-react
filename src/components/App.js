@@ -53,7 +53,7 @@ const App = () => (
         <Route exact path={routes.AUTH} component={Auth} />
         <Route exact path={routes.MAIN} component={Main} />
         <Route exact path={routes.MENU.root} component={Menu} />
-        <Route exact path={routes.MENU.add} component={AddMenuItem} />
+        <Route path={routes.MENU.add} component={AddMenuItem} />
         <Route path={routes.MENU.item} component={MenuItem} />
         <Route path={routes.ABOUT} component={About} />
         <Route path={routes.CONTACT} component={Contact} />
