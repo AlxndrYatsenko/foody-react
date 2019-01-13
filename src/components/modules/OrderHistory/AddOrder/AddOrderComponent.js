@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AddOrderView from './AddOrderView';
 
-const INNITIAL_STATE = { address: '', price: '', rating: '' };
+const INNITIAL_STATE = { address: '', price: '', rating: '', error: '' };
 
 export default class AddOrderComponent extends Component {
   state = { ...INNITIAL_STATE };
@@ -11,7 +11,9 @@ export default class AddOrderComponent extends Component {
     e.preventDefault();
     const { address, price, rating } = this.state;
     const { onClose, onAddOrder } = this.props;
-    onAddOrder({ address, price, rating });
+
+    onAddOrder({ address, price, rating }).catch(error => this.setState(error));
+
     this.setState({ ...INNITIAL_STATE });
     onClose();
   };
@@ -26,13 +28,10 @@ export default class AddOrderComponent extends Component {
   };
 
   render() {
-    const { address, price, rating } = this.state;
     const { onClose } = this.props;
     return (
       <AddOrderView
-        address={address}
-        price={price}
-        rating={rating}
+        {...this.state}
         onClose={onClose}
         onSubmit={this.handleSubmit}
         onChange={this.handleChange}

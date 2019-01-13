@@ -8,7 +8,6 @@ const changeFilter = filter => ({
 
 const getCategoryfromLocation = ({ search }) => {
   const { category } = queryString.parse(search);
-  // console.log(category);
 
   return {
     type: types.GET_CATEGORY,

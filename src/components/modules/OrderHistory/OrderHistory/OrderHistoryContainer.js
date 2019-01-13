@@ -11,26 +11,33 @@ export default class OrderHistory extends Component {
     currentOrder: {},
     isOpenModalShowOrder: false,
     isOpenModalAddOrder: false,
+    error: '',
   };
 
   componentDidMount() {
-    API.getAllOrders().then(({ data }) => this.setState({ orders: data }));
+    API.getAllOrders()
+      .catch(error => this.setState({ error }))
+      .then(({ orders }) => this.setState({ orders }));
   }
 
   handleDeleteOrder = id => {
-    API.deleteOrderById(id).then(
-      this.setState(state => ({
-        orders: state.orders.filter(item => item.id !== id),
-      })),
-    );
+    API.deleteOrderById(id)
+      .catch(error => this.setState({ error }))
+      .then(
+        this.setState(state => ({
+          orders: state.orders.filter(item => item.id !== id),
+        })),
+      );
   };
 
   handleShowOrder = id => {
     this.setState({ isLoading: true });
-    API.getOrderById(id).then(order => {
-      this.setState({ currentOrder: order, isLoading: false });
-      this.openModalShowOrder();
-    });
+    API.getOrderById(id)
+      .catch(error => this.setState({ error }))
+      .then(order => {
+        this.setState({ currentOrder: order, isLoading: false });
+        this.openModalShowOrder();
+      });
   };
 
   handleAddOrder = order => {
@@ -40,13 +47,15 @@ export default class OrderHistory extends Component {
       price,
       address,
       rating,
-    }).then(response =>
-      response.status === 201
-        ? this.setState(prevState => ({
-            orders: [...prevState.orders, response.data],
-          }))
-        : null,
-    );
+    })
+      .catch(error => this.setState({ error }))
+      .then(response =>
+        response.status === 201
+          ? this.setState(prevState => ({
+              orders: [...prevState.orders, response.data],
+            }))
+          : null,
+      );
   };
 
   handleOpenModalAddOrder = () => {
@@ -66,21 +75,22 @@ export default class OrderHistory extends Component {
   };
 
   render() {
-    const {
-      orders,
-      currentOrder,
-      isOpenModalShowOrder,
-      isLoading,
-      isOpenModalAddOrder,
-    } = this.state;
+    // const {
+    //   orders,
+    //   currentOrder,
+    //   isOpenModalShowOrder,
+    //   isLoading,
+    //   isOpenModalAddOrder,
+    // } = this.state;
 
     return (
       <OrderHistoryView
-        orders={orders}
-        currentOrder={currentOrder}
-        isOpenModalShowOrder={isOpenModalShowOrder}
-        isLoading={isLoading}
-        isOpenModalAddOrder={isOpenModalAddOrder}
+        {...this.state}
+        // orders={orders}
+        // currentOrder={currentOrder}
+        // isOpenModalShowOrder={isOpenModalShowOrder}
+        // isLoading={isLoading}
+        // isOpenModalAddOrder={isOpenModalAddOrder}
         onCloseModalShowOrder={this.closeModalShowOrder}
         onOpenModalAddOrder={this.handleOpenModalAddOrder}
         onCloseModalAddOrder={this.handleCloseModalAddOrder}

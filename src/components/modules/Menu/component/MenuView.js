@@ -19,35 +19,39 @@ const MenuView = ({
   onResetCategory,
   onFilterChange,
   onDeleteItem,
+  error,
 }) => (
-  <div className={s.menu}>
-    <div className={s.addLinkContainer}>
-      <LinkToAddMenuItem match={match} location={location} />
-    </div>
-    <Filter
-      filter={filter}
-      onFilterChange={({ target }) => onFilterChange(target.value)}
-    />
-    <CategorySelector
-      onChange={onChangeCategory}
-      value={category}
-      categories={categories}
-      history={history}
-      location={location}
-      onResetCategory={onResetCategory}
-    />
+  <>
+    {error && <p>{error.message}</p>}
+    <div className={s.menu}>
+      <div className={s.addLinkContainer}>
+        <LinkToAddMenuItem match={match} location={location} />
+      </div>
+      <Filter
+        filter={filter}
+        onFilterChange={({ target }) => onFilterChange(target.value)}
+      />
+      <CategorySelector
+        onChange={onChangeCategory}
+        value={category}
+        categories={categories}
+        history={history}
+        location={location}
+        onResetCategory={onResetCategory}
+      />
 
-    {category && (
-      <p>
-        Текущий фильтр: <b>{category}</b>
-      </p>
-    )}
-    <ItemList
-      menuItems={menuItems}
-      onDeleteItem={onDeleteItem}
-      match={match}
-      location={location}
-    />
-  </div>
+      {category && (
+        <p>
+          Текущий фильтр: <b>{category}</b>
+        </p>
+      )}
+      <ItemList
+        menuItems={menuItems}
+        onDeleteItem={onDeleteItem}
+        match={match}
+        location={location}
+      />
+    </div>
+  </>
 );
 export default MenuView;
