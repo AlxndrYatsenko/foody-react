@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import styles from './Modal.module.css';
 
-export default class ModalOrder extends Component {
+export default class Modal extends Component {
   containerRef = createRef();
 
   state = {};

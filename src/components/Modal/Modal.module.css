@@ -34,12 +34,3 @@
   display: block;
   margin-bottom: 8px;
 }
-
-label,
-input {
-  display: block;
-}
-
-label {
-  padding-bottom: 8px;
-}

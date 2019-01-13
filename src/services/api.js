@@ -1,37 +1,88 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001/orders';
+axios.defaults.baseURL = 'http://localhost:3001';
+export const getAllMenuItems = async () => {
+  const response = await axios.get('/menu');
+  return response.data;
+};
 
-const getAllOrders = () =>
-  axios
-    .get(BASE_URL)
-    .then(response => response)
-    .catch(error => {
-      console.log(error);
-    });
+export const getAllIngredients = async () => {
+  const response = await axios.get('/ingredients');
+  return response.data;
+};
 
-const getOrderById = id =>
-  axios
-    .get(`${BASE_URL}/${id}`)
-    .then(response => response.data)
-    .catch(error => {
-      console.log(error);
-    });
+export const getCategories = async () => {
+  const response = await axios.get('/categories');
+  return response.data;
+};
 
-const deleteOrderById = id =>
-  axios
-    .delete(`${BASE_URL}/${id}`)
-    .then(response => response.data)
-    .catch(error => {
-      console.log(error);
-    });
+export const getMenuItemById = async id => {
+  const response = await axios.get(`/menu/${id}`);
+  return response;
+};
 
-const addOrder = ({ address, price, rating, date }) =>
-  axios
-    .post(BASE_URL, { address, rating, price, date })
-    .then(response => response)
-    .catch(error => {
-      console.log(error);
-    });
+export const getMenuItemsWithCategory = async category => {
+  const response = category
+    ? await axios.get(`/menu?category=${category}`)
+    : await axios.get(`/menu`);
+  return response.data;
+};
 
-export { BASE_URL, getAllOrders, getOrderById, deleteOrderById, addOrder };
+export const addItem = async ({
+  name,
+  price,
+  image,
+  description,
+  ingredients,
+  category,
+}) => {
+  const response = await axios.post('/menu', {
+    name,
+    price,
+    image,
+    description,
+    ingredients,
+    category,
+  });
+  return response;
+};
+
+export const getAllOrders = async () => {
+  const response = await axios.get('/orders');
+  return response;
+};
+
+export const getOrderById = async id => {
+  const response = await axios.get(`/orders/${id}`);
+  return response.data;
+};
+
+export const deleteOrderById = async id => {
+  const response = await axios.delete(`/orders/${id}`);
+  return response.data;
+};
+//+++++++++++++++++++++++++++++++++++++++
+export const addOrder = async ({ address, price, rating, date }) => {
+  const response = await axios.post(`/orders`, {
+    address,
+    rating,
+    price,
+    date,
+  });
+  return response;
+};
+
+export const getCommentsWithItemID = async ItemID => {
+  const response = await axios.get(`/comments?ItemID=${ItemID}`);
+  return response.data;
+};
+
+export const deleteCommentWithID = async id => {
+  const response = await axios.delete(`/comments/${id}`);
+  return response.status;
+};
+
+export const addComment = async newComment => {
+  const response = await axios.post(`./comments`, newComment);
+  return response.data;
+};
