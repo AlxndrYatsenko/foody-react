@@ -1,0 +1,8 @@
+.comment {
+  width: 500px;
+}
+
+.rating {
+  margin-right: 15px;
+  cursor: pointer;
+}

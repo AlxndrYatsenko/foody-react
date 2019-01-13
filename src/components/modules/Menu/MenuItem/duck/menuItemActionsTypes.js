@@ -1,0 +1,5 @@
+const FETCH_REQUEST = 'menuItem/FETCH_REQUEST';
+const FETCH_SUCCESS = 'menuItem/FETCH_SUCCESS';
+const FETCH_ERROR = 'menuItem/FETCH_ERROR';
+
+export default { FETCH_REQUEST, FETCH_SUCCESS, FETCH_ERROR };

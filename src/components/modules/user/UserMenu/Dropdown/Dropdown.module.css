@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 90px;
+  width: 100%;
+  padding: 8px;
+  background-color: #fff;
+  box-shadow: -1px 4px 16px 4px rgba(0, 0, 0, 0.3);
+}
+.list {
+  display: flex;
+  flex-direction: column;
+
+  list-style: none;
+  padding: 0;
+}
+.item {
+  padding-left: 15px;
+}
+
+.linkBtn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.linkBtn:hover {
+  color: blue;
+}

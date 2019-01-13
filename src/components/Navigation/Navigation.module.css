@@ -1,0 +1,26 @@
+nav {
+  justify-self: flex-start;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  font-size: 16px;
+}
+
+.navList li:not(:last-child) {
+  margin-right: 8px;
+}
+
+.activeLink {
+  text-decoration: none;
+  color: #f44336;
+}
+
+.navListLink {
+  text-decoration: none;
+}
+
+.navListLink:hover {
+  color: blue;
+}
