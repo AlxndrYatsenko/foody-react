@@ -45,7 +45,7 @@ class MenuContainer extends Component {
 
 const mapStateToProps = state => ({
   menuItems: menuSelectors.getVisibleMenuItems(state),
-  categories: menuSelectors.getCategory(state),
+  categories: menuSelectors.getCategories(state),
   filter: menuSelectors.getFilter(state),
   category: menuSelectors.getCategory(state),
 });

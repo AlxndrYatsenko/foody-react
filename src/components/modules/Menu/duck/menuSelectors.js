@@ -6,6 +6,8 @@ const getFilter = state => state.menu.filter;
 
 const getCategory = state => state.menu.category;
 
+const getCategories = state => state.menu.categories;
+
 const getVisibleMenuItems = state => {
   const items = getItems(state);
   const filter = getFilter(state);
@@ -20,19 +22,15 @@ const getVisibleMenuItems = state => {
 
 const getCategoryfromLocation = ({ search }) => {
   const { category } = queryString.parse(search);
-  // console.log(category);
 
   return category;
-  // {
-  //   type: types.GET_CATEGORY,
-  //   payload: category || '',
-  // };
 };
 
 export default {
   getItems,
   getFilter,
   getCategory,
+  getCategories,
   getVisibleMenuItems,
   getCategoryfromLocation,
 };

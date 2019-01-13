@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategorySelector from './CategorySelector/CategotySelektor';
+import CategorySelector from './CategorySelector/CategorySelektor';
 import Filter from './Filter/Filter';
 import ItemList from './ItemList/ItemList';
 import LinkToAddMenuItem from './LinkToAddMenuItem/LinkToAddMenuItem';
