@@ -19,9 +19,9 @@ const Menu = lazy(() =>
 const AddMenuItem = lazy(() =>
   import('../pages/AddMenuItem' /* webpackChunkName: "addMenuItem-page" */),
 );
-// const MenuItem = lazy(() =>
-//   import('../pages/MenuItem' /* webpackChunkName: "menuItem-page" */),
-// );
+const MenuItem = lazy(() =>
+  import('../pages/MenuItem' /* webpackChunkName: "menuItem-page" */),
+);
 const OrderHistory = lazy(() =>
   import('../pages/OrderHistory' /* webpackChunkName: "orderHistory-page" */),
 );
@@ -54,7 +54,7 @@ const App = () => (
         <Route exact path={routes.MAIN} component={Main} />
         <Route exact path={routes.MENU.root} component={Menu} />
         <Route path={routes.MENU.add} component={AddMenuItem} />
-        {/* <Route path={routes.MENU.item} component={MenuItem} /> */}
+        <Route path={routes.MENU.item} component={MenuItem} />
         <Route path={routes.ABOUT} component={About} />
         <Route path={routes.CONTACT} component={Contact} />
         <Route path={routes.DELIVERY} component={Delivery} />
