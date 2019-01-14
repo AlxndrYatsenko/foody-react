@@ -1,36 +1,17 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 
-import CommentView from './CommentView';
+import Comment from './Comment';
 
-// import * as menuItemSelectors from '../duck/menuItemSelectors';
 import stars from './addition/stars';
 import * as API from '../../../../../services/api';
 
-// const INITIAL_STATE = {
-//   rating: 1,
-//   comment: '',
-//   isOpenComments: false,
-// };
 export default class CommentContainer extends Component {
   state = {
-    rating: 1,
+    rating: 0,
     comment: '',
     isOpenComments: false,
+    error: '',
   };
-
-  // componentDidMount() {
-  //   const { currentItemID } = this.props;
-  //   // console.log(currentItemID);
-  //   // if (currentItemID)
-  //   API.getCommentsWithItemID(currentItemID).then(data =>
-  //     this.setState({ comments: data }),
-  //   );
-  //   // .then(data => console.log(data));
-  //   // console.log(comments);
-  //   // comments && this.addCommentsToState(comments);
-  //   // this.setState({ currentDish });
-  // }
 
   handleTextareaChange = ({ target }) => {
     this.setState({ comment: target.value });
@@ -42,15 +23,19 @@ export default class CommentContainer extends Component {
 
   reset = () => {
     this.setState({
-      rating: 1,
+      rating: 0,
       comment: '',
     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    const { currentItemID } = this.props;
     const { rating, comment } = this.state;
+
+    if (!rating) return alert('Вы не выбрали оценку');
+    if (!comment) return alert('Напишите хоть пару буковок :))');
+
+    const { currentItemID } = this.props;
 
     const newComment = {
       date: new Date().toLocaleDateString('en-US'),
@@ -59,45 +44,29 @@ export default class CommentContainer extends Component {
       ItemID: currentItemID,
     };
 
-    API.addComment(newComment)
-      .then(this.reset())
-      .catch(error => console.log(error));
+    return API.addComment(newComment)
+      .catch(error => this.setState({ error }))
+      .then(this.reset());
   };
 
-  handleToggleComments = () => {
+  handleToggleShowComments = () => {
     this.setState(state => ({ isOpenComments: !state.isOpenComments }));
   };
 
-  addCommentsToState(comments) {
-    this.setState({ comments });
-  }
-
   render() {
-    const { rating, comment, comments, isOpenComments } = this.state;
     const { currentItemID } = this.props;
+
     return (
-      <CommentView
-        isOpenComments={isOpenComments}
+      <Comment
+        {...this.state}
         stars={stars}
-        rating={rating}
-        comment={comment}
-        comments={comments}
         currentItemID={currentItemID}
         onSubmit={this.handleSubmit}
         onSelectChange={this.handleSelectChange}
         onTextareaChange={this.handleTextareaChange}
         onDeleteComment={this.handleDeleteComment}
-        onToggleComments={this.handleToggleComments}
+        onToggleShowComments={this.handleToggleShowComments}
       />
     );
   }
 }
-
-// const mstp = state => ({
-//   currentID: menuItemSelectors.getCurrentItemID(state),
-// });
-
-// export default connect(
-//   mstp,
-//   null,
-// )(CommentContainer);

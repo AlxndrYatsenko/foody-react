@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import OrderHistoryView from './OrderHistoryView';
+import OrderHistory from './OrderHistory';
 
 import * as API from '../../../../services/api';
 
-export default class OrderHistory extends Component {
+export default class OrderHistoryContainer extends Component {
   state = {
     orders: [],
     isLoading: false,
@@ -75,22 +75,9 @@ export default class OrderHistory extends Component {
   };
 
   render() {
-    // const {
-    //   orders,
-    //   currentOrder,
-    //   isOpenModalShowOrder,
-    //   isLoading,
-    //   isOpenModalAddOrder,
-    // } = this.state;
-
     return (
-      <OrderHistoryView
+      <OrderHistory
         {...this.state}
-        // orders={orders}
-        // currentOrder={currentOrder}
-        // isOpenModalShowOrder={isOpenModalShowOrder}
-        // isLoading={isLoading}
-        // isOpenModalAddOrder={isOpenModalAddOrder}
         onCloseModalShowOrder={this.closeModalShowOrder}
         onOpenModalAddOrder={this.handleOpenModalAddOrder}
         onCloseModalAddOrder={this.handleCloseModalAddOrder}

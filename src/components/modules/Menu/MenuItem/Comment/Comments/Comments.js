@@ -2,9 +2,12 @@ import React from 'react';
 
 import s from '../Comment.module.css';
 
-const Comments = ({ onDeleteComment, comments }) => (
+const Comments = ({ onDeleteComment, comments, error }) => (
   <div>
-    {comments.length > 0 ? (
+    {error && <p>{error.text}</p>}
+    {comments.length === 0 ? (
+      'Ваш комментарий будет первым'
+    ) : (
       <>
         <p>Комментарии:</p>
         <ul className={s.comment}>
@@ -23,8 +26,6 @@ const Comments = ({ onDeleteComment, comments }) => (
           ))}
         </ul>
       </>
-    ) : (
-      'Ваш комментарий будет первым'
     )}
   </div>
 );

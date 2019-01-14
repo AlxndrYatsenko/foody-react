@@ -8,32 +8,29 @@ import * as menuItemSelectors from '../../duck/menuItemSelectors';
 import * as API from '../../../../../../services/api';
 
 class CommentsContainer extends Component {
-  state = { comments: [] };
+  state = { comments: [], error: '' };
 
   componentDidMount() {
     const { currentItemID } = this.props;
 
-    API.getCommentsWithItemID(currentItemID).then(comments =>
-      this.setState({ comments }),
-    );
+    API.getCommentsWithItemID(currentItemID)
+      .catch(error => this.setState({ error }))
+      .then(comments => this.setState({ comments }));
   }
 
   handleDeleteComment = id => {
-    API.deleteCommentWithID(id).then(response => {
-      if (response === 200)
+    API.deleteCommentWithID(id)
+      .catch(error => this.setState({ error }))
+      .then(() => {
         this.setState(state => ({
           comments: state.comments.filter(comment => comment.id !== Number(id)),
         }));
-    });
+      });
   };
 
   render() {
-    const { comments } = this.state;
     return (
-      <Comments
-        comments={comments}
-        onDeleteComment={this.handleDeleteComment}
-      />
+      <Comments {...this.state} onDeleteComment={this.handleDeleteComment} />
     );
   }
 }
