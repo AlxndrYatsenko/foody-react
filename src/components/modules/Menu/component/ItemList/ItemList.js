@@ -13,13 +13,17 @@ const ItemList = ({ menuItems, onDeleteItem, match, location }) => (
             state: { from: location },
           }}
         >
-          <div className={s.imgComtainer}>
+          <div className={s.itemContainer}>
             <img className={s.img} src={image} alt={name} />
+            <p className={s.name}>{name}</p>
+            <p className={s.price}>Цена: {price} денег</p>
           </div>
-          <p className={s.name}>{name}</p>
-          <p className={s.price}>Цена: {price} денег</p>
         </Link>
-        <button type="button" onClick={() => onDeleteItem(id)}>
+        <button
+          className={s.deleteBtn}
+          type="button"
+          onClick={() => onDeleteItem(id)}
+        >
           удалить
         </button>
       </li>

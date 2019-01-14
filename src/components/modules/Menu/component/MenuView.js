@@ -33,18 +33,12 @@ const MenuView = ({
       />
       <CategorySelector
         onChange={onChangeCategory}
-        value={category}
+        category={category}
         categories={categories}
         history={history}
         location={location}
         onResetCategory={onResetCategory}
       />
-
-      {category && (
-        <p>
-          Текущий фильтр: <b>{category}</b>
-        </p>
-      )}
       <ItemList
         menuItems={menuItems}
         onDeleteItem={onDeleteItem}

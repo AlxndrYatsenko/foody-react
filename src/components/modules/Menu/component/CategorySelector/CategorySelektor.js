@@ -5,18 +5,18 @@ const CategorySelector = props => {
   const {
     onChange,
     onResetCategory,
-    value,
+    category,
     categories,
     history,
     location,
   } = props;
   return (
-    <div>
+    <div className={s.selectorContainer}>
       <span className={s.category}>Выберите категорию: </span>
       <select
         className={s.selector}
         onChange={({ target }) => onChange(target.value, history, location)}
-        value={value}
+        value={category}
       >
         <option key="выбрать" disabled label="выбрать" />
 
@@ -26,7 +26,7 @@ const CategorySelector = props => {
           </option>
         ))}
       </select>
-      {value && (
+      {category && (
         <button
           className={s.filterCancelBtn}
           type="button"
@@ -34,6 +34,11 @@ const CategorySelector = props => {
         >
           Очистить фильтр
         </button>
+      )}
+      {category && (
+        <p>
+          Текущий фильтр: <b>{category}</b>
+        </p>
       )}
     </div>
   );

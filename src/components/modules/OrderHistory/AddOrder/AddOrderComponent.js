@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AddOrderView from './AddOrderView';
+import AddOrder from './AddOrder';
 
 const INNITIAL_STATE = { address: '', price: '', rating: '', error: '' };
 
@@ -30,7 +30,7 @@ export default class AddOrderComponent extends Component {
   render() {
     const { onClose } = this.props;
     return (
-      <AddOrderView
+      <AddOrder
         {...this.state}
         onClose={onClose}
         onSubmit={this.handleSubmit}

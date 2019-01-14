@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import MenuItemView from './MenuItemView';
+import MenuItem from './MenuItem';
 
 import * as menuItemSelectors from './duck/menuItemSelectors';
 import { menuItemOperations } from './duck';
 
-// import { getMenuItemById } from '../../../../services/api';
-
 class MenuItemComponent extends Component {
-  // state = {
-  //   isOpenComments: false,
-  // };
-
   componentDidMount() {
     const {
       match: { params },
@@ -38,7 +32,7 @@ class MenuItemComponent extends Component {
   };
 
   render() {
-    return <MenuItemView {...this.props} goBack={this.handleGoBack} />;
+    return <MenuItem {...this.props} goBack={this.handleGoBack} />;
   }
 }
 

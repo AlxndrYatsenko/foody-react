@@ -21,6 +21,7 @@
     "node": true
   },
   "rules": {
+    "no-alert": 0,
     "import/no-extraneous-dependencies": 1,
     "linebreak-style": ["error", "windows"],
     "react/prop-types": 0,
