@@ -1,22 +1,6 @@
 import { combineReducers } from 'redux';
 import types from './menuActionTypes';
-import menuItemReducer from '../MenuItem/duck/menuItemReducers';
-
-function itemsReducer(state = [], { type, payload }) {
-  switch (type) {
-    case types.MENU_FETCH_SUCCESS:
-      return payload;
-
-    case types.ADD_SUCCESS:
-      return [...state, payload];
-
-    case types.DELETE_SUCCESS:
-      return state.filter(item => item.id !== payload);
-
-    default:
-      return state;
-  }
-}
+import { menuItemReducers } from '../../MenuItem/duck';
 
 function filterReducer(state = '', { type, payload }) {
   switch (type) {
@@ -81,12 +65,49 @@ function categoryReducer(state = '', { type, payload }) {
   }
 }
 
+function entityReducer(state = {}, { type, payload }) {
+  switch (type) {
+    case types.MENU_FETCH_SUCCESS:
+      return payload.entities;
+
+    case types.ADD_SUCCESS:
+      return [...state, payload];
+
+    case types.DELETE_SUCCESS:
+      return state.filter(item => item.id !== payload);
+
+    default:
+      return state;
+  }
+}
+
+function itemsReducer(state = [], { type, payload }) {
+  switch (type) {
+    case types.MENU_FETCH_SUCCESS:
+      return payload.ids.items;
+    default:
+      return state;
+  }
+}
+
+function commentsReducer(state = [], { type, payload }) {
+  switch (type) {
+    case types.MENU_FETCH_SUCCESS:
+      return payload.ids.comments;
+    // ;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
+  currentItem: menuItemReducers,
   items: itemsReducer,
+  comments: commentsReducer,
+  entities: entityReducer,
   category: categoryReducer,
   categories: categoriesReducer,
   loading: loadingReducer,
   error: errorReducer,
   filter: filterReducer,
-  currentItem: menuItemReducer,
 });

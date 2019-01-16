@@ -1,9 +1,9 @@
 import React from 'react';
-import AddMenuItemComponent from '../components/modules/Menu/AddMenuItem/AddMenuItemContainer';
+import AddMenuItem from '../components/modules/AddMenuItem/AddMenuItemContainer';
 
 const MenuPage = props => (
   <div>
-    <AddMenuItemComponent {...props} />
+    <AddMenuItem {...props} />
   </div>
 );
 

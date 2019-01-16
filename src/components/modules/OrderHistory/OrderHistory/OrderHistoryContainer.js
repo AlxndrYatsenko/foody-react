@@ -17,7 +17,7 @@ export default class OrderHistoryContainer extends Component {
   componentDidMount() {
     API.getAllOrders()
       .catch(error => this.setState({ error }))
-      .then(({ orders }) => this.setState({ orders }));
+      .then(orders => this.setState({ orders }));
   }
 
   handleDeleteOrder = id => {
@@ -33,11 +33,11 @@ export default class OrderHistoryContainer extends Component {
   handleShowOrder = id => {
     this.setState({ isLoading: true });
     API.getOrderById(id)
-      .catch(error => this.setState({ error }))
       .then(order => {
         this.setState({ currentOrder: order, isLoading: false });
         this.openModalShowOrder();
-      });
+      })
+      .catch(error => this.setState({ error }));
   };
 
   handleAddOrder = order => {

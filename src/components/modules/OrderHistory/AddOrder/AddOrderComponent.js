@@ -12,7 +12,7 @@ export default class AddOrderComponent extends Component {
     const { address, price, rating } = this.state;
     const { onClose, onAddOrder } = this.props;
 
-    onAddOrder({ address, price, rating }).catch(error => this.setState(error));
+    onAddOrder({ address, price, rating });
 
     this.setState({ ...INNITIAL_STATE });
     onClose();

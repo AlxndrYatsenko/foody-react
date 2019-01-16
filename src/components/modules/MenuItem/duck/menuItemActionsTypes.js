@@ -1,0 +1,7 @@
+const FETCH_REQUEST = 'menuItem/FETCH_REQUEST';
+const FETCH_SUCCESS = 'menuItem/FETCH_SUCCESS';
+const FETCH_ERROR = 'menuItem/FETCH_ERROR';
+const SELECT_ITEM = 'menu/SELECT_ITEM';
+
+// export default SELECT_ITEM;
+export default { SELECT_ITEM, FETCH_REQUEST, FETCH_SUCCESS, FETCH_ERROR };
