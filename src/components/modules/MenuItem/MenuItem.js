@@ -4,7 +4,7 @@ import CommentComponent from './Comment/CommentComponent';
 
 import s from './MenuItem.module.css';
 
-const MenuItemView = ({
+const MenuItem = ({
   goBack,
   currentItem: { id, image, price, ingredients, name, description },
 }) => (
@@ -34,4 +34,4 @@ const MenuItemView = ({
   </div>
 );
 
-export default MenuItemView;
+export default MenuItem;

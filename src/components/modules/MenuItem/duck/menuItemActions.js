@@ -1,21 +1,26 @@
-import actions from './menuItemActionsTypes';
+import types from './menuItemActionsTypes';
 // import { type } from 'os';
 
 const fetchRequest = () => ({
-  type: actions.FETCH_REQUEST,
+  type: types.FETCH_REQUEST,
 });
 
 const fetchMenuItemSuccess = menuItem => ({
-  type: actions.FETCH_SUCCESS,
+  type: types.FETCH_SUCCESS,
   payload: menuItem,
 });
 
 const fetchMenuItemError = error => ({
-  type: actions.FETCH_ERROR,
+  type: types.FETCH_ERROR,
   payload: error,
 });
 
+const selectItem = id => ({
+  type: types.SELECT_ITEM,
+  payload: id,
+});
 export default {
+  selectItem,
   fetchRequest,
   fetchMenuItemSuccess,
   fetchMenuItemError,

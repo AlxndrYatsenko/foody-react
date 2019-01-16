@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CategorySelector from './CategorySelector/CategorySelektor';
-import Filter from './Filter/Filter';
-import ItemList from './ItemList/ItemList';
-import LinkToAddMenuItem from './LinkToAddMenuItem/LinkToAddMenuItem';
+import CategorySelector from './components/CategorySelector/CategorySelektor';
+import Filter from './components/Filter/Filter';
+import ItemList from './components/ItemList/ItemList';
+import LinkToAddMenuItem from './components/LinkToAddMenuItem/LinkToAddMenuItem';
 
 import s from './Menu.module.css';
 
-const MenuView = ({
+const Menu = ({
   filter,
   categories,
   menuItems,
@@ -18,11 +18,13 @@ const MenuView = ({
   onChangeCategory,
   onResetCategory,
   onFilterChange,
-  onDeleteItem,
+  // onDeleteItem,
+  selectItem,
   error,
 }) => (
   <>
     {error && <p>{error.message}</p>}
+    {/* {console.log(menuItems)} */}
     <div className={s.menu}>
       <div className={s.addLinkContainer}>
         <LinkToAddMenuItem match={match} location={location} />
@@ -41,11 +43,12 @@ const MenuView = ({
       />
       <ItemList
         menuItems={menuItems}
-        onDeleteItem={onDeleteItem}
+        selectItem={selectItem}
+        // onDeleteItem={onDeleteItem}
         match={match}
         location={location}
       />
     </div>
   </>
 );
-export default MenuView;
+export default Menu;

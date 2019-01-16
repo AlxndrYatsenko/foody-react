@@ -1,5 +1,7 @@
 import queryString from 'query-string';
+import { normalize } from 'normalizr';
 import types from './menuActionTypes';
+import itemsSchema from '../../../../services/schemas';
 
 const changeFilter = filter => ({
   type: types.CHANGE_FILTER,
@@ -37,11 +39,22 @@ const resetCategory = history => {
 const fetchRequest = () => ({
   type: types.MENU_FETCH_REQUEST,
 });
+//++++++++++++++++++++++++++++++++++++++++
 
-const fetchSuccess = menuItems => ({
-  type: types.MENU_FETCH_SUCCESS,
-  payload: menuItems,
-});
+const fetchSuccess = menuItems => {
+  const normalazedItems = normalize(menuItems, [itemsSchema]);
+  return {
+    type: types.MENU_FETCH_SUCCESS,
+    payload: {
+      ids: {
+        items: Object.keys(normalazedItems.entities.items),
+        comments: Object.keys(normalazedItems.entities.comments),
+      },
+      entities: normalazedItems.entities,
+    },
+    // normalazedItems,
+  };
+};
 
 const deleteItemSuccess = id => ({
   type: types.DELETE_SUCCESS,
@@ -77,7 +90,17 @@ const deleteMenuItemSuccess = id => ({
   payload: id,
 });
 
+const selectItem = id => {
+  console.log(id);
+  return {
+    type: types.SELECT_ITEM,
+    payload: id.toString(),
+  };
+};
+
 export default {
+  selectItem,
+  // ==================
   getCategoryfromLocation,
   addMenuItemSuccess,
   deleteMenuItemSuccess,

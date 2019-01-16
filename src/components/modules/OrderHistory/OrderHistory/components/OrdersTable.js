@@ -1,19 +1,19 @@
 import React from 'react';
-import styles from '../OrderHistory.module.css';
+import s from '../OrderHistory.module.css';
 
 const OrdersTable = props => {
   const { orders, onDelete, onShowOrder } = props;
   return (
-    <table className={styles.table}>
-      <tbody className={styles.tableBody}>
-        <tr className={styles.tableRow}>
-          <th className={styles.date}>Date</th>
-          <th className={styles.price}>Price</th>
-          <th className={styles.address}>Delivery address</th>
-          <th className={styles.rating}>Rating</th>
+    <table className={s.table}>
+      <tbody className={s.tableBody}>
+        <tr className={s.tableRow}>
+          <th className={s.date}>Date</th>
+          <th className={s.price}>Price</th>
+          <th className={s.address}>Delivery address</th>
+          <th className={s.rating}>Rating</th>
         </tr>
         {orders.map(({ id, date, price, address, rating }) => (
-          <tr className={styles.tableRow} key={id}>
+          <tr className={s.tableRow} key={id}>
             <td>{date}</td>
             <td>{price}</td>
             <td>{address}</td>

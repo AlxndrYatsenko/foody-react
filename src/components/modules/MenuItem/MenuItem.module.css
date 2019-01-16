@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .wrap {
   display: flex;
 }
@@ -13,6 +14,7 @@
   justify-content: center;
   width: 70%;
 }
+
 .info {
   width: 50%;
   display: flex;
@@ -27,22 +29,25 @@
 .image {
   height: auto;
 }
+
 .name {
   font-weight: bold;
   font-size: 18px;
 }
+
 .price {
   font-weight: bold;
 }
-.description {
+/* .description {
   height: 58px;
   overflow: auto;
-}
+} */
 
 .ingrTitle {
   font-weight: bold;
   font-size: 16px;
 }
+
 .goBackBtn {
   margin-bottom: 10px;
   outline: none;

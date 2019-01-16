@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import s from '../Menu.module.css';
+import s from '../../Menu.module.css';
 
-const ItemList = ({ match, location }) => (
+const LinkToAddMenuItem = ({ match, location }) => (
   <Link
     className={s.addLink}
     to={{
@@ -15,4 +15,4 @@ const ItemList = ({ match, location }) => (
   </Link>
 );
 
-export default ItemList;
+export default LinkToAddMenuItem;

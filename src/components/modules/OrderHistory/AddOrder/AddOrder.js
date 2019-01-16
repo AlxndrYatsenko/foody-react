@@ -1,5 +1,7 @@
 import React from 'react';
 
+import s from './AddOrder.module.css';
+
 const AddOrderView = ({
   address,
   price,
@@ -11,8 +13,8 @@ const AddOrderView = ({
 }) => (
   <>
     {error && <p>{error.text}</p>}
-    <form onSubmit={onSubmit}>
-      <label>
+    <form className={s.form} onSubmit={onSubmit}>
+      <label className={s.address}>
         Адрес доставки:
         <input
           name="address"
@@ -22,7 +24,7 @@ const AddOrderView = ({
           required
         />
       </label>
-      <label>
+      <label className={s.price}>
         Цена:
         <input
           name="price"
@@ -32,7 +34,7 @@ const AddOrderView = ({
           required
         />
       </label>
-      <label>
+      <label className={s.rating}>
         Рейтинг:
         <input
           name="rating"
@@ -42,8 +44,10 @@ const AddOrderView = ({
           required
         />
       </label>
-      <button type="submit">Отправить</button>
-      <button type="button" onClick={onClose}>
+      <button className={s.submitBtn} type="submit">
+        Добавить
+      </button>
+      <button className={s.cancelBtn} type="button" onClick={onClose}>
         Закрыть
       </button>
     </form>

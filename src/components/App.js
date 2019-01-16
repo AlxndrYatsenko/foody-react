@@ -50,18 +50,29 @@ const App = () => (
 
     <Switch>
       <Suspense fallback={<Spiner />}>
-        <Route exact path={routes.AUTH} component={Auth} />
-        <Route exact path={routes.MAIN} component={Main} />
-        <Route exact path={routes.MENU.root} component={Menu} />
-        <Route path={routes.MENU.add} component={AddMenuItem} />
-        <Route path={routes.MENU.item} component={MenuItem} />
-        <Route path={routes.ABOUT} component={About} />
-        <Route path={routes.CONTACT} component={Contact} />
-        <Route path={routes.DELIVERY} component={Delivery} />
-        <Route path={routes.NOT_FOUND} component={NotFound} />
-        <Route path={routes.ORDER_HISTORY} component={OrderHistory} />
-        <Route path={routes.ACCOUNT} component={Account} />
-        <Route path={routes.PLANNER} component={Planner} />
+        <Route exact path={routes.AUTH} render={() => <Auth />} />
+        <Route exact path={routes.MAIN} render={() => <Main />} />
+        <Route
+          exact
+          path={routes.MENU.root}
+          render={props => <Menu {...props} />}
+        />
+        <Route
+          path={routes.MENU.add}
+          render={props => <AddMenuItem {...props} />}
+        />
+
+        <Route
+          path={routes.MENU.item}
+          render={props => <MenuItem {...props} />}
+        />
+        <Route path={routes.ABOUT} render={() => <About />} />
+        <Route path={routes.CONTACT} render={() => <Contact />} />
+        <Route path={routes.DELIVERY} render={() => <Delivery />} />
+        <Route path={routes.ORDER_HISTORY} render={() => <OrderHistory />} />
+        <Route path={routes.ACCOUNT} render={() => <Account />} />
+        <Route path={routes.PLANNER} render={() => <Planner />} />
+        <Route path={routes.NOT_FOUND} render={() => <NotFound />} />
       </Suspense>
     </Switch>
   </div>

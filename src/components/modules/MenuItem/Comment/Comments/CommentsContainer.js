@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Comments from './Comments';
 
 import * as menuItemSelectors from '../../duck/menuItemSelectors';
-import * as API from '../../../../../../services/api';
+import * as API from '../../../../../services/api';
 
 class CommentsContainer extends Component {
   state = { comments: [], error: '' };

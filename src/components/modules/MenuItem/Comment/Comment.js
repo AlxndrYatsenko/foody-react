@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 
 import s from './Comment.module.css';
-import Spiner from '../../../../Spiner/Spiner';
+import Spiner from '../../../Spiner/Spiner';
 
 const CommentsContainer = lazy(() =>
   import('./Comments/CommentsContainer' /* webpackChunkName: "comments" */),
@@ -30,9 +30,7 @@ const CommentView = ({
           required
         />
         <select className={s.rating} onChange={onSelectChange} value={rating}>
-          <option key="выбрать" disambled>
-            выбрать
-          </option>
+          <option key="выбрать">выбрать</option>
           {stars.map(o => (
             <option key={o} value={o}>
               {o}

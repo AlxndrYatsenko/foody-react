@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Comment from './Comment';
 
 import stars from './addition/stars';
-import * as API from '../../../../../services/api';
+import * as API from '../../../../services/api';
 
 export default class CommentContainer extends Component {
   state = {

@@ -31,15 +31,25 @@
   cursor: pointer;
 }
 
-.itemContainer {
-  max-width: 300px;
+.wrapper {
+  min-height: 300px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.info {
+  max-width: 300px;
+}
+.info p {
+  margin: 0;
+  margin-bottom: 20px;
+}
 .img {
   width: auto;
   height: 150px;
   display: block;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 .name {
   font-weight: bold;
@@ -59,9 +69,6 @@
 }
 .list li {
   width: 300px;
-  min-height: 330px;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .list li:not(:nth-last-child(-n + 3)) {

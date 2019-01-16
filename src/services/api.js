@@ -35,7 +35,7 @@ export const addItem = async newItem => {
 
 export const getAllOrders = async () => {
   const response = await axios.get('/orders');
-  return response;
+  return response.data;
 };
 
 export const getOrderById = async id => {
@@ -47,7 +47,7 @@ export const deleteOrderById = async id => {
   const response = await axios.delete(`/orders/${id}`);
   return response.data;
 };
-//+++++++++++++++++++++++++++++++++++++++
+
 export const addOrder = async newOrder => {
   const response = await axios.post(`/orders`, newOrder);
   return response;
