@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import s from '../../Menu.module.css';
+import s from './ItemList.module.css';
 
 export default class ItemList extends Component {
   componentDidMount() {}
@@ -26,20 +26,11 @@ export default class ItemList extends Component {
               onClick={() => selectItem(id)}
             >
               <div className={s.wrapper}>
-                {/* test#2 */}
-                {/* </Link> */}
                 <div className={s.info}>
                   <img className={s.img} src={image} alt={name} />
                   <p className={s.name}>{name}</p>
                   <p className={s.price}>Цена: {price} денег</p>
                 </div>
-                {/* <button
-            className={s.deleteBtn}
-            type="button"
-            onClick={() => onDeleteItem(id)}
-						>
-            удалить
-          </button> */}
               </div>
             </Link>
           </li>

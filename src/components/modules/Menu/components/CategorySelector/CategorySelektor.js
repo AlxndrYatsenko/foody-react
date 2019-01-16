@@ -1,5 +1,5 @@
 import React from 'react';
-import s from '../../Menu.module.css';
+import s from './CategorySelektor.module.css';
 
 const CategorySelector = props => {
   const {
@@ -28,7 +28,7 @@ const CategorySelector = props => {
       </select>
       {category && (
         <button
-          className={s.filterCancelBtn}
+          className={s.cancelBtn}
           type="button"
           onClick={() => onResetCategory(history)}
         >

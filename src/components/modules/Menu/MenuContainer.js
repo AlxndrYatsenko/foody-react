@@ -12,21 +12,9 @@ const getCategoryFromProps = props =>
 
 class MenuContainer extends Component {
   componentDidMount() {
-    const {
-      fetchMenuItems,
-      fetchCategories,
-      // getCategoryfromLocation,
-      // fetchMenuItemsWithCategory,
-      // location,
-    } = this.props;
+    const { fetchMenuItems, fetchCategories } = this.props;
 
     fetchCategories();
-    // console.log(fetchCategories());
-
-    // const { payload } = getCategoryfromLocation(location);
-    // console.log(fetchMenuItemsWithCategory(payload));
-
-    // fetchMenuItemsWithCategory(payload);
     return fetchMenuItems();
   }
 
@@ -42,7 +30,6 @@ class MenuContainer extends Component {
 
   render() {
     return <Menu {...this.props} />;
-    // return null;
   }
 }
 
@@ -50,22 +37,18 @@ const mapStateToProps = state => ({
   categories: menuSelectors.getCategories(state),
   filter: menuSelectors.getFilter(state),
   category: menuSelectors.getCategory(state),
-  // menuItems: menuSelectors.getSelectedItemsWithCategory(state),
   menuItems: menuSelectors.getVisibleMenuItems(state),
-  // qwe: menuSelectors.getAllComments(state),
 });
 
 const mapDispatchToProps = {
   selectItem: menuActions.selectItem,
   fetchMenuItems: menuOperations.fetchMenuItems,
   fetchMenuItemsWithCategory: menuOperations.fetchMenuItemsWithCategory,
-  // onDeleteItem: menuOperations.deleteMenuItem,
   fetchCategories: menuOperations.fetchCategories,
   onFilterChange: menuActions.changeFilter,
   onChangeCategory: menuActions.changeCategory,
   onResetCategory: menuActions.resetCategory,
   getCategoryfromLocation: menuActions.getCategoryfromLocation,
-  // getSelectedItemsWithCategory: menuActions.getSelectedItemsWithCategory,
 };
 
 export default connect(

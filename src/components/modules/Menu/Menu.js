@@ -26,9 +26,7 @@ const Menu = ({
     {error && <p>{error.message}</p>}
     {/* {console.log(menuItems)} */}
     <div className={s.menu}>
-      <div className={s.addLinkContainer}>
-        <LinkToAddMenuItem match={match} location={location} />
-      </div>
+      <LinkToAddMenuItem match={match} location={location} />
       <Filter
         filter={filter}
         onFilterChange={({ target }) => onFilterChange(target.value)}

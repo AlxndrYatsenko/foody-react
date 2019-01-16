@@ -1,0 +1,21 @@
+.cancelBtn {
+  border-radius: 10px;
+  border: none;
+  background-color: #ff927b;
+  outline: none;
+}
+
+.cancelBtn:hover {
+  cursor: pointer;
+}
+
+.selector {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.selectorContainer {
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+}

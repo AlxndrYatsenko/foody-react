@@ -2,22 +2,6 @@ import { combineReducers } from 'redux';
 import types from './menuActionTypes';
 import { menuItemReducers } from '../../MenuItem/duck';
 
-// function itemsReducer(state = [], { type, payload }) {
-//   switch (type) {
-//     case types.MENU_FETCH_SUCCESS:
-//       return payload;
-
-//     case types.ADD_SUCCESS:
-//       return [...state, payload];
-
-//     case types.DELETE_SUCCESS:
-//       return state.filter(item => item.id !== payload);
-
-//     default:
-//       return state;
-//   }
-// }
-
 function filterReducer(state = '', { type, payload }) {
   switch (type) {
     case types.CHANGE_FILTER:
@@ -84,14 +68,13 @@ function categoryReducer(state = '', { type, payload }) {
 function entityReducer(state = {}, { type, payload }) {
   switch (type) {
     case types.MENU_FETCH_SUCCESS:
-      // console.log(payload);
       return payload.entities;
 
-    // case types.ADD_SUCCESS:
-    //   return [...state, payload];
+    case types.ADD_SUCCESS:
+      return [...state, payload];
 
-    // case types.DELETE_SUCCESS:
-    //   return state.filter(item => item.id !== payload);
+    case types.DELETE_SUCCESS:
+      return state.filter(item => item.id !== payload);
 
     default:
       return state;
@@ -101,7 +84,6 @@ function entityReducer(state = {}, { type, payload }) {
 function itemsReducer(state = [], { type, payload }) {
   switch (type) {
     case types.MENU_FETCH_SUCCESS:
-      // console.log(payload.ids.items);
       return payload.ids.items;
     default:
       return state;
@@ -111,23 +93,12 @@ function itemsReducer(state = [], { type, payload }) {
 function commentsReducer(state = [], { type, payload }) {
   switch (type) {
     case types.MENU_FETCH_SUCCESS:
-      // console.log(payload.ids.comments);
       return payload.ids.comments;
     // ;
     default:
       return state;
   }
 }
-
-// function selectedItemReducer(state = null, { type, payload }) {
-//   switch (type) {
-//     case types.SELECT_ITEM:
-//       return payload;
-
-//     default:
-//       return state;
-//   }
-// }
 
 export default combineReducers({
   currentItem: menuItemReducers,

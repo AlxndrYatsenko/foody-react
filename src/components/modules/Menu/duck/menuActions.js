@@ -39,7 +39,6 @@ const resetCategory = history => {
 const fetchRequest = () => ({
   type: types.MENU_FETCH_REQUEST,
 });
-//++++++++++++++++++++++++++++++++++++++++
 
 const fetchSuccess = menuItems => {
   const normalazedItems = normalize(menuItems, [itemsSchema]);
@@ -52,7 +51,6 @@ const fetchSuccess = menuItems => {
       },
       entities: normalazedItems.entities,
     },
-    // normalazedItems,
   };
 };
 
@@ -97,7 +95,6 @@ const selectItem = id => ({
 
 export default {
   selectItem,
-  // ==================
   getCategoryfromLocation,
   addMenuItemSuccess,
   deleteMenuItemSuccess,

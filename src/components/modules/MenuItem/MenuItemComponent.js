@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import MenuItem from './MenuItem';
 
-import * as menuItemSelectors from './duck/menuItemSelectors';
+import menuItemSelectors from './duck/menuItemSelectors';
 import { menuItemOperations } from './duck';
 
 class MenuItemComponent extends Component {

@@ -1,2 +1,2 @@
-export const getCurrentItem = state => state.currentItem;
-export const getCurrentItemID = state => state.currentItem.id;
+const getCurrentItem = state => state.currentItem;
+export default getCurrentItem;
