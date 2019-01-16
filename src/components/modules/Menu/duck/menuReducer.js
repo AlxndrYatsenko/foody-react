@@ -130,11 +130,8 @@ function commentsReducer(state = [], { type, payload }) {
 // }
 
 export default combineReducers({
-  // currentItem: menuItemReducers,
-  items: combineReducers({
-    ids: itemsReducer,
-    currentItem: menuItemReducers,
-  }),
+  currentItem: menuItemReducers,
+  items: itemsReducer,
   comments: commentsReducer,
   entities: entityReducer,
   category: categoryReducer,

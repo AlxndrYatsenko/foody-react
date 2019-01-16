@@ -90,13 +90,10 @@ const deleteMenuItemSuccess = id => ({
   payload: id,
 });
 
-const selectItem = id => {
-  console.log(id);
-  return {
-    type: types.SELECT_ITEM,
-    payload: id.toString(),
-  };
-};
+const selectItem = id => ({
+  type: types.SELECT_ITEM,
+  payload: id.toString(),
+});
 
 export default {
   selectItem,

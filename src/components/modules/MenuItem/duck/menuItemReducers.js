@@ -4,7 +4,7 @@ import types from './menuItemActionsTypes';
 
 function menuItemReducer(state = {}, { type, payload }) {
   switch (type) {
-    case types.SELECT_ITEM:
+    case types.FETCH_SUCCESS:
       return payload;
 
     default:

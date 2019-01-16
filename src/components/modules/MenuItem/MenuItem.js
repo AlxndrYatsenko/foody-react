@@ -1,12 +1,12 @@
 import React from 'react';
 
-import CommentComponent from './Comment/CommentComponent';
+// import CommentComponent from './Comment/CommentComponent';
 
 import s from './MenuItem.module.css';
 
 const MenuItem = ({
   goBack,
-  currentItem: { id, image, price, ingredients, name, description },
+  currentItem: { image, price, ingredients, name, description },
 }) => (
   <div className={s.container}>
     <button className={s.goBackBtn} onClick={goBack} type="button">
@@ -28,9 +28,9 @@ const MenuItem = ({
       </div>
     </div>
 
-    <div className={s.commentContainer}>
-      <CommentComponent currentItemID={id} />
-    </div>
+    {/* <div className={s.commentContainer}>
+      <CommentComponent  />
+    </div> */}
   </div>
 );
 

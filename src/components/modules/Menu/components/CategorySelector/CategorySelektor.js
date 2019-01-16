@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import s from '../../Menu.module.css';
 
 const CategorySelector = props => {
@@ -14,7 +13,6 @@ const CategorySelector = props => {
   return (
     <div className={s.selectorContainer}>
       <span className={s.category}>Выберите категорию: </span>
-      <Link to="/menu/qwe">test</Link>
       <select
         className={s.selector}
         onChange={({ target }) => onChange(target.value, history, location)}

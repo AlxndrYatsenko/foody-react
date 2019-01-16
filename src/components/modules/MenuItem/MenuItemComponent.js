@@ -3,24 +3,18 @@ import { connect } from 'react-redux';
 
 import MenuItem from './MenuItem';
 
-import menuSelectors from '../Menu/duck/menuSelectors';
+import * as menuItemSelectors from './duck/menuItemSelectors';
 import { menuItemOperations } from './duck';
 
 class MenuItemComponent extends Component {
-  // componentDidMount() {
-  //   const {
-  //     match: { params },
-  //   } = this.props;
-  //   console.log(params);
+  componentDidMount() {
+    const {
+      match: { params },
+    } = this.props;
 
-  //   // const { selectItem } = this.props;
-  //   // console.log(selectItem(params.id));
-  //   // selectItem(params.id);
-
-  //   const { fetchMenuItem } = this.props;
-  //   // console.log(fetchMenuItem(params.id));
-  //   fetchMenuItem(params.id);
-  // }
+    const { fetchMenuItem } = this.props;
+    fetchMenuItem(params.id);
+  }
 
   handleGoBack = () => {
     const { history, location } = this.props;
@@ -43,10 +37,9 @@ class MenuItemComponent extends Component {
 }
 
 const mtsp = state => ({
-  currentItem: menuSelectors.getCurrentItem(state),
+  currentItem: menuItemSelectors.getCurrentItem(state),
 });
 const mtdp = {
-  // selectItem: menuItemSelectors.selectItem,
   fetchMenuItem: menuItemOperations.fetchMenuItem,
 };
 

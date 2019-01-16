@@ -3,7 +3,7 @@ import queryString from 'query-string';
 const getCommentsIds = state => state.comments;
 const getComments = state => state.entities.comments;
 
-const getItemsIds = state => state.items.ids;
+const getItemsIds = state => state.items;
 const getItems = state => state.entities.items;
 
 const getAllComments = state => {
@@ -40,15 +40,9 @@ const getSelectedItemsWithCategory = state => {
 
 const getFilter = state => state.filter;
 
-// const getFiltred = state => {
-//   const filter = getFilter(state);
-//   console.log(filter);
-// };
-
 const getSelectedItem = state => id => {
   const items = getItems(state);
   const ids = getItemsIds(state);
-  // console.log(ids.find(items[id]));
   return ids.find(items[id]);
 };
 
@@ -66,35 +60,12 @@ const getItem = state => state.items.currentItem;
 
 const getCurrentItem = state => {
   const item = getItem(state);
-  // const ids = getItemsIds(state);
   const items = getItems(state);
 
-  console.log(items);
-  console.log(item);
-  console.log(items[item]);
-  return items[item];
+  return items ? items[item] : null;
 };
-// const getCurrentItemId = state => state.items.currentItem.id;
-// =======OLD=======
-// const getItems = state => state.items;
-
-// const getFilter = state => state.filter;
 
 const getCategories = state => state.categories;
-
-// const getVisibleMenuItems = state => {
-//   const items = getAllItems(state);
-//   const filter = getFilter(state);
-//   const category = getCategory(state);
-
-//   // console.log(items, filter, category);
-
-//   const filteredItems = items.filter(item =>
-//     item.name.toLowerCase().includes(filter.toLowerCase()),
-//   );
-
-//   return filteredItems.filter(item => item.category.includes(category));
-// };
 
 const getCategoryfromLocation = ({ search }) => {
   const { category } = queryString.parse(search);
@@ -103,17 +74,12 @@ const getCategoryfromLocation = ({ search }) => {
 };
 
 export default {
-  // =========NEW==============
   getSelectedItemsWithCategory,
   getSelectedItem,
   getCommentsIds,
   getAllComments,
   getAllItems,
   getCurrentItem,
-  // getCurrentItemId,
-  // getComments,
-  // =========OLD==============
-  // getItems,
   getFilter,
   getCategory,
   getCategories,
