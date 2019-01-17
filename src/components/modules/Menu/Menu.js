@@ -18,8 +18,6 @@ const Menu = ({
   onChangeCategory,
   onResetCategory,
   onFilterChange,
-  // onDeleteItem,
-  // selectItem,
   error,
 }) => (
   <>
