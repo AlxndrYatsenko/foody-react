@@ -7,13 +7,7 @@ export default class ItemList extends Component {
   componentDidMount() {}
 
   render() {
-    const {
-      menuItems,
-      selectItem,
-      // onDeleteItem,
-      match,
-      location,
-    } = this.props;
+    const { menuItems, match, location } = this.props;
     return (
       <ul className={s.list}>
         {menuItems.map(({ id, name, image, price }) => (
@@ -23,7 +17,6 @@ export default class ItemList extends Component {
                 pathname: `${match.url}/${id}`,
                 state: { from: location },
               }}
-              onClick={() => selectItem(id)}
             >
               <div className={s.wrapper}>
                 <div className={s.info}>

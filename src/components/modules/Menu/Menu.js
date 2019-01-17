@@ -19,12 +19,11 @@ const Menu = ({
   onResetCategory,
   onFilterChange,
   // onDeleteItem,
-  selectItem,
+  // selectItem,
   error,
 }) => (
   <>
     {error && <p>{error.message}</p>}
-    {/* {console.log(menuItems)} */}
     <div className={s.menu}>
       <LinkToAddMenuItem match={match} location={location} />
       <Filter
@@ -39,13 +38,7 @@ const Menu = ({
         location={location}
         onResetCategory={onResetCategory}
       />
-      <ItemList
-        menuItems={menuItems}
-        selectItem={selectItem}
-        // onDeleteItem={onDeleteItem}
-        match={match}
-        location={location}
-      />
+      <ItemList menuItems={menuItems} match={match} location={location} />
     </div>
   </>
 );

@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import MenuItem from './MenuItem';
 
-import menuItemSelectors from './duck/menuItemSelectors';
-import { menuItemOperations } from './duck';
+import { menuItemOperations, menuItemSelectors } from './duck';
 
 class MenuItemComponent extends Component {
   componentDidMount() {
@@ -32,7 +31,9 @@ class MenuItemComponent extends Component {
   };
 
   render() {
-    return <MenuItem {...this.props} goBack={this.handleGoBack} />;
+    const { currentItem } = this.props;
+    return <MenuItem currentItem={currentItem} goBack={this.handleGoBack} />;
+    // return null;
   }
 }
 

@@ -41,7 +41,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  selectItem: menuActions.selectItem,
   fetchMenuItems: menuOperations.fetchMenuItems,
   fetchMenuItemsWithCategory: menuOperations.fetchMenuItemsWithCategory,
   fetchCategories: menuOperations.fetchCategories,

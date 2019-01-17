@@ -14,11 +14,11 @@ function filterReducer(state = '', { type, payload }) {
 
 function loadingReducer(state = false, { type }) {
   switch (type) {
-    case types.FETCH_REQUEST:
+    case types.MENU_FETCH_REQUEST:
       return true;
 
-    case types.FETCH_SUCCESS:
-    case types.FETCH_ERROR:
+    case types.MENU_FETCH_SUCCESS:
+    case types.MENU_FETCH_ERROR:
       return false;
 
     default:
@@ -28,10 +28,10 @@ function loadingReducer(state = false, { type }) {
 
 function errorReducer(state = null, { type, payload }) {
   switch (type) {
-    case types.FETCH_REQUEST:
+    case types.MENU_FETCH_REQUEST:
       return null;
 
-    case types.FETCH_ERROR:
+    case types.MENU_FETCH_ERROR:
       return payload;
 
     default:
