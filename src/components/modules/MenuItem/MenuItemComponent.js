@@ -19,7 +19,7 @@ class MenuItemComponent extends Component {
     const { history, location } = this.props;
 
     const {
-      currentItem: { category },
+      selectedItem: { category },
     } = this.props;
 
     return location.state
@@ -31,14 +31,13 @@ class MenuItemComponent extends Component {
   };
 
   render() {
-    const { currentItem } = this.props;
-    return <MenuItem currentItem={currentItem} goBack={this.handleGoBack} />;
-    // return null;
+    const { selectedItem } = this.props;
+    return <MenuItem currentItem={selectedItem} goBack={this.handleGoBack} />;
   }
 }
 
 const mtsp = state => ({
-  currentItem: menuItemSelectors.getCurrentItem(state),
+  selectedItem: menuItemSelectors.getSelectedItem(state),
 });
 const mtdp = {
   fetchMenuItem: menuItemOperations.fetchMenuItem,

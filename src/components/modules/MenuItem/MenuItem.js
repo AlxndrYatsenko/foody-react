@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import CommentComponent from './Comment/CommentComponent';
-
 import s from './MenuItem.module.css';
 
 const MenuItem = ({
@@ -27,10 +25,6 @@ const MenuItem = ({
         </ul>
       </div>
     </div>
-
-    {/* <div className={s.commentContainer}>
-      <CommentComponent  />
-    </div> */}
   </div>
 );
 

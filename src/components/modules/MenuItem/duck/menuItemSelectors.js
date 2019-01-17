@@ -1,2 +1,2 @@
-const getCurrentItem = state => state.currentItem;
-export default { getCurrentItem };
+const getSelectedItem = state => state.currentItem;
+export default { getSelectedItem };
