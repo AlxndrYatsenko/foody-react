@@ -4,19 +4,19 @@ import { createSelector } from 'reselect';
 const getCartIds = state => state.cart.ids;
 const getItemsEntities = state => state.entities.items;
 
-const getCartItems = createSelector(
-  [getCartIds, getItemsEntities],
-  (ids, items) => ids.map(id => items[id]),
-);
+// const getCartItems = createSelector(
+//   [getCartIds, getItemsEntities],
+//   (ids, items) => ids.map(id => items[id]),
+// );
 
 const getCartItemsAmounts = state => state.cart.amount;
 
-const getCartProductsAmount = createSelector(
+const getCartItemsAmount = createSelector(
   getCartIds,
   ids => ids.length,
 );
 
-const getCartProducts = createSelector(
+const getCartItems = createSelector(
   [getCartIds, getCartItemsAmounts, getItemsEntities],
   (ids, amounts, entities) =>
     ids.map(id => ({
@@ -24,9 +24,19 @@ const getCartProducts = createSelector(
       amount: amounts[id],
     })),
 );
+
+const getTotalPrice = createSelector(
+  getCartItems,
+  items => items.reduce((acc, item) => acc + item.price * item.amount, 0),
+);
+
+// = state => {
+//   const cartItems = getCartItems(state);
+//   return cartItems.reduce((acc, item) => acc + item, 0);
+// };
 export default {
+  getTotalPrice,
   getCartItems,
   getCartItemsAmounts,
-  getCartProducts,
-  getCartProductsAmount,
+  getCartItemsAmount,
 };

@@ -1,0 +1,59 @@
+.btnWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.amountWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table tr,
+.table td {
+  text-align: center;
+}
+
+/* .table th {
+  width: 200px;
+} */
+.delete {
+  width: 60px;
+}
+.dish {
+  width: 320px;
+}
+.amount {
+  width: 180px;
+}
+.price {
+  width: 100px;
+}
+.addBtn,
+.delBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  outline: none;
+  background-color: transparent;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: -webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  text-shadow: 0px 1px 0px #ffffff;
+}
+
+.addBtn:active,
+.delBtn:active {
+  position: relative;
+  top: 1px;
+}
+
+.arrow {
+  width: 14px;
+}
