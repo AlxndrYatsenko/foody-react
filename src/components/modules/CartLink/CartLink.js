@@ -12,7 +12,7 @@ const CartLink = ({ amount }) => (
         width="80"
         alt="cart"
       />
-      <span className={s.amount}>{amount}</span>
+      {amount > 0 && <span className={s.amount}>{amount}</span>}
     </Link>
   </div>
 );

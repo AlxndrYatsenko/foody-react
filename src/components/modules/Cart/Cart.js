@@ -25,24 +25,38 @@ const Cart = ({
           {dishes.map(({ id, name, image, price, amount }) => (
             <tr className={s.table} key={id}>
               <td>
-                <button type="button" onClick={() => onDelete(id)} />
+                <button
+                  className={s.deleteBtn}
+                  type="button"
+                  onClick={() => onDelete(id)}
+                >
+                  <div className={s.btnWrap}>
+                    <img
+                      className={s.cross}
+                      src="https://image.flaticon.com/icons/svg/179/179429.svg"
+                      alt="cross"
+                    />
+                  </div>
+                </button>
               </td>
-              <td>
-                <img
-                  className={s.image}
-                  src={image}
-                  alt={name}
-                  width="60"
-                  height="60"
-                />
+              <td colSpan="2">
+                <div className={s.dishWrap}>
+                  <img
+                    className={s.image}
+                    src={image}
+                    alt={name}
+                    width="60"
+                    height="60"
+                  />
+                  <span>{name}</span>
+                </div>
               </td>
-              <td>{name}</td>
               <td>
                 <div className={s.amountWrap}>
-                  {amount}
+                  <p className={s.amountValue}> {amount}</p>
                   <div className={s.btnWrap}>
                     <button
-                      className={s.addBtn}
+                      className={s.incrementBtn}
                       type="button"
                       onClick={() => incrementAmount(id)}
                     >
@@ -53,7 +67,7 @@ const Cart = ({
                       />
                     </button>
                     <button
-                      className={s.delBtn}
+                      className={s.decrementBtn}
                       type="button"
                       onClick={() => decrementAmount(id)}
                     >
@@ -69,9 +83,13 @@ const Cart = ({
               <td>{price * amount}</td>
             </tr>
           ))}
+          {/* <caption></caption> */}
+          <tr className={s.table}>
+            <td className={s.total} colSpan="4" />
+            <td className={s.total}>ИТОГО: {totalPrice}</td>
+          </tr>
         </tbody>
       </table>
-      <p>ИТОГО: {totalPrice}</p>
     </div>
   ) : (
     <h3>В корзине нет товаров!</h3>

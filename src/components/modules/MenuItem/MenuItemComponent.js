@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import MenuItem from './MenuItem';
 
+import { cartActions } from '../Cart/duck';
+
 import { menuItemOperations, menuItemSelectors } from './duck';
 
 class MenuItemComponent extends Component {
@@ -31,19 +33,26 @@ class MenuItemComponent extends Component {
   };
 
   render() {
-    const { selectedItem } = this.props;
-    return <MenuItem currentItem={selectedItem} goBack={this.handleGoBack} />;
+    const { selectedItem, addToCart } = this.props;
+    return (
+      <MenuItem
+        currentItem={selectedItem}
+        addToCart={addToCart}
+        goBack={this.handleGoBack}
+      />
+    );
   }
 }
 
-const mtsp = state => ({
+const mstp = state => ({
   selectedItem: menuItemSelectors.getSelectedItem(state),
 });
-const mtdp = {
+const mdtp = {
+  addToCart: cartActions.addToCart,
   fetchMenuItem: menuItemOperations.fetchMenuItem,
 };
 
 export default connect(
-  mtsp,
-  mtdp,
+  mstp,
+  mdtp,
 )(MenuItemComponent);
