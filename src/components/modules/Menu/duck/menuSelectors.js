@@ -2,7 +2,6 @@ import { createSelector } from 'reselect';
 
 const getCategories = state => state.categories;
 const getCategory = state => state.category;
-
 const getFilter = state => state.filter;
 const getItemsIds = state => state.items;
 const getItems = state => state.entities.items;

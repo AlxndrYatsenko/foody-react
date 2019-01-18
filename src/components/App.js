@@ -7,6 +7,9 @@ import Spiner from './Spiner/Spiner';
 
 import routes from '../configs/routes';
 
+const Cart = lazy(() =>
+  import('../pages/Cart' /* webpackChunkName: "cart-page" */),
+);
 const Auth = lazy(() =>
   import('../pages/Auth' /* webpackChunkName: "auth-page" */),
 );
@@ -51,6 +54,7 @@ const App = () => (
 
     <Suspense fallback={<Spiner />}>
       <Switch>
+        <Route exact path={routes.CART.root} component={() => <Cart />} />
         <Route exact path={routes.AUTH} component={() => <Auth />} />
         <Route exact path={routes.MAIN} component={() => <Main />} />
         <Route

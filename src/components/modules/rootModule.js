@@ -1,6 +1,26 @@
 import { combineReducers } from 'redux';
-import menuReducer from './Menu/duck/menuReducer';
+
+import {
+  filterReducer,
+  entityReducer,
+  itemsReducer,
+  categoryReducer,
+  errorReducer,
+  loadingReducer,
+  categoriesReducer,
+} from './Menu/duck/reducers';
+
+import cartReducer from './Cart/duck/cartReducer';
+import menuItemReducer from './MenuItem/duck/menuItemReducer';
 
 export default combineReducers({
-  menu: menuReducer,
+  items: itemsReducer,
+  cart: cartReducer,
+  entities: entityReducer,
+  categories: categoriesReducer,
+  category: categoryReducer,
+  filter: filterReducer,
+  currentItem: menuItemReducer,
+  loading: loadingReducer,
+  error: errorReducer,
 });

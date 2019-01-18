@@ -6,6 +6,7 @@ import Menu from './Menu';
 // import { actions } from '../duck';
 
 import { menuActions, menuOperations, menuSelectors } from './duck';
+import { cartActions } from '../Cart/duck';
 
 const getCategoryFromProps = props =>
   queryString.parse(props.location.search).category;
@@ -41,6 +42,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  addToCart: cartActions.addToCart,
   fetchMenuItems: menuOperations.fetchMenuItems,
   fetchMenuItemsWithCategory: menuOperations.fetchMenuItemsWithCategory,
   fetchCategories: menuOperations.fetchCategories,

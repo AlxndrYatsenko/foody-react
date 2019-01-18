@@ -15,6 +15,7 @@ const Menu = ({
   match,
   history,
   location,
+  addToCart,
   onChangeCategory,
   onResetCategory,
   onFilterChange,
@@ -36,7 +37,12 @@ const Menu = ({
         location={location}
         onResetCategory={onResetCategory}
       />
-      <ItemList menuItems={menuItems} match={match} location={location} />
+      <ItemList
+        menuItems={menuItems}
+        addToCart={addToCart}
+        match={match}
+        location={location}
+      />
     </div>
   </>
 );

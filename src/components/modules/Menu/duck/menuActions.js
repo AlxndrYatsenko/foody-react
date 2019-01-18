@@ -47,7 +47,7 @@ const fetchSuccess = menuItems => {
     payload: {
       ids: {
         items: Object.keys(normalazedItems.entities.items),
-        comments: Object.keys(normalazedItems.entities.comments),
+        // comments: Object.keys(normalazedItems.entities.comments),
       },
       entities: normalazedItems.entities,
     },
