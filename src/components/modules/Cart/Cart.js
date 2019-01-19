@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import s from './Cart.module.css';
 
@@ -8,6 +9,7 @@ const Cart = ({
   onDelete,
   incrementAmount,
   decrementAmount,
+  location,
 }) =>
   dishes.length > 0 ? (
     <div>
@@ -15,7 +17,6 @@ const Cart = ({
         <tbody>
           <tr className={s.table}>
             <th className={s.delete}>Удалить</th>
-            {/* <th>Фото</th> */}
             <th className={s.dish} colSpan="2">
               Блюдо
             </th>
@@ -40,7 +41,14 @@ const Cart = ({
                 </button>
               </td>
               <td colSpan="2">
-                <div className={s.dishWrap}>
+                <Link
+                  className={s.dishWrap}
+                  to={{
+                    pathname: `/menu/${id}`,
+                    state: { from: location },
+                  }}
+                >
+                  {/* <div className={s.dishWrap}> */}
                   <img
                     className={s.image}
                     src={image}
@@ -48,8 +56,9 @@ const Cart = ({
                     width="60"
                     height="60"
                   />
-                  <span>{name}</span>
-                </div>
+                  <p>{name}</p>
+                  {/* </div> */}
+                </Link>
               </td>
               <td>
                 <div className={s.amountWrap}>
@@ -67,8 +76,9 @@ const Cart = ({
                       />
                     </button>
                     <button
-                      className={s.decrementBtn}
+                      className={amount === 1 ? s.disabled : s.decrementBtn}
                       type="button"
+                      disabled={amount === 1}
                       onClick={() => decrementAmount(id)}
                     >
                       <img
@@ -83,7 +93,6 @@ const Cart = ({
               <td>{price * amount}</td>
             </tr>
           ))}
-          {/* <caption></caption> */}
           <tr className={s.table}>
             <td className={s.total} colSpan="4" />
             <td className={s.total}>ИТОГО: {totalPrice}</td>
@@ -92,6 +101,6 @@ const Cart = ({
       </table>
     </div>
   ) : (
-    <h3>В корзине нет товаров!</h3>
+    <h2>А Вы положили что-нибудь?</h2>
   );
 export default Cart;

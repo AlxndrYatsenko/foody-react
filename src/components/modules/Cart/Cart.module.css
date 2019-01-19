@@ -28,7 +28,6 @@ table {
 .table td {
   padding: 10px;
   color: #8d8173;
-  /* text-align: center; */
   border-bottom: 1px solid #00000014;
 }
 
@@ -40,6 +39,8 @@ table {
 .dishWrap {
   justify-content: start;
   max-width: 400px;
+  text-decoration: none;
+  color: #8d8173;
 }
 
 .btnWrap {
@@ -57,7 +58,7 @@ table {
 }
 
 .delete {
-  width: 60px;
+  width: 140px;
 }
 .dish {
   width: 320px;
@@ -76,26 +77,27 @@ table {
 .deleteBtn,
 .incrementBtn,
 .decrementBtn {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   cursor: pointer;
   width: 36px;
-  height: 28px;
   outline: none;
-  box-shadow: inset 0px 1px 0px 0px #ffffff;
-  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-  background-color: #ffffff;
-  border-radius: 6px;
-  border: 1px solid #dcdcdc;
-  text-shadow: 0px 1px 0px #ffffff;
+  background-color: #ffffff00;
+  border: none;
 }
 
 .deleteBtn:active,
 .incrementBtn:active,
 .decrementBtn:active {
   position: relative;
-  top: 1px;
+  top: 2px;
+}
+
+.disabled {
+  composes: decrementBtn;
+  opacity: 0.5;
+}
+
+.disabled:active {
+  top: 0px;
 }
 
 .cross,
@@ -104,5 +106,6 @@ table {
 }
 
 .total {
-  text-align: right;
+  /* text-align: right; */
+  font-weight: bold;
 }
