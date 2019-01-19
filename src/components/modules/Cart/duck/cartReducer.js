@@ -22,11 +22,13 @@ function amount(state = {}, { type, payload }) {
         ...state,
         [payload.id]: state[payload.id] ? state[payload.id] + 1 : 1,
       };
+
     case types.INCREMENT_AMOUNT:
       return {
         ...state,
         [payload.id]: state[payload.id] ? state[payload.id] + 1 : 1,
       };
+
     case types.DECREMENT_AMOUNT:
       return {
         ...state,

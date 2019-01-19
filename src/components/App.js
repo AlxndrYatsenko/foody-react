@@ -40,7 +40,6 @@ const About = lazy(() =>
 const Contact = lazy(() =>
   import('../pages/Contact' /* webpackChunkName: "contact-page" */),
 );
-// const NotFound = import('../pages/NotFound');
 const NotFound = lazy(() =>
   import('../pages/NotFound' /* webpackChunkName: "not-Found-page" */),
 );
@@ -84,7 +83,6 @@ const App = () => (
         <Route exact path={routes.ACCOUNT} component={() => <Account />} />
         <Route exact path={routes.PLANNER} component={() => <Planner />} />
         <Route component={() => <NotFound />} />
-        {/* <Redirect from="/" to /> */}
       </Switch>
     </Suspense>
   </div>

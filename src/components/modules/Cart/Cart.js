@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import s from './Cart.module.css';
 
+const isActiveBtn = amount => (amount === 1 ? s.disabled : s.decrementBtn);
+
 const Cart = ({
   dishes = [],
   totalPrice,
@@ -48,7 +50,6 @@ const Cart = ({
                     state: { from: location },
                   }}
                 >
-                  {/* <div className={s.dishWrap}> */}
                   <img
                     className={s.image}
                     src={image}
@@ -57,7 +58,6 @@ const Cart = ({
                     height="60"
                   />
                   <p>{name}</p>
-                  {/* </div> */}
                 </Link>
               </td>
               <td>
@@ -76,7 +76,7 @@ const Cart = ({
                       />
                     </button>
                     <button
-                      className={amount === 1 ? s.disabled : s.decrementBtn}
+                      className={isActiveBtn(amount)}
                       type="button"
                       disabled={amount === 1}
                       onClick={() => decrementAmount(id)}

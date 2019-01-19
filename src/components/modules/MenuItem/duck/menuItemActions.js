@@ -1,5 +1,4 @@
 import types from './menuItemActionsTypes';
-// import { type } from 'os';
 
 const fetchRequest = () => ({
   type: types.FETCH_REQUEST,

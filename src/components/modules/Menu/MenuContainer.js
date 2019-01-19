@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import queryString from 'query-string';
 
 import Menu from './Menu';
-// import { actions } from '../duck';
 
 import { menuActions, menuOperations, menuSelectors } from './duck';
 import { cartActions } from '../Cart/duck';
