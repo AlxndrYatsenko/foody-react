@@ -1,5 +1,5 @@
-import { schema } from 'normalizr'; // const denormalized = xxx.json;
+import { schema } from 'normalizr';
 
-const itemsSchema = new schema.Entity('items', {});
+const itemsSchema = new schema.Entity('items');
 
 export default itemsSchema;

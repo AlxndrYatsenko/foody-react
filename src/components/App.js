@@ -53,9 +53,9 @@ const App = () => (
 
     <Suspense fallback={<Spiner />}>
       <Switch>
-        <Route exact path={routes.CART.root} component={() => <Cart />} />
-        <Route exact path={routes.AUTH} component={() => <Auth />} />
-        <Route exact path={routes.MAIN} component={() => <Main />} />
+        <Route exact path={routes.CART.root} component={Cart} />
+        <Route exact path={routes.AUTH} component={Auth} />
+        <Route exact path={routes.MAIN} component={Main} />
         <Route
           exact
           path={routes.MENU.root}
@@ -72,17 +72,13 @@ const App = () => (
           path={routes.MENU.item}
           component={props => <MenuItem {...props} />}
         />
-        <Route exact path={routes.ABOUT} component={() => <About />} />
-        <Route exact path={routes.CONTACT} component={() => <Contact />} />
-        <Route exact path={routes.DELIVERY} component={() => <Delivery />} />
-        <Route
-          exact
-          path={routes.ORDER_HISTORY}
-          render={() => <OrderHistory />}
-        />
-        <Route exact path={routes.ACCOUNT} component={() => <Account />} />
-        <Route exact path={routes.PLANNER} component={() => <Planner />} />
-        <Route component={() => <NotFound />} />
+        <Route exact path={routes.ABOUT} component={About} />
+        <Route exact path={routes.CONTACT} component={Contact} />
+        <Route exact path={routes.DELIVERY} component={Delivery} />
+        <Route exact path={routes.ORDER_HISTORY} component={OrderHistory} />
+        <Route exact path={routes.ACCOUNT} component={Account} />
+        <Route exact path={routes.PLANNER} component={Planner} />
+        <Route component={NotFound} />
       </Switch>
     </Suspense>
   </div>

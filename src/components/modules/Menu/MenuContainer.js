@@ -28,16 +28,27 @@ class MenuContainer extends Component {
     }
   }
 
+  handlechangeCategory = (category, history, location) => {
+    history.push({
+      pathname: location.pathname,
+      search: `category=${category}`,
+    });
+
+    return category;
+  };
+
   render() {
-    return <Menu {...this.props} />;
+    return (
+      <Menu {...this.props} onChangeCategory={this.handlechangeCategory} />
+    );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   categories: menuSelectors.getCategories(state),
   filter: menuSelectors.getFilter(state),
-  category: menuSelectors.getCategory(state),
-  menuItems: menuSelectors.getVisibleMenuItems(state),
+  category: menuSelectors.getCategory(props),
+  menuItems: menuSelectors.getVisibleMenuItems(state, props),
 });
 
 const mapDispatchToProps = {
@@ -48,7 +59,6 @@ const mapDispatchToProps = {
   onFilterChange: menuActions.changeFilter,
   onChangeCategory: menuActions.changeCategory,
   onResetCategory: menuActions.resetCategory,
-  getCategoryfromLocation: menuActions.getCategoryfromLocation,
 };
 
 export default connect(

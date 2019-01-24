@@ -1,7 +1,12 @@
 import { createSelector } from 'reselect';
 
+import queryString from 'query-string';
+
+const getCategoryFromProps = props =>
+  queryString.parse(props.location.search).category;
+
 const getCategories = state => state.categories;
-const getCategory = state => state.category;
+const getCategory = props => getCategoryFromProps(props);
 const getFilter = state => state.filter;
 const getItemsIds = state => state.items;
 const getItems = state => state.entities.items;
@@ -12,7 +17,7 @@ const getAllItems = createSelector(
 );
 
 const getSelectedItemsWithCategory = createSelector(
-  [getCategory, getAllItems],
+  [(state, props) => getCategoryFromProps(props), getAllItems],
   (category, allItems) => {
     if (!category) return allItems;
 
