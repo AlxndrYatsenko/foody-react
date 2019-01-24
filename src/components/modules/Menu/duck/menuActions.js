@@ -1,5 +1,7 @@
 import queryString from 'query-string';
+import { normalize } from 'normalizr';
 import types from './menuActionTypes';
+import itemsSchema from '../../../../services/schemas';
 
 const changeFilter = filter => ({
   type: types.CHANGE_FILTER,
@@ -8,22 +10,10 @@ const changeFilter = filter => ({
 
 const getCategoryfromLocation = ({ search }) => {
   const { category } = queryString.parse(search);
-  // console.log(category);
 
   return {
     type: types.GET_CATEGORY,
     payload: category || '',
-  };
-};
-
-const changeCategory = (category, history, location) => {
-  history.push({
-    pathname: location.pathname,
-    search: `category=${category}`,
-  });
-  return {
-    type: types.CHANGE_CATEGORY,
-    payload: category,
   };
 };
 
@@ -39,10 +29,18 @@ const fetchRequest = () => ({
   type: types.MENU_FETCH_REQUEST,
 });
 
-const fetchSuccess = menuItems => ({
-  type: types.MENU_FETCH_SUCCESS,
-  payload: menuItems,
-});
+const fetchSuccess = menuItems => {
+  const normalazedItems = normalize(menuItems, [itemsSchema]);
+  return {
+    type: types.MENU_FETCH_SUCCESS,
+    payload: {
+      ids: {
+        items: Object.keys(normalazedItems.entities.items),
+      },
+      entities: normalazedItems.entities,
+    },
+  };
+};
 
 const deleteItemSuccess = id => ({
   type: types.DELETE_SUCCESS,
@@ -78,11 +76,16 @@ const deleteMenuItemSuccess = id => ({
   payload: id,
 });
 
+const selectItem = id => ({
+  type: types.SELECT_ITEM,
+  payload: id.toString(),
+});
+
 export default {
+  selectItem,
   getCategoryfromLocation,
   addMenuItemSuccess,
   deleteMenuItemSuccess,
-  changeCategory,
   resetCategory,
   changeFilter,
   fetchRequest,

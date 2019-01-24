@@ -22,34 +22,19 @@ export const getMenuItemById = async id => {
 };
 
 export const getMenuItemsWithCategory = async category => {
-  const response = category
-    ? await axios.get(`/menu?category=${category}`)
-    : await axios.get(`/menu`);
+  const url = category ? `/menu?category=${category}` : `/menu`;
+  const response = await axios.get(url);
   return response.data;
 };
 
-export const addItem = async ({
-  name,
-  price,
-  image,
-  description,
-  ingredients,
-  category,
-}) => {
-  const response = await axios.post('/menu', {
-    name,
-    price,
-    image,
-    description,
-    ingredients,
-    category,
-  });
+export const addItem = async newItem => {
+  const response = await axios.post('/menu', newItem);
   return response;
 };
 
 export const getAllOrders = async () => {
   const response = await axios.get('/orders');
-  return response;
+  return response.data;
 };
 
 export const getOrderById = async id => {
@@ -61,14 +46,9 @@ export const deleteOrderById = async id => {
   const response = await axios.delete(`/orders/${id}`);
   return response.data;
 };
-//+++++++++++++++++++++++++++++++++++++++
-export const addOrder = async ({ address, price, rating, date }) => {
-  const response = await axios.post(`/orders`, {
-    address,
-    rating,
-    price,
-    date,
-  });
+
+export const addOrder = async newOrder => {
+  const response = await axios.post(`/orders`, newOrder);
   return response;
 };
 

@@ -17,5 +17,5 @@ export default Object.freeze({
   CONTACT: '/contact',
   DELIVERY: '/delivery',
   FAVORITES: '/favorites',
-  NOT_FOUND: '/not-found',
+  NOT_FOUND: '*',
 });

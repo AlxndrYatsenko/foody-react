@@ -1,9 +1,7 @@
 import React from 'react';
 
-const AccountPage = () => (
-  <div>
-    <h2>Account page</h2>
-  </div>
-);
+import Account from '../components/modules/Account/Account';
+
+const AccountPage = () => <Account />;
 
 export default AccountPage;

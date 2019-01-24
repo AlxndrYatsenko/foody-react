@@ -18,9 +18,8 @@ const fetchMenuItems = () => async dispatch => {
 const fetchMenuItemsWithCategory = category => async dispatch => {
   dispatch(actions.fetchRequest());
   try {
-    const response = category
-      ? await axios.get(`/menu?category=${category}`)
-      : await axios.get(`/menu`);
+    const url = category ? `/menu?category=${category}` : `/menu`;
+    const response = await axios.get(url);
     dispatch(actions.fetchSuccess(response.data));
   } catch (error) {
     dispatch(actions.fetchError(error));

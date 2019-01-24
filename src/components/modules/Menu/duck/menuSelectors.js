@@ -1,36 +1,49 @@
+import { createSelector } from 'reselect';
+
 import queryString from 'query-string';
 
-const getItems = state => state.menu.items;
+const getCategoryFromProps = props =>
+  queryString.parse(props.location.search).category;
 
-const getFilter = state => state.menu.filter;
+const getCategories = state => state.categories;
+const getCategory = props => getCategoryFromProps(props);
+const getFilter = state => state.filter;
+const getItemsIds = state => state.items;
+const getItems = state => state.entities.items;
 
-const getCategory = state => state.menu.category;
+const getAllItems = createSelector(
+  [getItemsIds, getItems],
+  (ids, items) => ids.map(id => items[id]),
+);
 
-const getCategories = state => state.menu.categories;
+const getSelectedItemsWithCategory = createSelector(
+  [(state, props) => getCategoryFromProps(props), getAllItems],
+  (category, allItems) => {
+    if (!category) return allItems;
 
-const getVisibleMenuItems = state => {
-  const items = getItems(state);
-  const filter = getFilter(state);
-  const category = getCategory(state);
+    const selectedItems = [];
 
-  const filteredItems = items.filter(item =>
-    item.name.toLowerCase().includes(filter.toLowerCase()),
-  );
+    allItems.forEach(item => {
+      if (item.category === category) {
+        selectedItems.push(item);
+      }
+    });
+    return selectedItems;
+  },
+);
 
-  return filteredItems.filter(item => item.category.includes(category));
-};
-
-const getCategoryfromLocation = ({ search }) => {
-  const { category } = queryString.parse(search);
-
-  return category;
-};
+const getVisibleMenuItems = createSelector(
+  [getSelectedItemsWithCategory, getFilter],
+  (selectedItemsWithCategory, filter) =>
+    selectedItemsWithCategory.filter(item =>
+      item.name.toLowerCase().includes(filter.toLowerCase()),
+    ),
+);
 
 export default {
-  getItems,
-  getFilter,
-  getCategory,
   getCategories,
+  getCategory,
+  getFilter,
+  getSelectedItemsWithCategory,
   getVisibleMenuItems,
-  getCategoryfromLocation,
 };

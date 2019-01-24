@@ -7,6 +7,9 @@ import Spiner from './Spiner/Spiner';
 
 import routes from '../configs/routes';
 
+const Cart = lazy(() =>
+  import('../pages/Cart' /* webpackChunkName: "cart-page" */),
+);
 const Auth = lazy(() =>
   import('../pages/Auth' /* webpackChunkName: "auth-page" */),
 );
@@ -38,7 +41,7 @@ const Contact = lazy(() =>
   import('../pages/Contact' /* webpackChunkName: "contact-page" */),
 );
 const NotFound = lazy(() =>
-  import('../pages/NotFound' /* webpackChunkName: "notFound-page" */),
+  import('../pages/NotFound' /* webpackChunkName: "not-Found-page" */),
 );
 const Delivery = lazy(() =>
   import('../pages/Delivery' /* webpackChunkName: "delivery-page" */),
@@ -48,22 +51,36 @@ const App = () => (
   <div className={s.wrapper}>
     <AppHeader />
 
-    <Switch>
-      <Suspense fallback={<Spiner />}>
+    <Suspense fallback={<Spiner />}>
+      <Switch>
+        <Route exact path={routes.CART.root} component={Cart} />
         <Route exact path={routes.AUTH} component={Auth} />
         <Route exact path={routes.MAIN} component={Main} />
-        <Route exact path={routes.MENU.root} component={Menu} />
-        <Route exact path={routes.MENU.add} component={AddMenuItem} />
-        <Route path={routes.MENU.item} component={MenuItem} />
-        <Route path={routes.ABOUT} component={About} />
-        <Route path={routes.CONTACT} component={Contact} />
-        <Route path={routes.DELIVERY} component={Delivery} />
-        <Route path={routes.NOT_FOUND} component={NotFound} />
-        <Route path={routes.ORDER_HISTORY} component={OrderHistory} />
-        <Route path={routes.ACCOUNT} component={Account} />
-        <Route path={routes.PLANNER} component={Planner} />
-      </Suspense>
-    </Switch>
+        <Route
+          exact
+          path={routes.MENU.root}
+          component={props => <Menu {...props} />}
+        />
+        <Route
+          exact
+          path={routes.MENU.add}
+          component={props => <AddMenuItem {...props} />}
+        />
+
+        <Route
+          exact
+          path={routes.MENU.item}
+          component={props => <MenuItem {...props} />}
+        />
+        <Route exact path={routes.ABOUT} component={About} />
+        <Route exact path={routes.CONTACT} component={Contact} />
+        <Route exact path={routes.DELIVERY} component={Delivery} />
+        <Route exact path={routes.ORDER_HISTORY} component={OrderHistory} />
+        <Route exact path={routes.ACCOUNT} component={Account} />
+        <Route exact path={routes.PLANNER} component={Planner} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   </div>
 );
 
