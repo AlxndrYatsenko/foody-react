@@ -22,9 +22,8 @@ export const getMenuItemById = async id => {
 };
 
 export const getMenuItemsWithCategory = async category => {
-  const response = category
-    ? await axios.get(`/menu?category=${category}`)
-    : await axios.get(`/menu`);
+  const url = category ? `/menu?category=${category}` : `/menu`;
+  const response = await axios.get(url);
   return response.data;
 };
 

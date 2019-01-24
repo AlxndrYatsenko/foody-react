@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 
 import MenuItem from './MenuItem';
 
-import menuItemSelectors from './duck/menuItemSelectors';
-import { menuItemOperations } from './duck';
+import { cartActions } from '../Cart/duck';
+
+import { menuItemOperations, menuItemSelectors } from './duck';
 
 class MenuItemComponent extends Component {
   componentDidMount() {
@@ -20,7 +21,7 @@ class MenuItemComponent extends Component {
     const { history, location } = this.props;
 
     const {
-      currentItem: { category },
+      selectedItem: { category },
     } = this.props;
 
     return location.state
@@ -32,18 +33,26 @@ class MenuItemComponent extends Component {
   };
 
   render() {
-    return <MenuItem {...this.props} goBack={this.handleGoBack} />;
+    const { selectedItem, addToCart } = this.props;
+    return (
+      <MenuItem
+        currentItem={selectedItem}
+        addToCart={addToCart}
+        goBack={this.handleGoBack}
+      />
+    );
   }
 }
 
-const mtsp = state => ({
-  currentItem: menuItemSelectors.getCurrentItem(state),
+const mstp = state => ({
+  selectedItem: menuItemSelectors.getSelectedItem(state),
 });
-const mtdp = {
+const mdtp = {
+  addToCart: cartActions.addToCart,
   fetchMenuItem: menuItemOperations.fetchMenuItem,
 };
 
 export default connect(
-  mtsp,
-  mtdp,
+  mstp,
+  mdtp,
 )(MenuItemComponent);

@@ -1,12 +1,11 @@
 import React from 'react';
 
-// import CommentComponent from './Comment/CommentComponent';
-
 import s from './MenuItem.module.css';
 
 const MenuItem = ({
   goBack,
-  currentItem: { image, price, ingredients, name, description },
+  addToCart,
+  currentItem: { id, image, price, ingredients, name, description },
 }) => (
   <div className={s.container}>
     <button className={s.goBackBtn} onClick={goBack} type="button">
@@ -22,15 +21,17 @@ const MenuItem = ({
         <p className={s.description}>{description}</p>
         <p className={s.ingrTitle}>Ингридиенты:</p>
         <ul className={s.ingredients}>
-          <br />
           {ingredients && ingredients.map(ingr => <li key={ingr}>{ingr}</li>)}
         </ul>
+        <button
+          className={s.addBtn}
+          type="button"
+          onClick={() => addToCart(id)}
+        >
+          В корзину
+        </button>
       </div>
     </div>
-
-    {/* <div className={s.commentContainer}>
-      <CommentComponent  />
-    </div> */}
   </div>
 );
 

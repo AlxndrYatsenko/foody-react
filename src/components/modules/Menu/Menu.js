@@ -15,16 +15,14 @@ const Menu = ({
   match,
   history,
   location,
+  addToCart,
   onChangeCategory,
   onResetCategory,
   onFilterChange,
-  // onDeleteItem,
-  selectItem,
   error,
 }) => (
   <>
     {error && <p>{error.message}</p>}
-    {/* {console.log(menuItems)} */}
     <div className={s.menu}>
       <LinkToAddMenuItem match={match} location={location} />
       <Filter
@@ -41,8 +39,7 @@ const Menu = ({
       />
       <ItemList
         menuItems={menuItems}
-        selectItem={selectItem}
-        // onDeleteItem={onDeleteItem}
+        addToCart={addToCart}
         match={match}
         location={location}
       />

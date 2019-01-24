@@ -17,17 +17,6 @@ const getCategoryfromLocation = ({ search }) => {
   };
 };
 
-const changeCategory = (category, history, location) => {
-  history.push({
-    pathname: location.pathname,
-    search: `category=${category}`,
-  });
-  return {
-    type: types.CHANGE_CATEGORY,
-    payload: category,
-  };
-};
-
 const resetCategory = history => {
   history.push({ pathname: '/menu' });
   return {
@@ -47,7 +36,6 @@ const fetchSuccess = menuItems => {
     payload: {
       ids: {
         items: Object.keys(normalazedItems.entities.items),
-        comments: Object.keys(normalazedItems.entities.comments),
       },
       entities: normalazedItems.entities,
     },
@@ -98,7 +86,6 @@ export default {
   getCategoryfromLocation,
   addMenuItemSuccess,
   deleteMenuItemSuccess,
-  changeCategory,
   resetCategory,
   changeFilter,
   fetchRequest,

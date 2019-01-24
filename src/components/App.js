@@ -7,6 +7,9 @@ import Spiner from './Spiner/Spiner';
 
 import routes from '../configs/routes';
 
+const Cart = lazy(() =>
+  import('../pages/Cart' /* webpackChunkName: "cart-page" */),
+);
 const Auth = lazy(() =>
   import('../pages/Auth' /* webpackChunkName: "auth-page" */),
 );
@@ -38,7 +41,7 @@ const Contact = lazy(() =>
   import('../pages/Contact' /* webpackChunkName: "contact-page" */),
 );
 const NotFound = lazy(() =>
-  import('../pages/NotFound' /* webpackChunkName: "notFound-page" */),
+  import('../pages/NotFound' /* webpackChunkName: "not-Found-page" */),
 );
 const Delivery = lazy(() =>
   import('../pages/Delivery' /* webpackChunkName: "delivery-page" */),
@@ -48,33 +51,36 @@ const App = () => (
   <div className={s.wrapper}>
     <AppHeader />
 
-    <Switch>
-      <Suspense fallback={<Spiner />}>
-        <Route exact path={routes.AUTH} render={() => <Auth />} />
-        <Route exact path={routes.MAIN} render={() => <Main />} />
+    <Suspense fallback={<Spiner />}>
+      <Switch>
+        <Route exact path={routes.CART.root} component={Cart} />
+        <Route exact path={routes.AUTH} component={Auth} />
+        <Route exact path={routes.MAIN} component={Main} />
         <Route
           exact
           path={routes.MENU.root}
-          render={props => <Menu {...props} />}
+          component={props => <Menu {...props} />}
         />
         <Route
+          exact
           path={routes.MENU.add}
-          render={props => <AddMenuItem {...props} />}
+          component={props => <AddMenuItem {...props} />}
         />
 
         <Route
+          exact
           path={routes.MENU.item}
-          render={props => <MenuItem {...props} />}
+          component={props => <MenuItem {...props} />}
         />
-        <Route path={routes.ABOUT} render={() => <About />} />
-        <Route path={routes.CONTACT} render={() => <Contact />} />
-        <Route path={routes.DELIVERY} render={() => <Delivery />} />
-        <Route path={routes.ORDER_HISTORY} render={() => <OrderHistory />} />
-        <Route path={routes.ACCOUNT} render={() => <Account />} />
-        <Route path={routes.PLANNER} render={() => <Planner />} />
-        <Route path={routes.NOT_FOUND} render={() => <NotFound />} />
-      </Suspense>
-    </Switch>
+        <Route exact path={routes.ABOUT} component={About} />
+        <Route exact path={routes.CONTACT} component={Contact} />
+        <Route exact path={routes.DELIVERY} component={Delivery} />
+        <Route exact path={routes.ORDER_HISTORY} component={OrderHistory} />
+        <Route exact path={routes.ACCOUNT} component={Account} />
+        <Route exact path={routes.PLANNER} component={Planner} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   </div>
 );
 

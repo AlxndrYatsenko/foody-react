@@ -1,11 +1,5 @@
-import { schema } from 'normalizr'; // const denormalized = xxx.json;
+import { schema } from 'normalizr';
 
-const commentsSchema = new schema.Entity('comments');
-const itemsSchema = new schema.Entity('items', {
-  comments: [commentsSchema],
-});
+const itemsSchema = new schema.Entity('items');
 
 export default itemsSchema;
-// const normalazedItems = denormalized => normalize(denormalized, [itemsSchema]);
-
-// export default normalazedItems;
