@@ -1,9 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
 .wrap {
   cursor: pointer;
   display: flex;
   align-items: center;
   position: relative;
-  width: 150px;
+  padding-right: 30px;
 }
 
 .name {
@@ -19,10 +24,6 @@
   top: 0;
   right: -18px;
 }
-
-/* .name::after:hover {
-  background-color: red;
-} */
 
 .up::after {
   content: url('./addition/caret-up-solid.svg');

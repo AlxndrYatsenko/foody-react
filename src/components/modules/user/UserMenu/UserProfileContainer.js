@@ -5,6 +5,7 @@ import UserProfile from './UserProfile';
 
 import s from './UserProfile.module.css';
 import { getUser } from '../../session/sessionSelectors';
+import { signOut } from '../../session/sessionOperations';
 
 class UserProfileContainer extends Component {
   containerRef = createRef();
@@ -53,14 +54,19 @@ class UserProfileContainer extends Component {
 
   render() {
     const { isDropdownOpen } = this.state;
-    const { user } = this.props;
+    const { user, onSignOut } = this.props;
     return (
-      <div ref={this.containerRef} className={s.wrap}>
-        <UserProfile
-          user={user}
-          onClose={this.closeDropdown}
-          isDropdownOpen={isDropdownOpen}
-        />
+      <div className={s.container}>
+        <div ref={this.containerRef} className={s.wrap}>
+          <UserProfile
+            user={user}
+            onClose={this.closeDropdown}
+            isDropdownOpen={isDropdownOpen}
+          />
+        </div>
+        <button className={s.signOutBnt} type="button" onClick={onSignOut}>
+          Sign out
+        </button>
       </div>
     );
   }
@@ -70,4 +76,11 @@ const mstp = state => ({
   user: getUser(state),
 });
 
-export default connect(mstp)(UserProfileContainer);
+const mdtp = {
+  onSignOut: signOut,
+};
+
+export default connect(
+  mstp,
+  mdtp,
+)(UserProfileContainer);

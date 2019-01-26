@@ -35,6 +35,7 @@ const isAuthenticated = (state = false, { type }) => {
       return true;
 
     case actionTypes.AUTH_ERROR:
+    case actionTypes.SIGN_OUT_SUCCESS:
       return false;
     default:
       return state;
