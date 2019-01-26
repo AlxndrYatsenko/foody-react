@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
+import sessionReducer from './session/sessionReducer';
+
 import {
   filterReducer,
   entityReducer,
@@ -13,6 +15,7 @@ import cartReducer from './Cart/duck/cartReducer';
 import menuItemReducer from './MenuItem/duck/menuItemReducer';
 
 export default combineReducers({
+  session: sessionReducer,
   items: itemsReducer,
   cart: cartReducer,
   entities: entityReducer,

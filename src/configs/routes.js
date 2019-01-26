@@ -1,6 +1,7 @@
 export default Object.freeze({
   MAIN: '/',
-  AUTH: '/auth',
+  SIGNIN: '/signin',
+  SIGNUP: '/signup',
   MENU: {
     root: '/menu',
     item: '/menu/:id',

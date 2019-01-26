@@ -10,8 +10,15 @@ import routes from '../configs/routes';
 const Cart = lazy(() =>
   import('../pages/Cart' /* webpackChunkName: "cart-page" */),
 );
-const Auth = lazy(() =>
-  import('../pages/Auth' /* webpackChunkName: "auth-page" */),
+// const Auth = lazy(() =>
+//   import('../pages/Auth' /* webpackChunkName: "auth-page" */),
+// );
+
+const SignUp = lazy(() =>
+  import('../pages/SignUp' /* webpackChunkName: "sign-up-page" */),
+);
+const SignIn = lazy(() =>
+  import('../pages/SignIn' /* webpackChunkName: "sign-in-page" */),
 );
 const Main = lazy(() =>
   import('../pages/Main' /* webpackChunkName: "main-page" */),
@@ -54,7 +61,8 @@ const App = () => (
     <Suspense fallback={<Spiner />}>
       <Switch>
         <Route exact path={routes.CART.root} component={Cart} />
-        <Route exact path={routes.AUTH} component={Auth} />
+        <Route path={routes.SIGNIN} component={SignIn} />
+        <Route path={routes.SIGNUP} component={SignUp} />
         <Route exact path={routes.MAIN} component={Main} />
         <Route
           exact

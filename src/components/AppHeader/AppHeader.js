@@ -1,25 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import UserMenuComponent from '../modules/user/UserMenu/UserMenuComponent';
+import UserProfile from '../modules/user/UserMenu/UserProfileContainer';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
+import Auth from '../modules/Auth/Auth';
 import CartLinkContainer from '../modules/CartLink/CartLinkContainer';
 
-import user from '../modules/user/UserMenu/userData';
 import navItems from '../../configs/main-nav';
 import s from './AppHeader.module.css';
 import routes from '../../configs/routes';
+import {
+  getAuthentication,
+  getUser,
+} from '../modules/session/sessionSelectors';
 
-const AppHeader = () => (
+const AppHeader = ({ isAuthenticated, user }) => (
   <header className={s.header}>
     <Link to={routes.MAIN}>
       <Logo width={100} />
     </Link>
     <Navigation navItems={navItems} />
-    <UserMenuComponent user={user} />
+    {isAuthenticated ? <UserProfile user={user} /> : <Auth />}
     <CartLinkContainer />
   </header>
 );
 
-export default AppHeader;
+const mstp = state => ({
+  user: getUser(state),
+  isAuthenticated: getAuthentication(state),
+});
+
+export default connect(mstp)(AppHeader);

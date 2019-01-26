@@ -23,8 +23,7 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "lint": "eslint src/**/*.{js,jsx}",
-    "format": "eslint src/**/*.{js,jsx} --fix",
-    "server": "json-server --watch server/db.json --port 3001"
+    "format": "eslint src/**/*.{js,jsx} --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

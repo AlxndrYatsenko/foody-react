@@ -1,10 +1,12 @@
-import React, { PureComponent, createRef } from 'react';
+import React, { Component, createRef } from 'react';
+import { connect } from 'react-redux';
 
-import UserMenuView from './UserMenuView';
+import UserProfile from './UserProfile';
 
-import s from './UserMenu.module.css';
+import s from './UserProfile.module.css';
+import { getUser } from '../../session/sessionSelectors';
 
-export default class UserMenuComponent extends PureComponent {
+class UserProfileContainer extends Component {
   containerRef = createRef();
 
   state = {
@@ -50,11 +52,11 @@ export default class UserMenuComponent extends PureComponent {
   };
 
   render() {
-    const { user } = this.props;
     const { isDropdownOpen } = this.state;
+    const { user } = this.props;
     return (
       <div ref={this.containerRef} className={s.wrap}>
-        <UserMenuView
+        <UserProfile
           user={user}
           onClose={this.closeDropdown}
           isDropdownOpen={isDropdownOpen}
@@ -63,3 +65,9 @@ export default class UserMenuComponent extends PureComponent {
     );
   }
 }
+
+const mstp = state => ({
+  user: getUser(state),
+});
+
+export default connect(mstp)(UserProfileContainer);

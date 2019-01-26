@@ -3,9 +3,9 @@ import React from 'react';
 import Dropdown from './Dropdown/Dropdown';
 import Avatar from '../Avatar/Avatar';
 
-import s from './UserMenu.module.css';
+import s from './UserProfile.module.css';
 
-const UserMenu = ({ user, isDropdownOpen, onClose }) => (
+const User = ({ user, isDropdownOpen, onClose }) => (
   // const className = ;
 
   <>
@@ -19,4 +19,4 @@ const UserMenu = ({ user, isDropdownOpen, onClose }) => (
     {isDropdownOpen && <Dropdown onClose={onClose} />}
   </>
 );
-export default UserMenu;
+export default User;
