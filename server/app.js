@@ -17,7 +17,7 @@ const router = Router();
 
 const requireAuth = expressJwt({
   secret: process.env.JWT_SECRET,
-  userProperty: 'user'
+  userProperty: 'user',
 });
 
 router.post('/signup', (req, res) => {
@@ -28,12 +28,12 @@ router.post('/signup', (req, res) => {
     .then(({ id, name, email }) => {
       res.status(201).json({
         user: { id, name, email },
-        token: token.generate(id)
+        token: token.generate(id),
       });
     })
     .catch(error => {
       res.status(409).json({
-        message: error
+        message: error,
       });
     });
 });
@@ -46,12 +46,12 @@ router.post('/signin', (req, res) => {
     .then(({ id, name, email }) => {
       res.status(200).json({
         user: { id, name, email },
-        token: token.generate(id)
+        token: token.generate(id),
       });
     })
     .catch(error => {
       res.status(404).json({
-        message: error
+        message: error,
       });
     });
 });
@@ -63,12 +63,12 @@ router.post('/signout', (req, res) => {
   if (decoded) {
     // Все классно, удаляем токен из редиски или leveldb или еще откуда
     res.status(200).json({
-      message: 'Logout success'
+      message: 'Logout success',
     });
   } else {
     // Токен не валидный, отправляем репорт опсам чтобы разобрались кто пытался кинуть нам грязный токен
     res.status(500).json({
-      message: 'Gachi is manly!'
+      message: 'Gachi is manly!',
     });
   }
 });
@@ -83,7 +83,7 @@ router.get('/current', requireAuth, (req, res) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: error
+        message: error,
       });
     });
 });

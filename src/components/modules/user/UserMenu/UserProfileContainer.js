@@ -64,7 +64,7 @@ class UserProfileContainer extends Component {
             isDropdownOpen={isDropdownOpen}
           />
         </div>
-        <button className={s.signOutBnt} type="button" onClick={onSignOut}>
+        <button className={s.link} type="button" onClick={onSignOut}>
           Sign out
         </button>
       </div>

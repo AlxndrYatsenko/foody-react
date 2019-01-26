@@ -29,7 +29,7 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const { name, email, password, phone } = this.state;
+    const { name, email, password } = this.state;
 
     return (
       <form className={s.form} onSubmit={this.handleSubmit}>
@@ -53,18 +53,6 @@ class SignUpForm extends Component {
             autoComplete="email"
             onChange={this.handleCange}
             value={email}
-            required
-          />
-        </label>
-        <label className={s.label}>
-          Телефон
-          <input
-            className={s.input}
-            name="phone"
-            type="tel"
-            autoComplete="username"
-            onChange={this.handleCange}
-            value={phone}
             required
           />
         </label>

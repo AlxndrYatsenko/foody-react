@@ -23,3 +23,12 @@ export const signOutRequest = () => ({
 export const signOutSuccess = () => ({
   type: actionTypes.SIGN_OUT_SUCCESS,
 });
+
+export const getCurrentUserSuccess = user => ({
+  type: actionTypes.GET_CURRENT_USER_SUCCESS,
+  payload: { user },
+});
+
+export const getCurrentUserRequest = () => ({
+  type: actionTypes.GET_CURRENT_USER_REQUEST,
+});
