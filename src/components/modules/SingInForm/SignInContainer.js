@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { compose } from 'redux';
 
 import SignInForm from './SignInForm';
 
-// import { signIn } from '../session/sessionOperations';
 import withAuth from '../../hoc/withAuth';
 
 const INITIAL_STATE = {
@@ -40,19 +37,5 @@ class SignInContainer extends Component {
     );
   }
 }
-
-// const SignInContainerWithAuth = withAuth(SignInContainer);
-// console.log(<SignInContainerWithAuth />);
-
-// const mdtp = {
-//   onSubmit: signIn,
-// };
-
-// export default connect(
-//   null,
-//   mdtp,
-// )(SignInContainer);
-
-// SignInContainer;
 
 export default withAuth(SignInContainer);

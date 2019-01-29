@@ -12,11 +12,11 @@ import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <PersistGate loading={<Spiner />} persistor={persistor}> */}
-    <BrowserRouter>
-      <Route component={App} />
-    </BrowserRouter>
-    {/* </PersistGate> */}
+    <PersistGate loading={<Spiner />} persistor={persistor}>
+      <BrowserRouter>
+        <Route component={App} />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById('root'),
 );
