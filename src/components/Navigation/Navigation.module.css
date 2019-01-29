@@ -13,7 +13,7 @@ nav {
 }
 
 .activeLink {
-  text-decoration: none;
+  /* text-decoration: none; */
   color: #f44336;
 }
 

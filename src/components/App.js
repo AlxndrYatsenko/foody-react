@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import AppHeader from './AppHeader/AppHeader';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Spiner from './Spiner/Spiner';
 
 import { getCurrentUser } from './modules/session/sessionOperations';
@@ -87,9 +88,13 @@ class App extends Component {
             <Route exact path={routes.ABOUT} component={About} />
             <Route exact path={routes.CONTACT} component={Contact} />
             <Route exact path={routes.DELIVERY} component={Delivery} />
-            <Route exact path={routes.ORDER_HISTORY} component={OrderHistory} />
-            <Route exact path={routes.ACCOUNT} component={Account} />
-            <Route exact path={routes.PLANNER} component={Planner} />
+
+            <PrivateRoute path={routes.ACCOUNT} component={Account} />
+            <PrivateRoute path={routes.PLANNER} component={Planner} />
+            <PrivateRoute
+              path={routes.ORDER_HISTORY}
+              component={OrderHistory}
+            />
             <Route component={NotFound} />
           </Switch>
         </Suspense>

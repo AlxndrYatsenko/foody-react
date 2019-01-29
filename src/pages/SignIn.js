@@ -1,6 +1,6 @@
 import React from 'react';
-import SignIn from '../components/modules/SingInForm/SignInForm';
+import SignIn from '../components/modules/SingInForm/SignInContainer';
 
-const SignInPage = () => <SignIn />;
+const SignInPage = props => <SignIn {...props} />;
 
 export default SignInPage;

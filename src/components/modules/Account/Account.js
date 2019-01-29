@@ -1,6 +1,6 @@
 import React from 'react';
 
-import passProps from '../../hoc/passProps';
+import passProps from '../../hoc/withAuth';
 
 import s from './Account.module.css';
 

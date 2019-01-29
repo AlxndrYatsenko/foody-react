@@ -1,86 +1,49 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import * as operations from '../session/sessionOperations';
+import React from 'react';
 
 import s from '../SingInForm/SignInForm.module.css';
 
-const INITIAL_STATE = {
-  name: '',
-  email: '',
-  phone: '',
-  password: '',
-};
+const SignUpForm = ({ onChange, name, email, password, onSubmit }) => (
+  <form className={s.form} onSubmit={onSubmit}>
+    <label className={s.label}>
+      Имя
+      <input
+        className={s.input}
+        name="name"
+        type="name"
+        value={name}
+        required
+        autoComplete="name"
+        onChange={onChange}
+      />
+    </label>
+    <label className={s.label}>
+      Эл. почта
+      <input
+        className={s.input}
+        name="email"
+        type="email"
+        value={email}
+        required
+        autoComplete="email"
+        onChange={onChange}
+      />
+    </label>
+    <label className={s.label}>
+      Пароль
+      <input
+        className={s.input}
+        name="password"
+        type="password"
+        value={password}
+        required
+        autoComplete="new-password"
+        onChange={onChange}
+      />
+    </label>
+    <button className={s.submitBtn} type="submit">
+      Log in
+    </button>
+  </form>
+);
 
-class SignUpForm extends Component {
-  state = { ...INITIAL_STATE };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { onSubmit } = this.props;
-    onSubmit({ ...this.state });
-    this.setState({ ...INITIAL_STATE });
-  };
-
-  handleCange = ({ target: { name, value } }) => {
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  render() {
-    const { name, email, password } = this.state;
-
-    return (
-      <form className={s.form} onSubmit={this.handleSubmit}>
-        <label className={s.label}>
-          Имя
-          <input
-            className={s.input}
-            name="name"
-            type="text"
-            onChange={this.handleCange}
-            value={name}
-            required
-          />
-        </label>
-        <label className={s.label}>
-          Эл. почта
-          <input
-            className={s.input}
-            name="email"
-            type="email"
-            autoComplete="email"
-            onChange={this.handleCange}
-            value={email}
-            required
-          />
-        </label>
-        <label className={s.label}>
-          Пароль
-          <input
-            className={s.input}
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            onChange={this.handleCange}
-            value={password}
-            required
-          />
-        </label>
-        <button className={s.submitBtn} type="submit">
-          Sign up
-        </button>
-      </form>
-    );
-  }
-}
-
-const mdtp = {
-  onSubmit: operations.signUp,
-};
-
-export default connect(
-  null,
-  mdtp,
-)(SignUpForm);
+export default SignUpForm;

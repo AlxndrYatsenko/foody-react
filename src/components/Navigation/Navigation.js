@@ -8,8 +8,8 @@ const Navigation = ({ navItems }) => (
       {navItems.map(rout => (
         <li key={rout.name}>
           <NavLink
-            activeClassName={s.activeLink}
             className={s.navListLink}
+            activeClassName={s.activeLink}
             to={rout.to}
           >
             {rout.name}

@@ -36,6 +36,7 @@
 .link {
   display: inline-block;
   cursor: pointer;
+  outline: none;
   text-decoration: none;
   border-radius: 100px;
   border: 0.5px solid #8c4;

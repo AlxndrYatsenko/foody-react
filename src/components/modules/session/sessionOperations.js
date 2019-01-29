@@ -13,6 +13,7 @@ import {
 import { getToken } from './sessionSelectors';
 
 axios.defaults.baseURL = 'http://localhost:4040';
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -69,17 +70,10 @@ export const getCurrentUser = () => (dispatch, getState) => {
 
   dispatch(getCurrentUserRequest());
 
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
   axios
-    .get('/auth/current', config)
+    .get('/auth/current')
     .then(({ data }) => {
       setAuthHeader(token);
-      console.log(data);
       return dispatch(getCurrentUserSuccess(data.user));
     })
     .catch(error => {

@@ -12,7 +12,7 @@ import navItems from '../../configs/main-nav';
 import s from './AppHeader.module.css';
 import routes from '../../configs/routes';
 import {
-  getAuthentication,
+  getIsAuthenticated,
   getUser,
 } from '../modules/session/sessionSelectors';
 
@@ -29,7 +29,14 @@ const AppHeader = ({ isAuthenticated, user }) => (
 
 const mstp = state => ({
   user: getUser(state),
-  isAuthenticated: getAuthentication(state),
+  isAuthenticated: getIsAuthenticated(state),
 });
 
-export default connect(mstp)(AppHeader);
+const options = { pure: false };
+
+export default connect(
+  mstp,
+  null,
+  null,
+  options,
+)(AppHeader);
