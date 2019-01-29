@@ -22,14 +22,8 @@ const AppHeader = ({ isAuthenticated, user }) => (
       <Logo width={100} />
     </Link>
     <Navigation navItems={navItems} />
-    {isAuthenticated ? (
-      <>
-        <UserProfile user={user} />
-        <CartLinkContainer />
-      </>
-    ) : (
-      <Auth />
-    )}
+    {isAuthenticated ? <UserProfile user={user} /> : <Auth />}
+    <CartLinkContainer />
   </header>
 );
 

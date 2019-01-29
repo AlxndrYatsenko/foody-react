@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 import MenuItem from './MenuItem';
 
-import { getMenuItemById } from '../../../services/api';
 import { cartActions } from '../Cart/duck';
+import { getMenuItemById } from '../../../services/api';
+
+import { menuItemOperations } from './duck';
 
 class MenuItemComponent extends Component {
   state = {
@@ -53,6 +55,7 @@ class MenuItemComponent extends Component {
 
 const mdtp = {
   addToCart: cartActions.addToCart,
+  fetchMenuItem: menuItemOperations.fetchMenuItem,
 };
 
 export default connect(

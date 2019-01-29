@@ -9,6 +9,7 @@ const Cart = ({
   dishes = [],
   totalPrice,
   onDelete,
+  onGoBack,
   incrementAmount,
   decrementAmount,
   location,
@@ -84,7 +85,7 @@ const Cart = ({
                       <img
                         className={s.arrow}
                         src="https://image.flaticon.com/icons/svg/25/25224.svg"
-                        alt="up arrow"
+                        alt="down arrow"
                       />
                     </button>
                   </div>
@@ -94,7 +95,18 @@ const Cart = ({
             </tr>
           ))}
           <tr className={s.table}>
-            <td className={s.total} colSpan="4" />
+            <td className={s.goBackCell}>
+              <div className={s.goBackWrap}>
+                <button
+                  className={s.goBackBtn}
+                  type="button"
+                  onClick={onGoBack}
+                >
+                  Продолжить покупки
+                </button>
+              </div>
+            </td>
+            <td className={s.total} colSpan="3" />
             <td className={s.total}>ИТОГО: {totalPrice}</td>
           </tr>
         </tbody>

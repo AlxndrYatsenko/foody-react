@@ -56,9 +56,9 @@ const fetchCategoriesRequest = () => ({
   type: types.CATEGORIES_FETCH_REQUEST,
 });
 
-const fetchCategoriesSuccess = menuItems => ({
+const fetchCategoriesSuccess = categories => ({
   type: types.CATEGORIES_FETCH_SUCCESS,
-  payload: menuItems,
+  payload: categories,
 });
 
 const fetchCategoriesError = error => ({
