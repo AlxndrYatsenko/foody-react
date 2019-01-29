@@ -12,7 +12,9 @@ import {
 
 import { getToken } from './sessionSelectors';
 
-axios.defaults.baseURL = 'http://localhost:4040';
+const setBaseURL = () => {
+  axios.defaults.baseURL = 'http://localhost:4040';
+};
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -23,7 +25,7 @@ const clearAuthHeader = () => {
 
 export const signUp = credentials => dispatch => {
   dispatch(authRequest());
-
+  setBaseURL();
   axios
     .post('/auth/signup', credentials)
     .then(({ data }) => {
@@ -35,7 +37,7 @@ export const signUp = credentials => dispatch => {
 
 export const signIn = credentials => dispatch => {
   dispatch(authRequest());
-
+  setBaseURL();
   axios
     .post('/auth/signin', credentials)
     .then(({ data }) => {
@@ -55,7 +57,7 @@ export const signOut = () => (dispatch, getState) => {
       Authorization: token,
     },
   };
-
+  setBaseURL();
   axios
     .post('/auth/signout', {}, config)
     .then(() => dispatch(signOutSuccess()));
@@ -69,7 +71,7 @@ export const getCurrentUser = () => (dispatch, getState) => {
   setAuthHeader(token);
 
   dispatch(getCurrentUserRequest());
-
+  setBaseURL();
   axios
     .get('/auth/current')
     .then(({ data }) => {

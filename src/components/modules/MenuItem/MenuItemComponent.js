@@ -3,40 +3,47 @@ import { connect } from 'react-redux';
 
 import MenuItem from './MenuItem';
 
+import { getMenuItemById } from '../../../services/api';
 import { cartActions } from '../Cart/duck';
 
-import { menuItemOperations, menuItemSelectors } from './duck';
-
 class MenuItemComponent extends Component {
+  state = {
+    currentItem: {},
+  };
+
   componentDidMount() {
     const {
       match: { params },
     } = this.props;
 
-    const { fetchMenuItem } = this.props;
-    fetchMenuItem(params.id);
+    getMenuItemById(params.id).then(currentItem =>
+      this.setState({
+        currentItem,
+      }),
+    );
   }
 
   handleGoBack = () => {
-    const { history, location } = this.props;
-
     const {
-      selectedItem: { category },
+      history,
+      location,
+      match: { params },
     } = this.props;
 
-    return location.state
-      ? history.push(location.state.from)
-      : history.push({
-          pathname: '/menu',
-          search: `?category=${category}`,
-        });
+    return history.push(
+      location.state.from || {
+        pathname: '/menu',
+        search: `?category=${params.id}`,
+      },
+    );
   };
 
   render() {
-    const { selectedItem, addToCart } = this.props;
+    const { addToCart } = this.props;
+    const { currentItem } = this.state;
     return (
       <MenuItem
-        currentItem={selectedItem}
+        currentItem={currentItem}
         addToCart={addToCart}
         goBack={this.handleGoBack}
       />
@@ -44,15 +51,11 @@ class MenuItemComponent extends Component {
   }
 }
 
-const mstp = state => ({
-  selectedItem: menuItemSelectors.getSelectedItem(state),
-});
 const mdtp = {
   addToCart: cartActions.addToCart,
-  fetchMenuItem: menuItemOperations.fetchMenuItem,
 };
 
 export default connect(
-  mstp,
+  null,
   mdtp,
 )(MenuItemComponent);

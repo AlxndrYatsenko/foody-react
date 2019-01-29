@@ -12,7 +12,6 @@ import {
 } from './Menu/duck/reducers';
 
 import cartReducer from './Cart/duck/cartReducer';
-import menuItemReducer from './MenuItem/duck/menuItemReducer';
 
 export default combineReducers({
   session: sessionReducer,
@@ -21,7 +20,6 @@ export default combineReducers({
   entities: entityReducer,
   categories: categoriesReducer,
   filter: filterReducer,
-  currentItem: menuItemReducer,
   loading: loadingReducer,
   error: errorReducer,
 });
