@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 146px;
+  width: 160px;
+  margin-bottom: 12px;
 }
 
 .link {
@@ -22,4 +23,10 @@
 
 .link:hover {
   background-color: #ce8;
+}
+
+@media screen and (min-width: 768px) {
+  .wrap {
+    margin-bottom: 0;
+  }
 }

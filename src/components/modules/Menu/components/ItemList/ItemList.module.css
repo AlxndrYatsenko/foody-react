@@ -16,8 +16,9 @@
   margin-bottom: 20px;
 }
 .img {
-  width: auto;
-  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  max-height: 150px;
   display: block;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -32,15 +33,16 @@
 }
 
 .list {
-  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 10px;
+  justify-items: center;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  list-style: none;
 }
 .list li {
-  width: 290px;
+  width: 270px;
 }
 
 .list li:not(:nth-last-child(-n + 3)) {

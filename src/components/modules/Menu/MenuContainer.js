@@ -33,7 +33,8 @@ class MenuContainer extends Component {
     }
   }
 
-  handlechangeCategory = (category, history, location) => {
+  handlechangeCategory = category => {
+    const { history, location } = this.props;
     history.push({
       pathname: location.pathname,
       search: `category=${category}`,
@@ -43,7 +44,12 @@ class MenuContainer extends Component {
   };
 
   resetCategory = () => {
-    this.setState({ ...initialState });
+    // this.setState({ ...initialState });
+    const { history } = this.props;
+
+    history.push({
+      pathname: '/menu',
+    });
   };
 
   render() {

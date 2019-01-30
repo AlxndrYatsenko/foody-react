@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: 500px;
+  max-width: 500px;
   padding: 12px;
   border: 1px solid #b06e1c;
   border-radius: 8px;

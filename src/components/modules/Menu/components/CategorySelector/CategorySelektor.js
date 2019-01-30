@@ -7,14 +7,12 @@ const CategorySelector = ({
   onResetCategory,
   category,
   categories,
-  history,
-  location,
 }) => (
   <div className={s.selectorContainer}>
     <span className={s.category}>Выберите категорию: </span>
     <select
       className={s.selector}
-      onChange={({ target }) => onChange(target.value, history, location)}
+      onChange={({ target }) => onChange(target.value)}
       value={category}
     >
       <option key="выбрать" disabled label="выбрать" />
@@ -26,18 +24,18 @@ const CategorySelector = ({
       ))}
     </select>
     {category && (
-      <button
-        className={s.cancelBtn}
-        type="button"
-        onClick={() => onResetCategory(history)}
-      >
-        Очистить фильтр
-      </button>
-    )}
-    {category && (
-      <p>
-        Текущий фильтр: <b>{category}</b>
-      </p>
+      <>
+        <p>
+          Текущий фильтр: <b>{category}</b>
+        </p>
+        <button
+          className={s.cancelBtn}
+          type="button"
+          onClick={() => onResetCategory()}
+        >
+          Очистить фильтр
+        </button>
+      </>
     )}
   </div>
 );
