@@ -15,10 +15,10 @@ class MenuItemComponent extends Component {
 
   componentDidMount() {
     const {
-      match: { params },
-    } = this.props;
+      params: { id },
+    } = this.props.match;
 
-    getMenuItemById(params.id).then(currentItem =>
+    getMenuItemById(id).then(currentItem =>
       this.setState({
         currentItem,
       }),
@@ -26,16 +26,13 @@ class MenuItemComponent extends Component {
   }
 
   handleGoBack = () => {
-    const {
-      history,
-      location,
-      match: { params },
-    } = this.props;
+    const { history, location, match } = this.props;
+    const { id } = match.params.id;
 
     return history.push(
       location.state.from || {
         pathname: '/menu',
-        search: `?category=${params.id}`,
+        search: `?category=${id}`,
       },
     );
   };

@@ -25,9 +25,6 @@ const Main = lazy(() =>
 const Menu = lazy(() =>
   import('../pages/Menu' /* webpackChunkName: "menu-page" */),
 );
-const AddMenuItem = lazy(() =>
-  import('../pages/AddMenuItem' /* webpackChunkName: "addMenuItem-page" */),
-);
 const MenuItem = lazy(() =>
   import('../pages/MenuItem' /* webpackChunkName: "menuItem-page" */),
 );
@@ -74,11 +71,6 @@ class App extends Component {
               exact
               path={routes.MENU.root}
               component={props => <Menu {...props} />}
-            />
-            <Route
-              exact
-              path={routes.MENU.add}
-              component={props => <AddMenuItem {...props} />}
             />
             <Route
               exact

@@ -10,8 +10,13 @@ import { cartActions } from '../Cart/duck';
 const getCategoryFromProps = props =>
   queryString.parse(props.location.search).category;
 
+const initialState = { category: '' };
 class MenuContainer extends Component {
+  state = { ...initialState };
+
   componentDidMount() {
+    const category = getCategoryFromProps(this.props);
+    this.setState({ category });
     const { fetchMenuItems, fetchCategories } = this.props;
 
     fetchCategories();
@@ -37,9 +42,18 @@ class MenuContainer extends Component {
     return category;
   };
 
+  resetCategory = () => {
+    this.setState({ ...initialState });
+  };
+
   render() {
     return (
-      <Menu {...this.props} onChangeCategory={this.handlechangeCategory} />
+      <Menu
+        {...this.props}
+        {...this.state}
+        onChangeCategory={this.handlechangeCategory}
+        onResetCategory={this.resetCategory}
+      />
     );
   }
 }
@@ -47,7 +61,6 @@ class MenuContainer extends Component {
 const mapStateToProps = (state, props) => ({
   categories: menuSelectors.getCategories(state),
   filter: menuSelectors.getFilter(state),
-  category: menuSelectors.getCategory(props),
   menuItems: menuSelectors.getVisibleMenuItems(state, props),
 });
 
@@ -57,8 +70,6 @@ const mapDispatchToProps = {
   fetchMenuItemsWithCategory: menuOperations.fetchMenuItemsWithCategory,
   fetchCategories: menuOperations.fetchCategories,
   onFilterChange: menuActions.changeFilter,
-  onChangeCategory: menuActions.changeCategory,
-  onResetCategory: menuActions.resetCategory,
 };
 
 export default connect(

@@ -6,7 +6,7 @@ import UserProfile from '../modules/user/UserMenu/UserProfileContainer';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 import Auth from '../modules/Auth/Auth';
-import CartLinkContainer from '../modules/CartLink/CartLinkContainer';
+import CartLink from '../modules/CartLink/CartLinkContainer';
 
 import navItems from '../../configs/main-nav';
 import s from './AppHeader.module.css';
@@ -23,7 +23,7 @@ const AppHeader = ({ isAuthenticated, user }) => (
     </Link>
     <Navigation navItems={navItems} />
     {isAuthenticated ? <UserProfile user={user} /> : <Auth />}
-    <CartLinkContainer />
+    <CartLink />
   </header>
 );
 
