@@ -1,33 +1,51 @@
-table {
-  border-spacing: 0;
-  margin: 0 auto;
+.container {
+  display: flex;
+  justify-content: center;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 15px;
 }
 
-.table {
-  font-family: 'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;
-  text-align: center;
-  border-collapse: collapse;
-  background: #9e9e9e1a;
-  border-radius: 20px;
-}
-
-.table tbody tr:nth-child(2) {
-  border-bottom: 2px solid #f56433;
-}
-
-.table th {
-  font-size: 22px;
-  font-weight: 300;
-  padding: 12px 10px;
-  border-bottom: 2px solid #f56433;
-  color: #f56433;
-}
-
-.table tr,
-.table td {
+.item {
+  display: flex;
+  width: 100%;
+  background-color: #bbbaba1f;
   padding: 10px;
-  color: #8d8173;
-  border-bottom: 1px solid #00000014;
+}
+
+.item:not(:last-of-type) {
+  margin-bottom: 6px;
+}
+
+.wrap {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 92%;
+}
+
+.name {
+  margin: 0;
+  width: 50%;
+  min-width: 200px;
+}
+.priceWrap {
+  margin-right: 50px;
+  width: 60px;
+}
+.price {
+  width: 10%;
+  margin: 0;
+  line-height: 1rem;
+  font-size: 1.25rem;
+  margin: 0;
 }
 
 .btnWrap,
@@ -37,7 +55,6 @@ table {
 }
 .dishWrap {
   justify-content: start;
-  max-width: 400px;
   text-decoration: none;
   color: #8d8173;
 }
@@ -48,40 +65,38 @@ table {
 }
 
 .amountValue {
-  width: 30px;
+  line-height: 1rem;
+  font-size: 1.25rem;
+  margin: 0;
 }
 .amountWrap {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.delete {
-  width: 140px;
-}
-.dish {
-  width: 320px;
-}
-.amount {
-  width: 180px;
-}
-.price {
-  width: 100px;
+  justify-content: space-between;
+  border: 1px solid #b2b2b2;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 50px;
+  background-color: #fff;
 }
 
 .image {
-  margin-right: 30px;
+  margin-right: 20px;
   overflow: hidden;
 }
 
 .deleteBtn,
 .incrementBtn,
 .decrementBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   width: 36px;
   outline: none;
   background-color: #ffffff00;
   border: none;
+  padding: 0;
 }
 
 .deleteBtn:active,
@@ -89,6 +104,12 @@ table {
 .decrementBtn:active {
   position: relative;
   top: 2px;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 20px;
+  right: 0;
 }
 
 .disabled {
@@ -100,11 +121,13 @@ table {
   top: 0px;
 }
 
-.cross,
-.arrow {
+.basket,
+.increm,
+.decrem {
   width: 18px;
 }
-.goBackBtn {
+.goBackBtn,
+.paymentBtn {
   box-shadow: inset 0px 1px 0px 0px #ffffff;
   background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
   background-color: #f9f9f9;
@@ -121,9 +144,15 @@ table {
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
 }
-.goBackBtn:hover {
+.goBackBtn:hover .paymentBtn:hover {
   background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
   background-color: #e9e9e9;
+}
+.paymentWrap,
+.totalWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .total {
   font-weight: bold;
