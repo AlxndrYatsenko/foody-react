@@ -34,10 +34,9 @@
 .name {
   margin: 0;
   width: 50%;
-  min-width: 200px;
+  min-width: 150px;
 }
 .priceWrap {
-  margin-right: 50px;
   width: 60px;
 }
 .price {
@@ -73,10 +72,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 120px;
   border: 1px solid #b2b2b2;
   border-radius: 5px;
   padding: 5px;
-  margin-right: 50px;
   background-color: #fff;
 }
 
@@ -104,12 +103,6 @@
 .decrementBtn:active {
   position: relative;
   top: 2px;
-}
-
-.deleteBtn {
-  position: absolute;
-  top: 20px;
-  right: 0;
 }
 
 .disabled {

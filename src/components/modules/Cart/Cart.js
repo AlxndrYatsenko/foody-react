@@ -49,8 +49,8 @@ const Cart = ({
               <div className={s.priceWrap}>
                 <p className={s.price}>{price * amount}</p>
               </div>
-              <DeleteBtn onDelete={onDelete} id={id} />
             </div>
+            <DeleteBtn onDelete={onDelete} id={id} />
           </li>
         ))}
       </ul>
