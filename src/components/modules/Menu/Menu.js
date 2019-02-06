@@ -12,8 +12,7 @@ const Menu = ({
   menuItems,
   category,
   match,
-  // history,
-  // location,
+  location,
   addToCart,
   onChangeCategory,
   onResetCategory,
@@ -33,7 +32,12 @@ const Menu = ({
         categories={categories}
         onResetCategory={onResetCategory}
       />
-      <ItemList menuItems={menuItems} addToCart={addToCart} match={match} />
+      <ItemList
+        menuItems={menuItems}
+        addToCart={addToCart}
+        match={match}
+        location={location}
+      />
     </div>
   </>
 );
