@@ -41,6 +41,7 @@ const getVisibleMenuItems = createSelector(
 );
 
 export default {
+  getItems,
   getCategories,
   getCategory,
   getFilter,

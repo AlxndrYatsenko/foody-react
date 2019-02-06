@@ -20,16 +20,6 @@ export default class OrderHistoryContainer extends Component {
       .then(orders => this.setState({ orders }));
   }
 
-  handleDeleteOrder = id => {
-    API.deleteOrderById(id)
-      .catch(error => this.setState({ error }))
-      .then(
-        this.setState(state => ({
-          orders: state.orders.filter(item => item.id !== id),
-        })),
-      );
-  };
-
   handleShowOrder = id => {
     this.setState({ isLoading: true });
     API.getOrderById(id)
@@ -38,24 +28,6 @@ export default class OrderHistoryContainer extends Component {
         this.openModalShowOrder();
       })
       .catch(error => this.setState({ error }));
-  };
-
-  handleAddOrder = order => {
-    const { address, price, rating } = order;
-    API.addOrder({
-      date: new Date().toLocaleDateString('en-US'),
-      price,
-      address,
-      rating,
-    })
-      .catch(error => this.setState({ error }))
-      .then(response =>
-        response.status === 201
-          ? this.setState(prevState => ({
-              orders: [...prevState.orders, response.data],
-            }))
-          : null,
-      );
   };
 
   handleOpenModalAddOrder = () => {
@@ -81,8 +53,6 @@ export default class OrderHistoryContainer extends Component {
         onCloseModalShowOrder={this.closeModalShowOrder}
         onOpenModalAddOrder={this.handleOpenModalAddOrder}
         onCloseModalAddOrder={this.handleCloseModalAddOrder}
-        onAddOrder={this.handleAddOrder}
-        onDeleteOrder={this.handleDeleteOrder}
         onShowOrder={this.handleShowOrder}
       />
     );

@@ -2,9 +2,7 @@ import React from 'react';
 import OrdersTable from './components/OrdersTable';
 
 import CurrentOrder from './components/CurrentOrder';
-import AddOrderForm from '../AddOrder/AddOrderComponent';
 
-import s from './OrderHistory.module.css';
 import Modal from '../../../Modal/Modal';
 import Spiner from '../../../Spiner/Spiner';
 
@@ -13,12 +11,7 @@ const OrderHistoryView = ({
   currentOrder,
   isOpenModalShowOrder,
   isLoading,
-  isOpenModalAddOrder,
   onCloseModalShowOrder,
-  onOpenModalAddOrder,
-  onCloseModalAddOrder,
-  onAddOrder,
-  onDeleteOrder,
   onShowOrder,
   error,
 }) => (
@@ -37,27 +30,8 @@ const OrderHistoryView = ({
           </Modal>
         )
       )}
-      <button
-        className={s.createOrder}
-        type="button"
-        onClick={onOpenModalAddOrder}
-      >
-        Создать заказ
-      </button>
-      <br />
-      {isOpenModalAddOrder && (
-        <Modal onClose={onCloseModalAddOrder}>
-          <AddOrderForm
-            onAddOrder={onAddOrder}
-            onClose={onCloseModalAddOrder}
-          />
-        </Modal>
-      )}
-      <OrdersTable
-        orders={orders}
-        onDelete={onDeleteOrder}
-        onShowOrder={onShowOrder}
-      />
+
+      <OrdersTable orders={orders} onShowOrder={onShowOrder} />
     </div>
   </>
 );

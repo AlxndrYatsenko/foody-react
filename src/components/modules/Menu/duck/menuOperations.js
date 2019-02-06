@@ -26,19 +26,6 @@ const fetchMenuItemsWithCategory = category => async dispatch => {
   }
 };
 
-const deleteMenuItem = id => dispatch => {
-  dispatch(actions.fetchRequest());
-
-  axios
-    .delete(`/menu/${id}`)
-    .then(() => {
-      dispatch(actions.deleteItemSuccess(id));
-    })
-    .catch(error => {
-      dispatch(actions.fetchError(error));
-    });
-};
-
 const fetchCategories = () => async dispatch => {
   dispatch(actions.fetchCategoriesRequest());
 
@@ -54,5 +41,4 @@ export default {
   fetchMenuItems,
   fetchMenuItemsWithCategory,
   fetchCategories,
-  deleteMenuItem,
 };
