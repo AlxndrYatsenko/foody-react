@@ -18,7 +18,6 @@ const Dropdown = ({ onClose }) => (
         </li>
       ))}
     </ul>
-    <button type="button">Logout</button>
   </div>
 );
 

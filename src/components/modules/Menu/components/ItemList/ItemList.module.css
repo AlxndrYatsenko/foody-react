@@ -2,22 +2,33 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  position: relative;
   min-height: 330px;
   padding: 10px;
+  transition: all 0.4s linear;
+  overflow: hidden;
+}
+
+.wrapper:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.info {
-  max-width: 300px;
+.wrapper:hover .addToCartBtn {
+  /* transform: translateY(-2.5rem); */
+  opacity: 1;
+}
+
+.itemLink {
+  text-decoration: none;
 }
 .info p {
   margin: 0;
   margin-bottom: 20px;
 }
 .img {
-  width: auto;
-  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  max-height: 150px;
   display: block;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -25,6 +36,7 @@
 .name {
   font-weight: bold;
   font-size: 18px;
+  min-height: 50px;
 }
 .price {
   display: inline-block;
@@ -32,44 +44,38 @@
 }
 
 .list {
-  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 25px;
+  justify-items: center;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  list-style: none;
 }
-.list li {
-  width: 290px;
-}
-
-.list li:not(:nth-last-child(-n + 3)) {
-  margin-bottom: 30px;
+.item {
+  width: 270px;
+  background-color: #fff;
 }
 
-.addBtn {
+.addToCartBtn {
+  opacity: 0;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background-color: transparent;
   outline: none;
-  align-self: center;
-  width: 150px;
-  box-shadow: 3px 4px 0px 0px #899599;
-  background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-  background-color: #ededed;
-  border-radius: 15px;
-  border: 1px solid #d6bcd6;
-  display: inline-block;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
   cursor: pointer;
-  color: #3a8a9e;
-  font-family: Arial;
-  font-size: 17px;
-  padding: 4px 25px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #e1e2ed;
+  color: #666666;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-shadow: 0px 1px 0px #ffffff;
+  transition: all 0.4s linear;
 }
-.addBtn:hover {
-  background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-  background-color: #bab1ba;
+.addToCartBtn:hover {
+  background-color: #f6f6f6;
 }
-.addBtn:active {
+.addToCartBtn:active {
   position: relative;
   top: 1px;
 }

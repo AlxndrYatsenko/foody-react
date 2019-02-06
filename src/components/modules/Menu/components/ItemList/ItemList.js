@@ -14,6 +14,7 @@ export default class ItemList extends Component {
           <li className={s.item} key={id}>
             <div className={s.wrapper}>
               <Link
+                className={s.itemLink}
                 to={{
                   pathname: `${match.url}/${id}`,
                   state: { from: location },
@@ -26,7 +27,7 @@ export default class ItemList extends Component {
                 </div>
               </Link>
               <button
-                className={s.addBtn}
+                className={s.addToCartBtn}
                 type="button"
                 onClick={() => addToCart(id)}
               >

@@ -2,7 +2,7 @@ import React from 'react';
 import s from '../OrderHistory.module.css';
 
 const OrdersTable = props => {
-  const { orders, onDelete, onShowOrder } = props;
+  const { orders, onShowOrder } = props;
   return (
     <table className={s.table}>
       <tbody className={s.tableBody}>
@@ -25,19 +25,7 @@ const OrdersTable = props => {
                   onShowOrder(id);
                 }}
               >
-                Детальнее{' '}
-              </button>
-            </td>
-            <td>
-              <button
-                type="button"
-                id={id}
-                onClick={() => {
-                  onDelete(id);
-                }}
-              >
-                {' '}
-                Удалить
+                Детальнее
               </button>
             </td>
           </tr>
